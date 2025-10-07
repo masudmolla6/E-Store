@@ -1,45 +1,96 @@
-import React from 'react';
-import { Link, NavLink } from 'react-router';
-import Logo from '../Logo/Logo';
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router";
+import Logo from "../Logo/Logo";
+import { scroller } from "react-scroll";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [activeSection, setActiveSection] = useState("");
+
+  const isHomePage = location.pathname === "/";
+
+  // Scroll to section
+  const scrollToSection = (sectionId) => {
+    scroller.scrollTo(sectionId, {
+      duration: 500,
+      smooth: true,
+      offset: -80, // Navbar height
+    });
+    setActiveSection(sectionId);
+  };
+
+  // Click on navbar items
+  const handleNavClick = (sectionId) => {
+    if (isHomePage) {
+      scrollToSection(sectionId);
+    } else {
+      navigate("/"); // Navigate to Home
+      setTimeout(() => scrollToSection(sectionId), 100); // Scroll after route change
+    }
+  };
+
+  // Scroll listener for Home page
+  useEffect(() => {
+    if (!isHomePage) {
+      setActiveSection(""); // Home page na thakle kono active section nai
+      return;
+    }
+
+    const handleScroll = () => {
+      const sections = ["home", "about", "contact"];
+      const scrollPos = window.scrollY + 100;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+        if (section && section.offsetTop <= scrollPos) {
+          setActiveSection(sections[i]);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isHomePage]);
+
   const navItems = (
     <>
       <li>
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            isActive
+        <button
+          onClick={() => handleNavClick("home")}
+          className={`cursor-pointer transition-colors duration-200 ${
+            activeSection === "home"
               ? "text-blue-600 font-semibold underline underline-offset-4"
-              : "text-white hover:text-blue-600 transition-colors duration-200"
-          }
+              : "text-white hover:text-blue-600"
+          }`}
         >
           Home
-        </NavLink>
+        </button>
       </li>
       <li>
-        <NavLink
-          to="/about"
-          className={({ isActive }) =>
-            isActive
+        <button
+          onClick={() => handleNavClick("about")}
+          className={`cursor-pointer transition-colors duration-200 ${
+            activeSection === "about"
               ? "text-blue-600 font-semibold underline underline-offset-4"
-              : "text-white hover:text-blue-600 transition-colors duration-200"
-          }
+              : "text-white hover:text-blue-600"
+          }`}
         >
           About Us
-        </NavLink>
+        </button>
       </li>
       <li>
-        <NavLink
-          to="/contact"
-          className={({ isActive }) =>
-            isActive
+        <button
+          onClick={() => handleNavClick("contact")}
+          className={`cursor-pointer transition-colors duration-200 ${
+            activeSection === "contact"
               ? "text-blue-600 font-semibold underline underline-offset-4"
-              : "text-white hover:text-blue-600 transition-colors duration-200"
-          }
+              : "text-white hover:text-blue-600"
+          }`}
         >
-          Contact
-        </NavLink>
+          Contact Us
+        </button>
       </li>
     </>
   );
@@ -49,7 +100,7 @@ const Navbar = () => {
       {/* Left */}
       <div className="navbar-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <div tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -65,14 +116,11 @@ const Navbar = () => {
               />
             </svg>
           </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[100] mt-3 w-52 p-2 shadow"
-          >
+          <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[100] mt-3 w-52 p-2 shadow">
             {navItems}
           </ul>
         </div>
-        <Link className="w-full h-full" to="/">
+        <Link to="/" className="w-full h-full">
           <Logo />
         </Link>
       </div>
@@ -84,8 +132,12 @@ const Navbar = () => {
 
       {/* Right */}
       <div className="navbar-end flex items-center gap-2">
-        <button className="btn btn-outline btn-sm white">Login</button>
-        <button className="btn btn-primary btn-sm text-white">Sign Up</button>
+        <Link to="/login" className="btn btn-outline btn-sm">
+          Login
+        </Link>
+        <Link to="/signup" className="btn btn-primary btn-sm text-white">
+          Sign Up
+        </Link>
       </div>
     </div>
   );

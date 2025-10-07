@@ -3,14 +3,30 @@ import Banner from '../Banner/Banner'
 import Categories from '../Categories/Categories'
 import FeaturedProducts from '../FeaturedProducts/FeaturedProducts'
 import AboutUs from '../AboutUs/AboutUs'
+import ContactUs from '../ContactUs/ContactUs'
 
 const Home = () => {
   return (
     <div className=''>
-      <Banner></Banner>
-      <Categories></Categories>
-      <FeaturedProducts></FeaturedProducts>
-      <AboutUs></AboutUs>
+      <div id="home">
+        <Banner />
+      </div>
+
+      <div id="categories">
+        <Categories />
+      </div>
+
+      <div id="featured">
+        <FeaturedProducts />
+      </div>
+
+      <div id="about">
+        <AboutUs />
+      </div>
+
+      <div id="contact">
+        <ContactUs />
+      </div>
     </div>
   )
 }
