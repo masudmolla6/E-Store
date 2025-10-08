@@ -132,10 +132,7 @@ const Navbar = () => {
 
       {/* Right */}
       <div className="navbar-end flex items-center gap-2">
-        <Link to="/login" className="btn btn-outline btn-sm">
-          Login
-        </Link>
-        <Link to="/signup" className="btn btn-primary btn-sm text-white">
+        <Link to="/register" className="btn btn-outline btn-sm">
           Sign Up
         </Link>
       </div>
