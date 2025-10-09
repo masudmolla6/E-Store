@@ -1,27 +1,56 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router';
+import useAuth from '../../../hooks/useAuth';
+import axios from 'axios';
 
 const Register = () => {
       const { register, handleSubmit, formState: { errors } } = useForm();
       const [profilePic, setProfilePic] = useState('');
+      const {user,loading, createUser,updateUserProfile}=useAuth();
+
+      console.log(profilePic);
   
       const onSubmit = data => {
-          console.log(data);
+          createUser(data.email, data.password)
+          .then(result=>{
+            const user=result.user;
+            console.log(user);
+
+            // update user info in the database.
+            const userProfile={
+              displayName:data.name,
+              photoURL:profilePic,
+            }
+
+            updateUserProfile(userProfile)
+            .then(()=>{
+              console.log("profile name and picture updated");
+            })
+            .catch((error)=>{
+              console.error(error);
+              
+            })
+
+          })
+          .catch(error=>{
+            console.error(error);
+            
+          })
       }
 
     const handleImageUpload = async (e) => {
         const image = e.target.files[0];
         console.log(image)
 
-        // const formData = new FormData();
-        // formData.append('image', image);
+        const formData = new FormData();
+        formData.append('image', image);
 
 
-        // const imagUploadUrl = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_upload_key}`
-        // const res = await axios.post(imagUploadUrl, formData)
+        const imagUploadUrl = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_upload_key}`
+        const res = await axios.post(imagUploadUrl, formData)
 
-        // setProfilePic(res.data.data.url);
+        setProfilePic(res.data.data.url);
     }
   return (
             <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">

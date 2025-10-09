@@ -2,11 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router";
 import Logo from "../Logo/Logo";
 import { scroller } from "react-scroll";
+import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [activeSection, setActiveSection] = useState("");
+  const {user, logOut}=useAuth();
+
+  const handleLogout=async()=>{
+    await logOut();
+  }
 
   const isHomePage = location.pathname === "/";
 
@@ -132,9 +138,13 @@ const Navbar = () => {
 
       {/* Right */}
       <div className="navbar-end flex items-center gap-2">
-        <Link to="/register" className="btn btn-outline btn-sm">
-          Sign Up
+        {
+          user ? <button onClick={()=>handleLogout()} className="btn btn-outline btn-sm">
+          LogOut
+        </button>:<Link to="/login" className="btn btn-outline btn-sm">
+          LogIn
         </Link>
+        }
       </div>
     </div>
   );
