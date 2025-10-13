@@ -4,6 +4,10 @@ import Home from "../pages/Home/Home/Home";
 import AuthLayout from "../layouts/AuthLayout";
 import LogIn from "../pages/Authentication/LogIn/LogIn";
 import Register from "../pages/Authentication/Register/Register";
+import OurProductsLayout from "../layouts/OurProductsLayout";
+import AllProducts from "../pages/OurProducts/AllProducts/AllProducts";
+import Categories from "../pages/OurProducts/Categories/Categories";
+import FeaturedProducts from "../pages/OurProducts/FeaturedProducts/FeaturedProducts";
 const router=createBrowserRouter([
     {
         path:'/',
@@ -29,6 +33,26 @@ const router=createBrowserRouter([
         }
         ]
     },
+    {
+      path: "/products",
+      Component: OurProductsLayout,
+      children: [
+        {
+          index: true,
+          path: "all",
+          Component: AllProducts,
+        },
+        {
+          path: "categories",
+          Component: Categories,
+        },
+        {
+          path: "featured",
+          Component: FeaturedProducts,
+        },
+      ],
+    }
+
 ])
 
 export default router;
