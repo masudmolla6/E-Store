@@ -75,6 +75,11 @@ const Navbar = () => {
         </button>
       </li>
       <li>
+        <Link to="products">
+          Products
+        </Link>
+      </li>
+      <li>
         <button
           onClick={() => handleNavClick("about")}
           className={`cursor-pointer transition-colors duration-200 ${

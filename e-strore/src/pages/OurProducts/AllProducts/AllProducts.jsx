@@ -14,7 +14,7 @@ const AllProducts = () => {
     const fetchProducts = async () => {
       setLoading(true);
       try {
-        let url = `http://localhost:5000/api/products?search=${searchTerm}&sort=${sortOption}&page=${currentPage}&limit=${limit}`;
+        let url = `http://localhost:5000/products?search=${searchTerm}&sort=${sortOption}&page=${currentPage}&limit=${limit}`;
         const res = await fetch(url);
         const data = await res.json();
         setProducts(data.products || []);
@@ -43,7 +43,7 @@ const AllProducts = () => {
       {loading ? (
         <p className="text-center text-gray-500">Loading...</p>
       ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {products.length > 0 ? (
             products.map((product) => (
               <div
