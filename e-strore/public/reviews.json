@@ -1,0 +1,470 @@
+[
+  {
+    "productId": "68ea738323cffa09a5feaeb1",
+    "user": {
+      "name": "Rahul Khan",
+      "image": "https://images.pexels.com/photos/1231234/pexels-photo-1231234.jpeg",
+      "profession": "Developer",
+      "verifiedPurchase": true
+    },
+    "rating": 4.8,
+    "title": "Quality beyond expectations!",
+    "comment": "দারুণ প্রোডাক্ট! কাপড়ের মান একদম soft, color fade করে না। delivery একটু late ছিল কিন্তু overall satisfied।"
+  },
+  {
+    "productId": "68ea738323cffa09a5feaeb2",
+    "user": {
+      "name": "Tanvir Hossain",
+      "image": "https://images.pexels.com/photos/2342345/pexels-photo-2342345.jpeg",
+      "profession": "Teacher",
+      "verifiedPurchase": true
+    },
+    "rating": 4.5,
+    "title": "Very Comfortable!",
+    "comment": "Material soft এবং design খুব ভালো। Delivery time একটু বেশি হলেও মান সন্তুষ্ট করেছে।"
+  },
+  {
+    "productId": "68ea738323cffa09a5feaeb3",
+    "user": {
+      "name": "Ayesha Siddique",
+      "image": "https://images.pexels.com/photos/3453456/pexels-photo-3453456.jpeg",
+      "profession": "Student",
+      "verifiedPurchase": true
+    },
+    "rating": 4.7,
+    "title": "Worth the price!",
+    "comment": "Price অনুযায়ী perfect। Quality soft এবং color fade করে না।"
+  },
+  {
+    "productId": "68ea738323cffa09a5feaeb4",
+    "user": {
+      "name": "Rakib Islam",
+      "image": "https://images.pexels.com/photos/4564567/pexels-photo-4564567.jpeg",
+      "profession": "Engineer",
+      "verifiedPurchase": true
+    },
+    "rating": 5.0,
+    "title": "Highly Recommended!",
+    "comment": "Amazing quality। Delivery fast। Definitely recommend to others."
+  },
+  {
+    "productId": "68ea738323cffa09a5feaeb5",
+    "user": {
+      "name": "Nabila Rahman",
+      "image": "https://images.pexels.com/photos/5675678/pexels-photo-5675678.jpeg",
+      "profession": "Designer",
+      "verifiedPurchase": true
+    },
+    "rating": 4.6,
+    "title": "Soft and Comfortable!",
+    "comment": "Really soft fabric and good color. Delivery could be faster but overall satisfied."
+  },
+  {
+    "productId": "68ea738323cffa09a5feaeb6",
+    "user": {
+      "name": "Shakib Khan",
+      "image": "https://images.pexels.com/photos/6786789/pexels-photo-6786789.jpeg",
+      "profession": "Actor",
+      "verifiedPurchase": true
+    },
+    "rating": 4.9,
+    "title": "Excellent product!",
+    "comment": "Soft, durable, and stylish। Very happy with the purchase."
+  },
+  {
+    "productId": "68ea738323cffa09a5feaeb7",
+    "user": {
+      "name": "Rumana Akter",
+      "image": "https://images.pexels.com/photos/7897890/pexels-photo-7897890.jpeg",
+      "profession": "Student",
+      "verifiedPurchase": true
+    },
+    "rating": 4.4,
+    "title": "Good Quality",
+    "comment": "Fabric soft, color vibrant। Delivery normal।"
+  },
+  {
+    "productId": "68ea738323cffa09a5feaeb8",
+    "user": {
+      "name": "Sabbir Ahmed",
+      "image": "https://images.pexels.com/photos/8908901/pexels-photo-8908901.jpeg",
+      "profession": "Developer",
+      "verifiedPurchase": true
+    },
+    "rating": 4.3,
+    "title": "Satisfied",
+    "comment": "Overall product nice। Fabric soft। Would buy again."
+  },
+  {
+    "productId": "68ea738323cffa09a5feaeb9",
+    "user": {
+      "name": "Mithila Chowdhury",
+      "image": "https://images.pexels.com/photos/9019012/pexels-photo-9019012.jpeg",
+      "profession": "Teacher",
+      "verifiedPurchase": true
+    },
+    "rating": 4.7,
+    "title": "Very Good",
+    "comment": "Fabric soft এবং color fade করে না। Delivery ঠিক সময় হয়েছিল।"
+  },
+  {
+    "productId": "68ea738323cffa09a5feae10",
+    "user": {
+      "name": "Hasan Ali",
+      "image": "https://images.pexels.com/photos/1234567/pexels-photo-1234567.jpeg",
+      "profession": "Student",
+      "verifiedPurchase": true
+    },
+    "rating": 4.5,
+    "title": "Nice Product",
+    "comment": "Soft fabric, nice color। Overall satisfied।"
+  },
+  {
+    "productId": "68ea738323cffa09a5feae11",
+    "user": {
+      "name": "Sima Akter",
+      "image": "https://images.pexels.com/photos/2345678/pexels-photo-2345678.jpeg",
+      "profession": "Artist",
+      "verifiedPurchase": true
+    },
+    "rating": 4.6,
+    "title": "Good Quality",
+    "comment": "Nice fabric, comfortable to wear. Delivery was on time."
+  },
+  {
+    "productId": "68ea738323cffa09a5feae12",
+    "user": {
+      "name": "Rafiq Hossain",
+      "image": "https://images.pexels.com/photos/3456789/pexels-photo-3456789.jpeg",
+      "profession": "Photographer",
+      "verifiedPurchase": true
+    },
+    "rating": 4.8,
+    "title": "Excellent Product",
+    "comment": "Quality is top-notch. Very satisfied with the purchase."
+  },
+  {
+    "productId": "68ea738323cffa09a5feae13",
+    "user": {
+      "name": "Jannatul Ferdous",
+      "image": "https://images.pexels.com/photos/4567890/pexels-photo-4567890.jpeg",
+      "profession": "Engineer",
+      "verifiedPurchase": true
+    },
+    "rating": 4.7,
+    "title": "Very Satisfied",
+    "comment": "Comfortable and stylish. Delivery was prompt."
+  },
+  {
+    "productId": "68ea738323cffa09a5feae14",
+    "user": {
+      "name": "Kazi Imran",
+      "image": "https://images.pexels.com/photos/5678901/pexels-photo-5678901.jpeg",
+      "profession": "Designer",
+      "verifiedPurchase": true
+    },
+    "rating": 4.9,
+    "title": "Highly Recommended",
+    "comment": "Great quality and fit. Worth every penny."
+  },
+  {
+    "productId": "68ea738323cffa09a5feae15",
+    "user": {
+      "name": "Rina Sultana",
+      "image": "https://images.pexels.com/photos/6789012/pexels-photo-6789012.jpeg",
+      "profession": "Teacher",
+      "verifiedPurchase": true
+    },
+    "rating": 4.4,
+    "title": "Good Purchase",
+    "comment": "Quality is good. Delivery was a bit delayed."
+  },
+  {
+    "productId": "68ea738323cffa09a5feae16",
+    "user": {
+      "name": "Shuvo Roy",
+      "image": "https://images.pexels.com/photos/7890123/pexels-photo-7890123.jpeg",
+      "profession": "Developer",
+      "verifiedPurchase": true
+    },
+    "rating": 4.6,
+    "title": "Nice Quality",
+    "comment": "Fabric is soft and comfortable. Delivery was on time."
+  },
+  {
+    "productId": "68ea738323cffa09a5feae17",
+    "user": {
+      "name": "Mahiya Rahman",
+      "image": "https://images.pexels.com/photos/8901234/pexels-photo-8901234.jpeg",
+      "profession": "Artist",
+      "verifiedPurchase": true
+    },
+    "rating": 4.7,
+    "title": "Very Comfortable",
+    "comment": "Soft fabric and good fit. Delivery was prompt."
+  },
+  {
+    "productId": "68ea738323cffa09a5feae18",
+    "user": {
+      "name": "Rashed Khan",
+      "image": "https://images.pexels.com/photos/9012345/pexels-photo-9012345.jpeg",
+      "profession": "Photographer",
+      "verifiedPurchase": true
+    },
+    "rating": 4.5,
+    "title": "Good Quality",
+    "comment": "Quality is good. Delivery was a bit delayed."
+  },
+  {
+    "productId": "68ea738323cffa09a5feae19",
+    "user": {
+      "name": "Shamim Hossain",
+      "image": "https://images.pexels.com/photos/1234568/pexels-photo-1234568.jpeg",
+      "profession": "Engineer",
+      "verifiedPurchase": true
+    },
+    "rating": 4.7,
+    "title": "Very Satisfied",
+    "comment": "Comfortable and stylish. Delivery was prompt."
+  },
+  {
+    "productId": "68ea738323cffa09a5feaec1",
+    "user": {
+      "name": "Aminul Haque",
+      "image": "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg",
+      "profession": "Engineer",
+      "verifiedPurchase": true
+    },
+    "rating": 4.9,
+    "title": "Superb build quality!",
+    "comment": "খুব সুন্দর প্যাকেজিং ছিল! প্রোডাক্টের মান আশা ছাড়িয়েছে।"
+  },
+  {
+    "productId": "68ea738323cffa09a5feaec2",
+    "user": {
+      "name": "Nusrat Jahan",
+      "image": "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
+      "profession": "Student",
+      "verifiedPurchase": true
+    },
+    "rating": 4.7,
+    "title": "Good but delivery was slow",
+    "comment": "কোয়ালিটি ভালো, কিন্তু delivery ২ দিন দেরি হয়েছে।"
+  },
+  {
+    "productId": "68ea738323cffa09a5feaec3",
+    "user": {
+      "name": "Sajid Rahman",
+      "image": "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg",
+      "profession": "Teacher",
+      "verifiedPurchase": true
+    },
+    "rating": 5,
+    "title": "Excellent choice!",
+    "comment": "একদম perfect প্রোডাক্ট! আবার অর্ডার করবো ইনশাআল্লাহ।"
+  },
+  {
+    "productId": "68ea738323cffa09a5feaec4",
+    "user": {
+      "name": "Mahbuba Akter",
+      "image": "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg",
+      "profession": "Designer",
+      "verifiedPurchase": true
+    },
+    "rating": 4.8,
+    "title": "Beautiful and soft fabric",
+    "comment": "ডিজাইন আর কালার খুবই সুন্দর। কাপড়ের মানও দারুণ।"
+  },
+  {
+    "productId": "68ea738323cffa09a5feaec5",
+    "user": {
+      "name": "Rakibul Islam",
+      "image": "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg",
+      "profession": "Freelancer",
+      "verifiedPurchase": true
+    },
+    "rating": 4.6,
+    "title": "Value for money",
+    "comment": "এই দামে এমন প্রোডাক্ট পাওয়া যায় বিশ্বাসই হচ্ছিল না!"
+  },
+  {
+    "productId": "68ea738323cffa09a5feaec6",
+    "user": {
+      "name": "Sadia Rahman",
+      "image": "https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg",
+      "profession": "Doctor",
+      "verifiedPurchase": true
+    },
+    "rating": 5,
+    "title": "Absolutely loved it!",
+    "comment": "কাপড়ের texture আর fitting অসাধারণ। Highly recommended!"
+  },
+  {
+    "productId": "68ea738323cffa09a5feaec7",
+    "user": {
+      "name": "Tanvir Hasan",
+      "image": "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg",
+      "profession": "Photographer",
+      "verifiedPurchase": true
+    },
+    "rating": 4.5,
+    "title": "Good product overall",
+    "comment": "কোয়ালিটি ভালো, কিন্তু color টা ছবির মতো উজ্জ্বল না।"
+  },
+  {
+    "productId": "68ea738323cffa09a5feaec8",
+    "user": {
+      "name": "Farhana Kabir",
+      "image": "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg",
+      "profession": "Banker",
+      "verifiedPurchase": true
+    },
+    "rating": 4.9,
+    "title": "Top notch!",
+    "comment": "ডেলিভারি সময়মতো, প্যাকেজিং সুন্দর, overall experience দারুণ!"
+  },
+  {
+    "productId": "68ea738323cffa09a5feaec9",
+    "user": {
+      "name": "Riyad Ahmed",
+      "image": "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg",
+      "profession": "Software Engineer",
+      "verifiedPurchase": true
+    },
+    "rating": 4.8,
+    "title": "Very comfortable",
+    "comment": "Soft, breathable, আর fitting টাও perfect!"
+  },
+  {
+    "productId": "68ea738323cffa09a5feaeca",
+    "user": {
+      "name": "Afsana Mim",
+      "image": "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
+      "profession": "Student",
+      "verifiedPurchase": true
+    },
+    "rating": 4.7,
+    "title": "Satisfied purchase",
+    "comment": "Delivery fast ছিল, product perfect এসেছে। ধন্যবাদ!"
+  },
+  {
+    "productId": "68ea738323cffa09a5feaecd",
+    "user": {
+      "name": "Muntasir Chowdhury",
+      "image": "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg",
+      "profession": "Content Creator",
+      "verifiedPurchase": true
+    },
+    "rating": 4.8,
+    "title": "Looks premium",
+    "comment": "দেখতে প্রিমিয়াম লাগে, quality ও high-end।"
+  },
+  {
+    "productId": "68ea738323cffa09a5feaeb1",
+    "user": {
+      "name": "Tahsin Khan",
+      "image": "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg",
+      "profession": "Developer",
+      "verifiedPurchase": true
+    },
+    "rating": 5,
+    "title": "Loved it totally!",
+    "comment": "এই দামে এমন প্রোডাক্ট rare! ধন্যবাদ seller কে।"
+  },
+  {
+    "productId": "68ea738323cffa09a5feaeb2",
+    "user": {
+      "name": "Sumaiya Rahman",
+      "image": "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
+      "profession": "Artist",
+      "verifiedPurchase": true
+    },
+    "rating": 4.9,
+    "title": "Super cute and comfy",
+    "comment": "কাপড়টা খুবই নরম, color perfect। আবার অর্ডার করবো!"
+  },
+  {
+    "productId": "68ea738323cffa09a5feaeb3",
+    "user": {
+      "name": "Nayeem Uddin",
+      "image": "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg",
+      "profession": "Engineer",
+      "verifiedPurchase": true
+    },
+    "rating": 4.6,
+    "title": "Good but could be better",
+    "comment": "ডেলিভারি একটু late, but quality fine।"
+  },
+  {
+    "productId": "68ea738323cffa09a5feaeb4",
+    "user": {
+      "name": "Anika Sultana",
+      "image": "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg",
+      "profession": "Fashion Blogger",
+      "verifiedPurchase": true
+    },
+    "rating": 4.8,
+    "title": "Great for daily use",
+    "comment": "Comfortable, soft এবং everyday use এর জন্য perfect।"
+  },
+  {
+    "productId": "68ea738323cffa09a5feaeb5",
+    "user": {
+      "name": "Rashedul Karim",
+      "image": "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg",
+      "profession": "Entrepreneur",
+      "verifiedPurchase": true
+    },
+    "rating": 4.7,
+    "title": "Nice experience overall",
+    "comment": "সবকিছু ঠিকঠাক, শুধু packaging একটু ভালো করা যেতে পারে।"
+  },
+  {
+    "productId": "68ea738323cffa09a5feaeb6",
+    "user": {
+      "name": "Sanjida Hossain",
+      "image": "https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg",
+      "profession": "Student",
+      "verifiedPurchase": true
+    },
+    "rating": 5,
+    "title": "Fantastic!",
+    "comment": "Wow! একদম mind-blowing product 🔥"
+  },
+  {
+    "productId": "68ea738323cffa09a5feaeb7",
+    "user": {
+      "name": "Nazmul Hasan",
+      "image": "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg",
+      "profession": "Engineer",
+      "verifiedPurchase": true
+    },
+    "rating": 4.9,
+    "title": "Highly recommended!",
+    "comment": "কেউ যদি doubt করে — একবার কিনে দেখলেই বুঝবে।"
+  },
+  {
+    "productId": "68ea738323cffa09a5feaeb8",
+    "user": {
+      "name": "Mim Chowdhury",
+      "image": "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
+      "profession": "Student",
+      "verifiedPurchase": true
+    },
+    "rating": 4.8,
+    "title": "Soft and stylish",
+    "comment": "একদম ছবির মতোই পেয়েছি! stylish আর comfortable।"
+  },
+  {
+    "productId": "68ea738323cffa09a5feaeb9",
+    "user": {
+      "name": "Fahim Reza",
+      "image": "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg",
+      "profession": "Developer",
+      "verifiedPurchase": true
+    },
+    "rating": 4.7,
+    "title": "Great fit and look",
+    "comment": "ফিটিং আর কালার দুইটাই perfect। একদম পছন্দ হয়েছে!"
+  }
+]
