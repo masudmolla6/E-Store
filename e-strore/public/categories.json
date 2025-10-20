@@ -1,0 +1,7 @@
+[
+    {"name":"Man","description":"Stylish and premium men’s wear for every occasion.","image":"https://images.pexels.com/photos/874158/pexels-photo-874158.jpeg"},
+    {"name":"Women","description":"Trendy and elegant outfits designed for modern women.","image":"https://images.pexels.com/photos/712521/pexels-photo-712521.jpeg"},
+    {"name":"Electronics","description":"Latest gadgets and tech products to make life easier.","image":"https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg"},
+    {"name":"Accessories","description":"Top-quality fashion accessories for your perfect look.","image":"https://images.pexels.com/photos/322207/pexels-photo-322207.jpeg"},
+    {"name":"Home","description":"Quality furniture and kitchen essentials for modern living.","image":"https://images.pexels.com/photos/439227/pexels-photo-439227.jpeg"}
+]

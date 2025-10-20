@@ -1,9 +1,9 @@
 // src/hooks/useAllProducts.js
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "./useAxiosSecure";
+import useAxiosPublic from "./useAxiosPublic";
 
 const useAllProducts = (searchTerm, sortOption, currentPage, limit = 8) => {
-  const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
 
   const {
     data,
@@ -14,7 +14,7 @@ const useAllProducts = (searchTerm, sortOption, currentPage, limit = 8) => {
   } = useQuery({
     queryKey: ["allProducts", searchTerm, sortOption, currentPage],
     queryFn: async () => {
-      const res = await axiosSecure.get("/products", {
+      const res = await axiosPublic.get("/products", {
         params: {
           search: searchTerm,
           sort: sortOption,
