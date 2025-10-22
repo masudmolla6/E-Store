@@ -3,13 +3,14 @@ import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
 import axios from 'axios';
+import SocialLogin from '../../shared/SocialLogin/SocialLogin';
 
 const Register = () => {
       const { register, handleSubmit, formState: { errors } } = useForm();
       const [profilePic, setProfilePic] = useState('');
       const {user,loading, createUser,updateUserProfile}=useAuth();
 
-      console.log(profilePic);
+      // console.log(profilePic);
   
       const onSubmit = data => {
           createUser(data.email, data.password)
@@ -95,6 +96,7 @@ const Register = () => {
                     </fieldset>
                     <p><small>Already have an account? <Link className="btn btn-link" to="/login">Login</Link></small></p>
                 </form>
+                <SocialLogin></SocialLogin>
             </div>
         </div>
   )

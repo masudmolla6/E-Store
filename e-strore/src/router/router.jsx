@@ -6,8 +6,8 @@ import LogIn from "../pages/Authentication/LogIn/LogIn";
 import Register from "../pages/Authentication/Register/Register";
 import OurProductsLayout from "../layouts/OurProductsLayout";
 import AllProducts from "../pages/OurProducts/AllProducts/AllProducts";
-import Categories from "../pages/OurProducts/Categories/Categories";
 import FeaturedProducts from "../pages/OurProducts/FeaturedProducts/FeaturedProducts";
+import CategoryProducts from "../pages/OurProducts/CategoryProducts/CategoryProducts";
 const router=createBrowserRouter([
     {
         path:'/',
@@ -43,8 +43,8 @@ const router=createBrowserRouter([
           Component: AllProducts,
         },
         {
-          path: "categories",
-          Component: Categories,
+          path: "categoryProducts",
+          Component: CategoryProducts,
         },
         {
           path: "featured",

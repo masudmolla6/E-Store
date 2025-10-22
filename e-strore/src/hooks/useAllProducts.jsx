@@ -2,7 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "./useAxiosPublic";
 
-const useAllProducts = (searchTerm, sortOption, currentPage, limit = 8) => {
+const useAllProducts = (searchTerm, sortOption, currentPage, limit = 8, category) => {
   const axiosPublic = useAxiosPublic();
 
   const {
@@ -20,6 +20,8 @@ const useAllProducts = (searchTerm, sortOption, currentPage, limit = 8) => {
           sort: sortOption,
           page: currentPage,
           limit: limit,
+          category: category, // ✅ added category filter
+
         },
       });
       return res.data;

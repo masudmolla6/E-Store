@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
+import SocialLogin from '../../shared/SocialLogin/SocialLogin';
 
 const LogIn = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -53,6 +54,7 @@ const LogIn = () => {
                     </fieldset>
                     <p><small>New to this website? <Link className="btn btn-link" to="/register">Register</Link></small></p>
                 </form>
+                <SocialLogin></SocialLogin>
             </div>
         </div>
     );

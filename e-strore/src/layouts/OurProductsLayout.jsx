@@ -31,7 +31,7 @@ const OurProductsLayout = () => {
             </NavLink>
 
             <NavLink
-              to="/products/categories"
+              to="/products/categoryProducts"
               className={({ isActive }) =>
                 `flex items-center gap-3 px-5 py-3 rounded-2xl transition-all duration-300 ${
                   isActive
@@ -40,7 +40,7 @@ const OurProductsLayout = () => {
                 }`
               }
             >
-              <Grid2X2 size={18} /> Categories
+              <Grid2X2 size={18} /> Category Products
             </NavLink>
 
             <NavLink
@@ -135,7 +135,7 @@ const OurProductsLayout = () => {
       <nav className="md:hidden fixed bottom-0 left-0 w-full bg-white dark:bg-gray-800 shadow-lg flex justify-around items-center py-2 border-t border-gray-200 dark:border-gray-700 z-50">
         {[
           { to: "/products/all", icon: <ShoppingBag size={20} />, label: "All" },
-          { to: "/products/categories", icon: <Grid2X2 size={20} />, label: "Cats" },
+          { to: "/products/categoryProducts", icon: <Grid2X2 size={20} />, label: "Cats" },
           { to: "/products/featured", icon: <Star size={20} />, label: "Favs" },
           { to: "/", icon: <Home size={20} />, label: "Home" },
         ].map(({ to, icon, label }) => (
