@@ -8,6 +8,7 @@ import OurProductsLayout from "../layouts/OurProductsLayout";
 import AllProducts from "../pages/OurProducts/AllProducts/AllProducts";
 import FeaturedProducts from "../pages/OurProducts/FeaturedProducts/FeaturedProducts";
 import CategoryProducts from "../pages/OurProducts/CategoryProducts/CategoryProducts";
+import ProductDetails from "../pages/OurProducts/AllProducts/ProductDetails";
 const router=createBrowserRouter([
     {
         path:'/',
@@ -45,6 +46,13 @@ const router=createBrowserRouter([
         {
           path: "categoryProducts",
           Component: CategoryProducts,
+        },
+        {
+          path:"productDetails/:id",
+          Component:ProductDetails,
+          loader:({params})=>{
+            return fetch(`http://localhost:5000/products/productDetails/${params.id}`);
+          }
         },
         {
           path: "featured",

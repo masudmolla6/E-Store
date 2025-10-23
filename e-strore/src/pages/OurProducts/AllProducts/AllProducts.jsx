@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useOutletContext } from "react-router";
 import useAllProducts from "../../../hooks/useAllProducts";
+import ProductsCard from "./ProductsCard";
 
 const AllProducts = () => {
   const { searchTerm, sortOption } = useOutletContext(); 
@@ -37,25 +38,7 @@ const AllProducts = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-6">
         {products.length > 0 ? (
           products.map((product) => (
-            <div
-              key={product._id}
-              className="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-4 flex flex-col justify-between"
-            >
-              <img
-                src={product.image}
-                alt={product.name}
-                className="rounded-xl h-48 w-full object-cover mb-3 hover:scale-105 transition-transform duration-300"
-              />
-              <div>
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 line-clamp-1">
-                  {product.name}
-                </h3>
-                <p className="text-gray-500 dark:text-gray-400">${product.price}</p>
-              </div>
-              <button className="mt-3 w-full py-2 bg-gray-900 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition-all">
-                Add to Cart
-              </button>
-            </div>
+            <ProductsCard key={product._id} product={product}></ProductsCard>
           ))
         ) : (
           <p className="text-center text-gray-500 col-span-full">
