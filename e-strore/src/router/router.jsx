@@ -9,6 +9,7 @@ import AllProducts from "../pages/OurProducts/AllProducts/AllProducts";
 import FeaturedProducts from "../pages/OurProducts/FeaturedProducts/FeaturedProducts";
 import CategoryProducts from "../pages/OurProducts/CategoryProducts/CategoryProducts";
 import ProductDetails from "../pages/OurProducts/AllProducts/ProductDetails";
+import DashboardLayout from "../layouts/DashboardLayout";
 const router=createBrowserRouter([
     {
         path:'/',
@@ -59,6 +60,10 @@ const router=createBrowserRouter([
           Component: FeaturedProducts,
         },
       ],
+    },
+    {
+      path:"dashboard",
+      element:<DashboardLayout></DashboardLayout>
     }
 
 ])

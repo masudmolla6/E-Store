@@ -80,6 +80,11 @@ const Navbar = () => {
         </Link>
       </li>
       <li>
+        <Link to="dashboard">
+          Dashboard
+        </Link>
+      </li>
+      <li>
         <button
           onClick={() => handleNavClick("about")}
           className={`cursor-pointer transition-colors duration-200 ${
