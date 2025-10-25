@@ -12,7 +12,6 @@ import ProductDetails from "../pages/OurProducts/AllProducts/ProductDetails";
 import DashboardLayout from "../layouts/DashboardLayout";
 import PrivateRoute from "../routes/PrivateRoute";
 import AdminHome from "../pages/Dashboard/Admin/AdminHome/AdminHome";
-import AddProduct from "../pages/Dashboard/Admin/AddProduct/AddProduct";
 import ManageOrders from "../pages/Dashboard/Admin/ManageOrders/ManageOrders";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers/ManageUsers";
 import PaymentHistory from "../pages/Dashboard/Admin/PaymentHistory/PaymentHistory";
@@ -21,9 +20,12 @@ import UserHome from "../pages/Dashboard/User/UserHome/UserHome";
 import Profile from "../pages/Dashboard/User/Profile/Profile";
 import MyCarts from "../pages/Dashboard/User/MyCarts/MyCarts";
 import MyOrders from "../pages/Dashboard/User/MyOrders/MyOrders";
-import PaymentHistory from "../pages/Dashboard/User/PaymentHistory/PaymentHistory";
+import MyPaymentHistory from "../pages/Dashboard/User/MyPaymentHistory/MyPaymentHistory";
 import Settings from "../pages/Dashboard/User/Settings/Settings";
 import Wishlist from "../pages/Dashboard/User/Wishlist/Wishlist";
+import AddProducts from "../pages/Dashboard/Admin/AddProducts/AddProducts";
+import ManageProducts from "../pages/Dashboard/Admin/ManageProducts/ManageProducts";
+import OrderDetails from "../pages/Dashboard/User/OrderDetails/OrderDetails";
 
 const router=createBrowserRouter([
     {
@@ -86,12 +88,16 @@ const router=createBrowserRouter([
           element:<AdminHome></AdminHome>
         },
         {
-          path:"addProduct",
-          element:<AddProduct></AddProduct>
+          path:"addProducts",
+          element:<AddProducts></AddProducts>
         },
         {
           path:"manageOrders",
           element:<ManageOrders></ManageOrders>
+        },
+        {
+          path:"manageProducts",
+          element:<ManageProducts></ManageProducts>
         },
         {
           path:"manageUsers",
@@ -124,8 +130,12 @@ const router=createBrowserRouter([
           element:<MyOrders></MyOrders>
         },
         {
+          path:"orderDetails",
+          element:<OrderDetails></OrderDetails>
+        },
+        {
           path:"userPaymentHistory",
-          element:<PaymentHistory></PaymentHistory>
+          element:<MyPaymentHistory></MyPaymentHistory>
         },
         {
           path:"settings",
