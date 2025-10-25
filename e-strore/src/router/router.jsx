@@ -11,6 +11,12 @@ import CategoryProducts from "../pages/OurProducts/CategoryProducts/CategoryProd
 import ProductDetails from "../pages/OurProducts/AllProducts/ProductDetails";
 import DashboardLayout from "../layouts/DashboardLayout";
 import PrivateRoute from "../routes/PrivateRoute";
+import AdminHome from "../pages/Dashboard/Admin/AdminHome/AdminHome";
+import AddProduct from "../pages/Dashboard/Admin/AddProduct/AddProduct";
+import ManageOrders from "../pages/Dashboard/Admin/ManageOrders/ManageOrders";
+import ManageUsers from "../pages/Dashboard/Admin/ManageUsers/ManageUsers";
+import PaymentHistory from "../pages/Dashboard/Admin/PaymentHistory/PaymentHistory";
+import Analytics from "../pages/Dashboard/Admin/Analytics/Analytics";
 const router=createBrowserRouter([
     {
         path:'/',
@@ -64,7 +70,36 @@ const router=createBrowserRouter([
     },
     {
       path:"dashboard",
-      element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>
+      element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+      children:[
+        // Admin Route
+        {
+          path:"adminHome",
+          element:<AdminHome></AdminHome>
+        },
+        {
+          path:"addProduct",
+          element:<AddProduct></AddProduct>
+        },
+        {
+          path:"manageOrders",
+          element:<ManageOrders></ManageOrders>
+        },
+        {
+          path:"manageUsers",
+          element:<ManageUsers></ManageUsers>
+        },
+        {
+          path:"paymentHistory",
+          element:<PaymentHistory></PaymentHistory>
+        },
+        {
+          path:"analytics",
+          element:<Analytics></Analytics>
+        },
+
+        // User Route
+      ]
     }
 
 ])
