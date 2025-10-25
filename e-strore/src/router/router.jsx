@@ -17,6 +17,14 @@ import ManageOrders from "../pages/Dashboard/Admin/ManageOrders/ManageOrders";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers/ManageUsers";
 import PaymentHistory from "../pages/Dashboard/Admin/PaymentHistory/PaymentHistory";
 import Analytics from "../pages/Dashboard/Admin/Analytics/Analytics";
+import UserHome from "../pages/Dashboard/User/UserHome/UserHome";
+import Profile from "../pages/Dashboard/User/Profile/Profile";
+import MyCarts from "../pages/Dashboard/User/MyCarts/MyCarts";
+import MyOrders from "../pages/Dashboard/User/MyOrders/MyOrders";
+import PaymentHistory from "../pages/Dashboard/User/PaymentHistory/PaymentHistory";
+import Settings from "../pages/Dashboard/User/Settings/Settings";
+import Wishlist from "../pages/Dashboard/User/Wishlist/Wishlist";
+
 const router=createBrowserRouter([
     {
         path:'/',
@@ -99,6 +107,34 @@ const router=createBrowserRouter([
         },
 
         // User Route
+        {
+          path:"userHome",
+          element:<UserHome></UserHome>
+        },
+        {
+          path:"profile",
+          element:<Profile></Profile>
+        },
+        {
+          path:"myCart",
+          element:<MyCarts></MyCarts>
+        },
+        {
+          path:"myOrders",
+          element:<MyOrders></MyOrders>
+        },
+        {
+          path:"userPaymentHistory",
+          element:<PaymentHistory></PaymentHistory>
+        },
+        {
+          path:"settings",
+          element:<Settings></Settings>
+        },
+        {
+          path:"wishlist",
+          element:<Wishlist></Wishlist>
+        }
       ]
     }
 
