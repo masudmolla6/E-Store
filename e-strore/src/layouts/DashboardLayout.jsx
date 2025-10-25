@@ -26,6 +26,9 @@ const DashboardLayout = () => {
     { name: "Admin Home", path: "/dashboard/adminHome", icon: <LayoutDashboard /> },
     { name: "Manage Users", path: "/dashboard/manageUsers", icon: <Users /> },
     { name: "Add Product", path: "/dashboard/addProduct", icon: <PlusCircle /> },
+    { name: "Manage Order", path: "/dashboard/manageOrder", icon: <PlusCircle /> },
+    { name: "Payment History", path: "/dashboard/paymentHistory", icon: <PlusCircle /> },
+    { name: "Analytics", path: "/dashboard/analytics", icon: <PlusCircle /> },
   ];
 
   // 🔹 shared nav items for all roles
