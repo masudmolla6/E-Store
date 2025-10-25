@@ -7,7 +7,7 @@ const DashboardLayout = () => {
   const { user } = useAuth();
 
 //   todo
-  const isAdmin=false;
+  const isAdmin=true;
 
   // 🔹 user sidebar links
   const userLinks = [

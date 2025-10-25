@@ -1,9 +1,67 @@
-// ProductsCard.jsx
 import React from "react";
 import { ShoppingCart, Eye } from "lucide-react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
+import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const ProductsCard = ({ product }) => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const axiosSecure = useAxiosSecure();
+
+  // const [, refetch] = useCart();
+
+const handleAddToCart = (product) => {
+  if (user && user.email) {
+    const cartItem = {
+      productId: product._id,
+      email: user.email,
+      name: product.name,
+      image: product.image,
+      price: product.price
+    };
+
+    axiosSecure.post("/carts", cartItem)
+      .then(res => {
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `${product.name} added successfully.`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          // refetch();
+        } else if (res.data.message === "Item already in cart") {
+          Swal.fire({
+            position: "top-end",
+            icon: "info",
+            title: `${product.name} is already in your cart 🛒`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+  } else {
+    Swal.fire({
+      title: "You are not logged in",
+      text: "Please login to add items to your cart.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, login!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("/login", { state: { from: location } });
+      }
+    });
+  }
+};
+
+
   return (
     <div className="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 p-4 flex flex-col justify-between border border-gray-100 dark:border-gray-700 hover:-translate-y-1">
       {/* 🖼️ Product Image */}
@@ -47,7 +105,7 @@ const ProductsCard = ({ product }) => {
 
       {/* 🛍️ Buttons */}
       <div className="mt-4 flex gap-3 text-center">
-        <Link className="flex-1 sm:text-sm py-2 bg-gray-900 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-800 dark:hover:bg-gray-600 transition-all flex items-center justify-center gap-2">
+        <Link onClick={()=>handleAddToCart(product)} className="flex-1 sm:text-sm py-2 bg-gray-900 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-800 dark:hover:bg-gray-600 transition-all flex items-center justify-center gap-2">
             <ShoppingCart size={16} /> Add to Cart
         </Link>
 
