@@ -7,12 +7,17 @@ import SocialLogin from '../../shared/SocialLogin/SocialLogin';
 const LogIn = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const {user, logIn}=useAuth();
+    const navigate=useNavigate();
+    const location = useLocation();
+    // console.log(location);
+    const from = location.state?.from?.pathname || "/";
 
     const onSubmit = data => {
           logIn(data.email, data.password)
           .then(result=>{
             const user=result.user;
             console.log(user);
+            navigate(from, {replace:true})
           })
           .catch(error=>{
             console.error(error);
