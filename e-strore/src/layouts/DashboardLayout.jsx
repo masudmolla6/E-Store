@@ -12,7 +12,13 @@ const DashboardLayout = () => {
   // 🔹 user sidebar links
   const userLinks = [
     { name: "User Home", path: "/dashboard/userHome", icon: <LayoutDashboard /> },
+    { name: "Profile", path: "/dashboard/profile", icon: <ShoppingBag /> },
+    { name: "My Carts", path: "/dashboard/myCarts", icon: <ShoppingBag /> },
     { name: "My Orders", path: "/dashboard/myOrders", icon: <ShoppingBag /> },
+    { name: "Order Details", path: "/dashboard/orderDetails", icon: <ShoppingBag /> },
+    { name: "Payment History", path: "/dashboard/userPaymentHistory", icon: <ShoppingBag /> },
+    { name: "Wishlist", path: "/dashboard/wishlist", icon: <ShoppingBag /> },
+    { name: "Settings", path: "/dashboard/Settings", icon: <ShoppingBag /> },
   ];
 
   // 🔹 admin sidebar links
