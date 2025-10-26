@@ -22,7 +22,7 @@ import useAuth from "../hooks/useAuth";
 const DashboardLayout = () => {
   const { user, logOut } = useAuth();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const isAdmin = true;
+  const isAdmin = false;
 
   // Sidebar links
   const userLinks = [
