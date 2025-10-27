@@ -1,11 +1,10 @@
-import React from 'react'
 import useAuth from './useAuth'
-import useAxiosPublic from './useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
+import useAxiosPublic from './useAxiosPublic';
 
 const useCarts = () => {
     const {user}=useAuth();
-    const axiosPublic=useAxiosPublic();
+    const axiosPublic=useAxiosPublic()
     const {data:carts=[], refetch}=useQuery({
         queryKey:["carts", user?.email],
         queryFn:async()=>{
