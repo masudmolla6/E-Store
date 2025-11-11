@@ -18,11 +18,13 @@ import {
   LogOut,
 } from "lucide-react";
 import useAuth from "../hooks/useAuth";
+import useAdmin from "../hooks/useAdmin";
 
 const DashboardLayout = () => {
   const { user, logOut } = useAuth();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const isAdmin = false;
+  const [isAdmin, adminLoading]=useAdmin();
+  console.log(isAdmin);
 
   // Sidebar links
   const userLinks = [

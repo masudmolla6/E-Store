@@ -8,7 +8,7 @@ import ReviewsCard from "./ReviewsCard";
 
 const Reviews = () => {
   const [reviews, loading, error, refetch] = useReviews();
-  console.log(reviews);
+  // console.log(reviews);
 
   // 🔹 Loading
   if (loading) {
