@@ -3,12 +3,14 @@ import { Link, useNavigate, useLocation } from "react-router";
 import Logo from "../Logo/Logo";
 import { scroller } from "react-scroll";
 import useAuth from "../../../hooks/useAuth";
+import useAdmin from "../../../hooks/useAdmin";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [activeSection, setActiveSection] = useState("");
   const {user, logOut}=useAuth();
+  const [isAdmin, adminLoading]=useAdmin();
 
   const handleLogout=async()=>{
     await logOut();
@@ -80,7 +82,7 @@ const Navbar = () => {
         </Link>
       </li>
       <li>
-        <Link to="dashboard">
+        <Link to={`dashboard/${isAdmin ? "adminHome" : "userHome"}`}>
           Dashboard
         </Link>
       </li>

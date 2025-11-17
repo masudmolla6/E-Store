@@ -1,11 +1,42 @@
 import React from "react";
 import useCarts from "../../../../hooks/useCarts";
 import { Trash2, RefreshCcw, ShoppingBag } from "lucide-react";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const MyCarts = () => {
   const [carts, refetch] = useCarts();
+  const axiosSecure=useAxiosSecure();
+  console.log(carts);
   const total = carts?.reduce((sum, item) => sum + item.price, 0);
 
+  const handleDelete=(id)=>{
+    console.log(id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/carts/${id}`)
+        .then((res)=>{
+          console.log(res.data);
+          if (res.data.deletedCount>0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your Cart has been deleted.",
+                icon: "success",
+              });
+              refetch();
+          }
+        })
+      }
+    });
+  }
   return (
     <div className="p-6 md:p-8 bg-gray-50 min-h-screen">
       {/* Header */}
@@ -80,7 +111,7 @@ const MyCarts = () => {
 
                 {/* Action */}
                 <div className="flex justify-center">
-                  <button
+                  <button onClick={()=>handleDelete(item._id)}
                     className="p-2 rounded-full bg-red-100 hover:bg-red-200 text-red-600 transition"
                     title="Remove"
                   >
