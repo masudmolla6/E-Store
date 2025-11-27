@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { FaTrash, FaUserShield, FaSearch } from "react-icons/fa";
 import useAllUsers from "../../../../hooks/useAllUsers";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const ManageUsers = () => {
   const [users, refetch] = useAllUsers();
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("all");
   const [loading, setLoading] = useState(false);
+  const axiosSecure=useAxiosSecure();
 
   // Filter + search logic
   const filteredUsers = users?.filter((user) => {
@@ -18,39 +21,49 @@ const ManageUsers = () => {
   });
 
   // handle admin role assign
-  const handleMakeAdmin = async (user) => {
-    setLoading(true);
-    try {
-      await fetch(`https://your-api-url/users/admin/${user._id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      refetch();
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const handleMakeAdmin = (user) => {
+    axiosSecure.patch(`/users/admin/${user._id}`)
+      .then(res => {
+        if (res.data.modifiedCount > 0) {
+          refetch();
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `${user.name} is an admin now.`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+      }
+    })
+  }
 
   // handle delete user
   const handleDeleteUser = async (user) => {
-    const confirmDelete = window.confirm(`Delete ${user.name}?`);
-    if (!confirmDelete) return;
-
-    setLoading(true);
-    try {
-      await fetch(`https://your-api-url/users/${user._id}`, {
-        method: "DELETE",
-      });
-      refetch();
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
+    console.log(user?._id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/users/${user?._id}`)
+        .then((res)=>{
+          console.log(res.data);
+          if (res.data.deletedCount>0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "User has been deleted.",
+                icon: "success",
+              });
+              refetch();
+          }
+        })
+      }
+    });
   };
 
   return (

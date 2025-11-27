@@ -26,6 +26,7 @@ import Wishlist from "../pages/Dashboard/User/Wishlist/Wishlist";
 import AddProducts from "../pages/Dashboard/Admin/AddProducts/AddProducts";
 import ManageProducts from "../pages/Dashboard/Admin/ManageProducts/ManageProducts";
 import OrderDetails from "../pages/Dashboard/User/OrderDetails/OrderDetails";
+import Payments from "../pages/Payments/Payments";
 
 const router=createBrowserRouter([
     {
@@ -144,6 +145,10 @@ const router=createBrowserRouter([
         {
           path:"wishlist",
           element:<Wishlist></Wishlist>
+        },
+        {
+          path:"payments",
+          element:<Payments></Payments>
         }
       ]
     }

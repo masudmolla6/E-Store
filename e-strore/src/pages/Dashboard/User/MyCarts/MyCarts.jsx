@@ -3,6 +3,7 @@ import useCarts from "../../../../hooks/useCarts";
 import { Trash2, RefreshCcw, ShoppingBag } from "lucide-react";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Link } from "react-router";
 
 const MyCarts = () => {
   const [carts, refetch] = useCarts();
@@ -131,9 +132,9 @@ const MyCarts = () => {
               </span>
             </p>
 
-            <button className="mt-3 sm:mt-0 bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-xl font-semibold shadow-md transition-all duration-300">
+            <Link to="/dashboard/payments" className="mt-3 sm:mt-0 bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-xl font-semibold shadow-md transition-all duration-300">
               Proceed to Checkout
-            </button>
+            </Link>
           </div>
         </>
       )}
