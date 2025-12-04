@@ -83,6 +83,7 @@ const CheckoutForm = () => {
 
           // now save the payment in the database.
           const payment = {
+            name:user?.displayName,
             email: user?.email,
             price: totalPrice,
             transactionId:paymentIntent.id,
@@ -101,7 +102,7 @@ const CheckoutForm = () => {
               icon: "success",
               draggable: true,
             });
-            navigate("/dashboard/myCart")
+            navigate("/dashboard/myCart");
           }
 
       }
