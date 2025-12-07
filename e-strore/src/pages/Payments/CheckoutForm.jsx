@@ -72,6 +72,8 @@ const CheckoutForm = () => {
         }
     )
 
+    console.log("Payments Status", paymentIntent.status);
+
     if(confirmError){
       console.log("confirm Error", confirmError);
     }
@@ -89,9 +91,8 @@ const CheckoutForm = () => {
             transactionId:paymentIntent.id,
             date: new Date(),
             cartIds: carts.map(item => item._id),
-            status:"pending"        
+            status:paymentIntent?.status,      
           }
-
 
           const res = await axiosSecure.post("/payments", payment);
           console.log("Payment Data Saved In the Database", res.data);
@@ -104,6 +105,39 @@ const CheckoutForm = () => {
             });
             navigate("/dashboard/myCart");
           }
+
+        // now save the payment in the database.
+        const order = {
+          userInfo: {
+            name: user?.displayName,
+            email: user?.email,
+          },
+
+          items: carts.map(item => ({
+            productId: item._id,
+            name: item.name,
+            image: item.image,
+            quantity: item.quantity,
+            price: item.price,
+          })),
+
+          paymentInfo: {
+            transactionId: paymentIntent.id,
+            status: paymentIntent.status,
+          },
+
+          orderSummary: {
+            itemsTotal: totalPrice,
+            shippingCharge: 60,
+            grandTotal: totalPrice + 60,
+          },
+
+          status: "pending",
+          createdAt: new Date(),
+        };
+
+          const result = await axiosSecure.post("/orders", order);
+          console.log("Order Data Saved In the Database", result.data);
 
       }
     }
