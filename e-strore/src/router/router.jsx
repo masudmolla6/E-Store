@@ -27,6 +27,7 @@ import AddProducts from "../pages/Dashboard/Admin/AddProducts/AddProducts";
 import ManageProducts from "../pages/Dashboard/Admin/ManageProducts/ManageProducts";
 import OrderDetails from "../pages/Dashboard/User/OrderDetails/OrderDetails";
 import Payments from "../pages/Payments/Payments";
+import MyOrderDetails from "../pages/Dashboard/User/MyOrders/MyOrderDetails";
 
 const router=createBrowserRouter([
     {
@@ -129,6 +130,13 @@ const router=createBrowserRouter([
         {
           path:"myOrders",
           element:<MyOrders></MyOrders>
+        },
+        {
+          path:"myOrders/:id",
+          element:<MyOrderDetails></MyOrderDetails>,
+          loader:({params})=>{
+            return fetch(`http://localhost:5000/orders/${params.id}`);
+          }
         },
         {
           path:"orderDetails",

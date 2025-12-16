@@ -1,9 +1,17 @@
 import React from "react";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useLocation, useNavigate } from "react-router";
 import { Star, ShoppingCart, Heart } from "lucide-react";
+import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const ProductDetails = () => {
   const product = useLoaderData();
+  // console.log(product);
+  const {user}=useAuth();
+  const axiosSecure=useAxiosSecure();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   if (!product) {
     return (
@@ -12,6 +20,102 @@ const ProductDetails = () => {
       </div>
     );
   }
+
+  const handleAddToCart = () => {
+    if (user && user.email) {
+      const cartItem = {
+        productId: product._id,
+        email: user.email,
+        name: product.name,
+        image: product.image,
+        price: product.price
+      };
+  
+      axiosSecure.post("/carts", cartItem)
+        .then(res => {
+          if (res.data.insertedId) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: `${product.name} added successfully.`,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            // refetch();
+          } else if (res.data.message === "Item already in cart") {
+            Swal.fire({
+              position: "top-end",
+              icon: "info",
+              title: `${product.name} is already in your cart 🛒`,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
+    } else {
+      Swal.fire({
+        title: "You are not logged in",
+        text: "Please login to add items to your cart.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, login!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login", { state: { from: location } });
+        }
+      });
+    }
+  };
+
+  const handleAddToWishlist = () => {
+    if (user && user.email) {
+      const wishlistItem = {
+        productId: product._id,
+        email: user.email,
+        name: product.name,
+        image: product.image,
+        price: product.price
+      };
+  
+      axiosSecure.post("/wishlist", wishlistItem)
+        .then(res => {
+          if (res.data.insertedId) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: `${product.name} added successfully.`,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            // refetch();
+          } else if (res.data.message === "Item already in Wishlist") {
+            Swal.fire({
+              position: "top-end",
+              icon: "info",
+              title: `${product.name} is already in your cart 🛒`,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
+    } else {
+      Swal.fire({
+        title: "You are not logged in",
+        text: "Please login to add items to your cart.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, login!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login", { state: { from: location } });
+        }
+      });
+    }
+  };
 
   return (
     <section className="min-h-screen bg-gray-50 dark:bg-gray-900 py-10 px-4 sm:px-8 lg:px-16">
@@ -85,12 +189,12 @@ const ProductDetails = () => {
           </div>
 
           {/* Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div onClick={()=>handleAddToCart()} className="flex flex-col sm:flex-row gap-4">
             <button className="flex-1 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl shadow-md transition flex items-center justify-center gap-2">
               <ShoppingCart size={18} /> Add to Cart
             </button>
 
-            <button className="flex-1 py-3 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-200 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition flex items-center justify-center gap-2">
+            <button onClick={()=>handleAddToWishlist()} className="flex-1 py-3 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-200 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition flex items-center justify-center gap-2">
               <Heart size={18} /> Add to Wishlist
             </button>
           </div>

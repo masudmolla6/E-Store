@@ -24,7 +24,7 @@ const DashboardLayout = () => {
   const { user, logOut } = useAuth();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isAdmin, adminLoading]=useAdmin();
-  console.log(isAdmin);
+  // console.log(isAdmin);
 
   // Sidebar links
   const userLinks = [

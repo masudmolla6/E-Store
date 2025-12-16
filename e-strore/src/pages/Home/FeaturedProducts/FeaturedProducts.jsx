@@ -33,7 +33,7 @@ const FeaturedProducts = () => {
                 {products.map((product, idx) => (
                     <div
                         key={idx}
-                        className="bg-white rounded-lg shadow-lg hover:scale-105 transition-transform cursor-pointer flex flex-col"
+                        className="rounded-lg shadow-lg hover:scale-105 transition-transform cursor-pointer flex flex-col"
                     >
                         <img
                             src={product.image}

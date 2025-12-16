@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 const PaymentHistory = () => {
   const [myPayments] = useMyPayments();
   const isLoading = !myPayments;
+  // console.log(myPayments);
 
   return (
     <motion.div
@@ -15,7 +16,7 @@ const PaymentHistory = () => {
     >
       <h1 className="text-3xl font-bold mb-6">Payment History</h1>
 
-      <div className="bg-white shadow-lg rounded-2xl p-6">
+      <div className="shadow-lg rounded-2xl p-6">
         {isLoading ? (
           <div className="flex justify-center py-10 text-gray-600 font-medium">
             Loading...
@@ -25,7 +26,7 @@ const PaymentHistory = () => {
         ) : (
           <div className="overflow-x-auto rounded-xl border">
             <table className="w-full text-left border-collapse">
-              <thead className="bg-gray-100">
+              <thead className="">
                 <tr>
                   <th className="p-3 border-b">Date</th>
                   <th className="p-3 border-b">Transaction ID</th>
@@ -40,12 +41,12 @@ const PaymentHistory = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.2, delay: index * 0.05 }}
-                    className="hover:bg-gray-50"
+                    className="hover:bg-gray-500"
                   >
                     <td className="p-3 border-b">{payment.date}</td>
                     <td className="p-3 border-b">{payment.transactionId}</td>
-                    <td className="p-3 border-b">${payment.amount}</td>
-                    <td className="p-3 border-b font-medium text-green-600">{payment.status}</td>
+                    <td className="p-3 border-b">${payment.price}</td>
+                    <td className="p-3 border-b font-medium">{payment.status}</td>
                   </motion.tr>
                 ))}
               </tbody>

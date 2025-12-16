@@ -42,10 +42,10 @@ const ContactUs = () => {
       </section>
 
       {/* Contact Form & Info */}
-      <section className="py-16 px-6 md:px-16 bg-gray-50">
+      <section className="py-16 px-6 md:px-16">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <div className="bg-white p-8 rounded-2xl shadow-lg">
+          <div className="p-8 rounded-2xl shadow-lg">
             <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <input

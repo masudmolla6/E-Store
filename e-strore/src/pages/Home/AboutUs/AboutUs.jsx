@@ -36,7 +36,7 @@ const AboutUs = () => {
       </section>
 
       {/* Mission & Vision */}
-      <section className="flex flex-col md:flex-row items-center justify-center py-16 px-6 md:px-16 bg-gray-400 gap-10 rounded-2xl">
+      <section className="flex flex-col md:flex-row items-center justify-center py-16 px-6 md:px-16 bg-gray-700 gap-10 rounded-2xl">
         <div className="md:w-1/2">
           <img
             src="https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1200&q=80"
@@ -46,13 +46,13 @@ const AboutUs = () => {
         </div>
         <div className="md:w-1/2 text-center md:text-left">
           <h2 className="text-3xl font-bold mb-4">Our Mission</h2>
-          <p className="text-gray-600 mb-4">
+          <p className="text-gray-400 mb-4">
             We aim to make your life easier by delivering authentic, affordable
             products right to your doorsteps. We’re not just an online store —
             we’re your everyday shopping partner.
           </p>
           <h3 className="text-2xl font-semibold mb-3">Our Vision</h3>
-          <p className="text-gray-600">
+          <p className="text-gray-400">
             To become Bangladesh’s most trusted and customer-friendly e-commerce
             platform with fast delivery and top-notch service.
           </p>

@@ -70,12 +70,12 @@ const ManageUsers = () => {
     <div className="p-6 space-y-6">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <h2 className="text-2xl font-bold text-gray-800">👥 Manage Users</h2>
+        <h2 className="text-2xl font-bold ">👥 Manage Users</h2>
 
         <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto">
           {/* Search */}
           <label className="input input-bordered flex items-center gap-2 w-full md:w-64">
-            <FaSearch className="text-gray-400" />
+            <FaSearch className="" />
             <input
               type="text"
               className="grow"
@@ -100,9 +100,9 @@ const ManageUsers = () => {
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto bg-white rounded-xl shadow-md border">
+      <div className="overflow-x-auto rounded-xl shadow-md border">
         <table className="table table-zebra w-full">
-          <thead className="bg-base-200 text-gray-700">
+          <thead className="bg-base-200 text-gray-300">
             <tr>
               <th>#</th>
               <th>Name</th>

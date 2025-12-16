@@ -6,7 +6,7 @@ const MyOrders = () => {
   const [myOrders, refetch]=useMyOrders();
   return (
     <div className="overflow-x-auto">
-      <div class="divider divider-success">My Orders</div>
+      <div className="divider divider-success">My Orders</div>
 
       <table className="table">
         {/* head */}
@@ -38,7 +38,7 @@ const MyOrders = () => {
               <div className="font-bold">{item.paymentInfo.transactionId}</div>
             </td>
             <th>
-              <Link item={item} className="btn btn-ghost btn-xs">details</Link>
+              <Link to={item._id} className="btn btn-info btn-xs">details</Link>
             </th>
           </tr>)
           }

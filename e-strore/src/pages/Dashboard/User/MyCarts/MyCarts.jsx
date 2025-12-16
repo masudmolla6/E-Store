@@ -8,7 +8,7 @@ import { Link } from "react-router";
 const MyCarts = () => {
   const [carts, refetch] = useCarts();
   const axiosSecure=useAxiosSecure();
-  console.log(carts);
+  // console.log(carts);
   const total = carts?.reduce((sum, item) => sum + item.price, 0);
 
   const handleDelete=(id)=>{
@@ -38,11 +38,12 @@ const MyCarts = () => {
       }
     });
   }
+
   return (
-    <div className="p-6 md:p-8 bg-gray-50 min-h-screen">
+    <div className="p-6 md:p-8 min-h-screen">
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-3">
-        <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
+        <h1 className="text-3xl font-bold text-gray-300 flex items-center gap-2">
           <ShoppingBag className="text-indigo-600 w-7 h-7" />
           My Cart
         </h1>
@@ -57,7 +58,7 @@ const MyCarts = () => {
 
       {/* Empty Cart */}
       {carts.length === 0 ? (
-        <div className="flex flex-col justify-center items-center py-20 bg-white rounded-2xl shadow-sm">
+        <div className="flex flex-col justify-center items-center py-20 rounded-2xl shadow-sm">
           <img
             src="https://cdn-icons-png.flaticon.com/512/2038/2038854.png"
             alt="Empty cart"
@@ -70,7 +71,7 @@ const MyCarts = () => {
       ) : (
         <>
           {/* Cart Items */}
-          <div className="bg-white rounded-2xl shadow-sm overflow-hidden border">
+          <div className="rounded-2xl shadow-sm overflow-hidden border">
             <div className="hidden md:grid grid-cols-6 gap-4 px-6 py-3 bg-indigo-600 text-white font-semibold text-sm">
               <p className="col-span-3">Product</p>
               <p className="text-center">Price</p>
@@ -81,7 +82,7 @@ const MyCarts = () => {
             {carts.map((item) => (
               <div
                 key={item._id}
-                className="grid grid-cols-1 md:grid-cols-6 items-center gap-4 p-4 md:px-6 border-b hover:bg-gray-50 transition-all"
+                className="grid grid-cols-1 md:grid-cols-6 items-center gap-4 p-4 md:px-6 border-b hover:bg-gray-500 transition-all"
               >
                 {/* Product */}
                 <div className="col-span-3 flex items-center gap-4">
@@ -91,22 +92,22 @@ const MyCarts = () => {
                     className="w-20 h-20 rounded-xl object-cover border"
                   />
                   <div>
-                    <h3 className="text-gray-800 font-semibold">
+                    <h3 className="text-gray-200 font-semibold">
                       {item.name}
                     </h3>
-                    <p className="text-gray-500 text-sm line-clamp-2">
+                    <p className="text-gray-200 text-sm line-clamp-2">
                       {item.description || "No description available"}
                     </p>
                   </div>
                 </div>
 
                 {/* Price */}
-                <p className="text-gray-700 font-medium text-center">
+                <p className="text-gray-300 font-medium text-center">
                   ${item.price}
                 </p>
 
                 {/* Quantity */}
-                <p className="text-gray-700 text-center">
+                <p className="text-gray-300 text-center">
                   {item.quantity || 1}
                 </p>
 
@@ -124,10 +125,10 @@ const MyCarts = () => {
           </div>
 
           {/* Total + Checkout */}
-          <div className="mt-8 flex flex-col sm:flex-row justify-between items-center bg-white border rounded-2xl shadow-sm p-5">
-            <p className="text-lg font-semibold text-gray-700">
+          <div className="mt-8 flex flex-col sm:flex-row justify-between items-center border rounded-2xl shadow-sm p-5">
+            <p className="text-lg font-semibold text-gray-300">
               Total:{" "}
-              <span className="text-indigo-600 text-xl">
+              <span className="bg-gray-400 text-xl">
                 ${total.toFixed(2)}
               </span>
             </p>
