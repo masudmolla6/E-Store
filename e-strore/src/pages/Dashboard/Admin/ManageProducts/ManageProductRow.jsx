@@ -3,6 +3,7 @@ import { FiEdit, FiTrash2 } from "react-icons/fi";
 import useAllProducts from "../../../../hooks/useAllProducts";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Link } from "react-router";
 
 const ManageProductRow = ({ product, index }) => {
   const {name, image, price, category } = product;
@@ -38,11 +39,6 @@ const ManageProductRow = ({ product, index }) => {
     });
   }
 
-  const handleEdit = (id) => {
-    // 🔥 navigate to edit page / open modal later
-    console.log("Edit product:", id);
-  };
-
   return (
     <tr className="hover:bg-base-200 transition">
       <td>{index}</td>
@@ -68,21 +64,21 @@ const ManageProductRow = ({ product, index }) => {
       </td>
 
       <td className="text-center space-x-2">
-        <button
-          onClick={()=>handleEdit(product._id)}
+        <Link
+          to={`edit-product/${product._id}`}
           className="btn btn-sm btn-outline btn-info"
           title="Edit Product"
         >
           <FiEdit />
-        </button>
+        </Link>
 
-        <button
+        <Link
           onClick={()=>handleDelete(product._id)}
           className="btn btn-sm btn-outline btn-error"
           title="Delete Product"
         >
           <FiTrash2 />
-        </button>
+        </Link>
       </td>
     </tr>
   );

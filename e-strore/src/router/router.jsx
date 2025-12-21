@@ -28,6 +28,7 @@ import ManageProducts from "../pages/Dashboard/Admin/ManageProducts/ManageProduc
 import OrderDetails from "../pages/Dashboard/User/OrderDetails/OrderDetails";
 import Payments from "../pages/Payments/Payments";
 import MyOrderDetails from "../pages/Dashboard/User/MyOrders/MyOrderDetails";
+import EditProduct from "../pages/Dashboard/Admin/ManageProducts/EditProduct";
 
 const router=createBrowserRouter([
     {
@@ -100,6 +101,13 @@ const router=createBrowserRouter([
         {
           path:"manageProducts",
           element:<ManageProducts></ManageProducts>
+        },
+        {
+          path:"manageProducts/edit-product/:id",
+          element:<EditProduct></EditProduct>,
+          loader:({params})=>{
+            return fetch(`http://localhost:5000/products/productDetails/${params.id}`);
+          }
         },
         {
           path:"manageUsers",
