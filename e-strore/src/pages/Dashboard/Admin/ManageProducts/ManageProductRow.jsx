@@ -7,7 +7,7 @@ import { Link } from "react-router";
 
 const ManageProductRow = ({ product, index }) => {
   const {name, image, price, category } = product;
-  console.log(product);
+  // console.log(product);
   const {refetch}=useAllProducts();
   const axiosSecure=useAxiosSecure();
 
