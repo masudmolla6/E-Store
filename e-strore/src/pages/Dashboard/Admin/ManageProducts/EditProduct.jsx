@@ -1,10 +1,15 @@
 import React from "react";
 import { useLoaderData, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const EditProduct = () => {
   const product = useLoaderData();
   const navigate = useNavigate();
+  const axiosSecure=useAxiosSecure();
+
+  // console.log(product);
 
   // 🧠 react-hook-form setup with default values
   const {
@@ -28,7 +33,7 @@ const EditProduct = () => {
 
   // 🚀 Submit handler
   const onSubmit = async (data) => {
-    console.log("Result", data);
+    // console.log("Result", product);
     const updatedProduct = {
       ...data,
       price: Number(data.price),
@@ -36,12 +41,18 @@ const EditProduct = () => {
       stock: Number(data.stock),
     };
 
-    console.log("Updated Product:", updatedProduct);
+    // console.log("Updated Product:", updatedProduct);
 
-    // 🔥 TODO: PATCH / PUT API call here
-    // await axiosSecure.patch(`/products/${product._id}`, updatedProduct)
-
-    // navigate("/dashboard/manageProducts");
+    const updatedResult=await axiosSecure.patch(`/products/${product._id}`, updatedProduct);
+    console.log(updatedResult);
+    if(updatedResult.status===200){
+      Swal.fire({
+        title: "Updated Successfully!",
+        icon: "success",
+        draggable: true
+      });
+      navigate("/dashboard/manageProducts");
+    }
   };
 
   return (
