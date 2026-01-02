@@ -2,10 +2,16 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ShoppingBag, Heart, Star, Package, User } from "lucide-react";
 import useAuth from "../../../../hooks/useAuth";
+import useMyPayments from "../../../../hooks/useMyPayments";
+import useMyOrders from "../../../../hooks/useMyOrders";
+import useWishlist from "../../../../hooks/useWishlist";
 
 const UserHome = () => {
   const {user}=useAuth();
-  // console.log(user);
+  const [myPayments]=useMyPayments();
+  const [myOrders]=useMyOrders();
+  const [wishlit]=useWishlist();
+  console.log(myOrders.length);
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 p-4 sm:p-6 md:p-10">
       {/* Hero Section */}
@@ -26,10 +32,10 @@ const UserHome = () => {
       {/* Stats Section */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
         {[
-          { icon: <ShoppingBag size={28} />, title: "Total Orders", value: "25" },
-          { icon: <Heart size={28} />, title: "Wishlist Items", value: "12" },
-          { icon: <Star size={28} />, title: "Reviews Given", value: "8" },
-          { icon: <Package size={28} />, title: "Pending Deliveries", value: "3" },
+          { icon: <ShoppingBag size={28} />, title: "Total Orders", value: myOrders?.length ?? 0 },
+          { icon: <Heart size={28} />, title: "Wishlist Items", value: wishlit?.length ?? 0 },
+          { icon: <Star size={28} />, title: "Payments", value: myPayments.length ?? 0 },
+          { icon: <Package size={28} />, title: "Pending Deliveries", value: myOrders?.length-1??0 },
         ].map((item, i) => (
           <motion.div
             key={i}
