@@ -2,6 +2,7 @@ import React from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { useNavigate } from "react-router";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const AddProducts = () => {
   const axiosSecure = useAxiosSecure();
@@ -37,10 +38,18 @@ const AddProducts = () => {
       })),
     };
 
-    console.log("NEW PRODUCT:", newProduct);
+    console.log("New Products:", newProduct);
 
-    // await axiosSecure.post("/products", newProduct);
-    // navigate("/dashboard/manageProducts");
+    const newProductResult=await axiosSecure.post("/products", newProduct);
+    // console.log("Result",newProductResult);
+    if(newProductResult.status===200){
+      Swal.fire({
+        title: "Added New Product Successfully!",
+        icon: "success",
+        draggable: true
+      });
+      navigate("/dashboard/manageProducts");
+    }
   };
 
   return (
