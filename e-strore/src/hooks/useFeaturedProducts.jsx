@@ -8,11 +8,11 @@ const useFeaturedProducts = () => {
   const {data:featuredProducts=[], isPending:loading, isError:error, refetch}=useQuery({
     queryKey:["featuredProducts"],
     queryFn:async()=>{
-        const res=await axiosPublic.get("/reviews");
+        const res=await axiosPublic.get("/featured-products");
         return res.data;
     }
   })
-  return [featuredProducts,loading,error, refetch]
+  return [featuredProducts,loading,error, refetch];
 }
 
 export default useFeaturedProducts
