@@ -5,10 +5,10 @@ const Profile = () => {
   const { user } = useAuth()
 
   return (
-    <div className="p-6 w-full">
-      <div className="divider divider-accent mx-44">My Profile</div>
+    <div className="w-full mx-auto">
+      <div className="divider divider-accent text-xl lg:mx-48">My Profile</div>
 
-      <div className="rounded-lg bg-gray-600 shadow-md p-6 max-w-md mx-auto">
+      <div className="rounded-lg bg-gray-600 shadow-md p-4 max-w-md mx-auto">
         {/* Profile Image */}
         <div className="flex justify-center mb-4">
           <img
@@ -19,7 +19,7 @@ const Profile = () => {
         </div>
 
         {/* User Info */}
-        <div className="space-y-3 text-center">
+        <div className="space-y-2 text-center">
           <h3 className="text-xl font-medium">
             {user?.displayName || 'User Name'}
           </h3>
