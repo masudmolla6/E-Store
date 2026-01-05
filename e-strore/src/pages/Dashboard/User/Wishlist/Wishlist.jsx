@@ -6,7 +6,7 @@ const Wishlist = () => {
   const [wishlist, refetch] = useWishlist()
 
   return (
-    <div className="p-6">
+    <div className="">
       <h2 className="text-2xl font-semibold mb-6">My Wishlist</h2>
 
       {/* Empty State */}
