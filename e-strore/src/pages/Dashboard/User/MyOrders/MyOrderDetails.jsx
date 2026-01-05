@@ -1,4 +1,6 @@
 import { useLoaderData } from "react-router";
+import { FcViewDetails } from "react-icons/fc";
+import { FaUser, FaBoxOpen, FaCreditCard, FaCalculator } from "react-icons/fa";
 
 const MyOrderDetails = () => {
   const order = useLoaderData();
@@ -14,9 +16,11 @@ const MyOrderDetails = () => {
   } = order;
 
   return (
-    <div className="max-w-5xl mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-6">
-        🧾 Order Details
+    <div className="max-w-5xl mx-auto">
+      {/* Page Title */}
+      <h2 className="text-2xl font-bold flex items-center gap-2 mb-6">
+        <FcViewDetails size={28} />
+        Order Details
       </h2>
 
       {/* Order Info */}
@@ -25,9 +29,11 @@ const MyOrderDetails = () => {
         <p><span className="font-semibold">Order Date:</span> {new Date(createdAt).toLocaleString()}</p>
         <p>
           <span className="font-semibold">Status:</span>{" "}
-          <span className={`capitalize font-medium ${
-            status === "pending" ? "text-orange-500" : "text-green-600"
-          }`}>
+          <span
+            className={`capitalize font-medium ${
+              status === "pending" ? "text-orange-500" : "text-green-600"
+            }`}
+          >
             {status}
           </span>
         </p>
@@ -35,14 +41,20 @@ const MyOrderDetails = () => {
 
       {/* User Info */}
       <div className="shadow rounded-lg p-4 mb-6">
-        <h3 className="text-lg font-semibold mb-2">👤 Customer Info</h3>
+        <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
+          <FaUser />
+          Customer Info
+        </h3>
         <p><span className="font-medium">Name:</span> {userInfo.name}</p>
         <p><span className="font-medium">Email:</span> {userInfo.email}</p>
       </div>
 
       {/* Items */}
       <div className="shadow rounded-lg p-4 mb-6">
-        <h3 className="text-lg font-semibold mb-4">📦 Ordered Items</h3>
+        <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+          <FaBoxOpen />
+          Ordered Items
+        </h3>
 
         <div className="space-y-4">
           {items.map((item) => (
@@ -68,8 +80,14 @@ const MyOrderDetails = () => {
 
       {/* Payment Info */}
       <div className="shadow rounded-lg p-4 mb-6">
-        <h3 className="text-lg font-semibold mb-2">💳 Payment Info</h3>
-        <p><span className="font-medium">Transaction ID:</span> {paymentInfo.transactionId}</p>
+        <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
+          <FaCreditCard />
+          Payment Info
+        </h3>
+        <p>
+          <span className="font-medium">Transaction ID:</span>{" "}
+          {paymentInfo.transactionId}
+        </p>
         <p>
           <span className="font-medium">Payment Status:</span>{" "}
           <span className="text-green-600 font-semibold">
@@ -80,7 +98,10 @@ const MyOrderDetails = () => {
 
       {/* Order Summary */}
       <div className="shadow rounded-lg p-4">
-        <h3 className="text-lg font-semibold mb-2">🧮 Order Summary</h3>
+        <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
+          <FaCalculator />
+          Order Summary
+        </h3>
         <p>Items Total: ৳{orderSummary.itemsTotal}</p>
         <p>Shipping Charge: ৳{orderSummary.shippingCharge}</p>
         <p className="font-bold text-lg">

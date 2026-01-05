@@ -40,7 +40,7 @@ const MyCarts = () => {
   }
 
   return (
-    <div className="p-6 md:p-8 min-h-screen">
+    <div className=" min-h-screen">
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-3">
         <h1 className="text-3xl font-bold text-gray-300 flex items-center gap-2">
