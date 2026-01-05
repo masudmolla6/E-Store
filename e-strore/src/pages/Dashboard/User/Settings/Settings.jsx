@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import useAuth from "../../../../hooks/useAuth";
+import { IoIosNotifications } from "react-icons/io";
+import { FaPalette, FaUserCircle } from "react-icons/fa";
+import { FiSettings } from "react-icons/fi";
 
 const Settings = () => {
   const { user,logOut } = useAuth();
@@ -9,11 +12,11 @@ const Settings = () => {
 
   return (
     <div className="max-w-3xl mx-auto">
-      <h2 className="text-3xl font-bold mb-6">Settings ⚙️</h2>
+      <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">Settings <FiSettings></FiSettings></h2>
 
       {/* Account Info */}
       <div className="bg-gray-700 shadow rounded-xl p-5 mb-6">
-        <h3 className="text-lg font-semibold mb-3">Account Information</h3>
+        <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">Account Information <FaUserCircle size={24}></FaUserCircle></h3>
 
         <div className="">
           <p>
@@ -29,7 +32,7 @@ const Settings = () => {
 
       {/* Notifications */}
       <div className="bg-gray-700 shadow rounded-xl p-5 mb-6">
-        <h3 className="text-lg font-semibold mb-3">Notifications 🔔</h3>
+        <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">Notifications <IoIosNotifications size={24}></IoIosNotifications></h3>
 
         <label className="flex items-center gap-3 mb-3">
           <input
@@ -54,7 +57,7 @@ const Settings = () => {
 
       {/* Theme (future ready) */}
       <div className="bg-gray-700 shadow rounded-xl p-5 mb-6">
-        <h3 className="text-lg font-semibold mb-3">Appearance 🌗</h3>
+        <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">Appearance <FaPalette></FaPalette></h3>
         <p className="text-sm">
           Theme switch coming soon...
         </p>
