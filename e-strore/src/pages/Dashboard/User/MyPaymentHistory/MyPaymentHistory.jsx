@@ -12,11 +12,11 @@ const PaymentHistory = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="p-6 w-full"
+      className="w-full"
     >
       <h1 className="text-3xl font-bold mb-6">Payment History</h1>
 
-      <div className="shadow-lg rounded-2xl p-6">
+      <div className="shadow-lg rounded-2xl">
         {isLoading ? (
           <div className="flex justify-center py-10 text-gray-600 font-medium">
             Loading...
