@@ -1,13 +1,20 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import useAuth from "../../../hooks/useAuth";
 
 const ContactUs = () => {
+  const {user}=useAuth();
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      name:user?.displayName,
+      email:user.email,
+    },
+  });
 
   const onSubmit = async (data) => {
     console.log(data);
