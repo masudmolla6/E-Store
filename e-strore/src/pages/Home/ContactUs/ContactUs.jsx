@@ -12,7 +12,7 @@ const ContactUs = () => {
   } = useForm({
     defaultValues: {
       name:user?.displayName,
-      email:user.email,
+      email:user?.email,
     },
   });
 
