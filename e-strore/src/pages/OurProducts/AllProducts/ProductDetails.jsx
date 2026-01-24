@@ -41,7 +41,7 @@ const ProductDetails = () => {
               showConfirmButton: false,
               timer: 1500,
             });
-            // refetch();
+            refetch();
           } else if (res.data.message === "Item already in cart") {
             Swal.fire({
               position: "top-end",
@@ -89,7 +89,7 @@ const ProductDetails = () => {
               showConfirmButton: false,
               timer: 1500,
             });
-            // refetch();
+            refetch();
           } else if (res.data.message === "Item already in Wishlist") {
             Swal.fire({
               position: "top-end",
@@ -189,8 +189,8 @@ const ProductDetails = () => {
           </div>
 
           {/* Buttons */}
-          <div onClick={()=>handleAddToCart()} className="flex flex-col sm:flex-row gap-4">
-            <button className="flex-1 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl shadow-md transition flex items-center justify-center gap-2">
+          <div className="flex flex-col sm:flex-row gap-4">
+            <button  onClick={()=>handleAddToCart()} className="flex-1 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl shadow-md transition flex items-center justify-center gap-2">
               <ShoppingCart size={18} /> Add to Cart
             </button>
 
