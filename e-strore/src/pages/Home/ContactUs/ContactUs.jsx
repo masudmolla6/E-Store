@@ -1,8 +1,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const ContactUs = () => {
+  const axiosPublic=useAxiosPublic();
   const {user}=useAuth();
   const {
     register,
@@ -17,7 +20,24 @@ const ContactUs = () => {
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
+      const message={
+        name:data.name,
+        email:data.email,
+        message:data.message,
+      }
+      axiosPublic.post("/message", message)
+      .then(res=>{
+            if (res.data.insertedId) {
+              Swal.fire({
+                title: `Hey! ${data.name} Your Messasge Send Successfully!`,
+                icon: "success",
+                draggable: true,
+              });
+            }
+      })
+      .catch(error=>{
+        console.error(error);
+      })
   };
 
   return (

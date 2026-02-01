@@ -132,7 +132,7 @@ const OurProductsLayout = () => {
       </main>
 
       {/* ===== Mobile Bottom Nav ===== */}
-      <nav className="md:hidden fixed bottom-0 left-0 w-full bg-white dark:bg-gray-800 shadow-lg flex justify-around items-center py-2 border-t border-gray-200 dark:border-gray-700 z-50">
+      <nav className="md:hidden fixed bottom-0 left-0 w-full bg-black/75 shadow-lg flex justify-around items-center py-2 border-t border-gray-200 dark:border-gray-700 z-50">
         {[
           { to: "/products/all", icon: <ShoppingBag size={20} />, label: "All" },
           { to: "/products/categoryProducts", icon: <Grid2X2 size={20} />, label: "Cats" },
