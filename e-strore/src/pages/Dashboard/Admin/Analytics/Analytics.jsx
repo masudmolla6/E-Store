@@ -56,7 +56,7 @@ const Analytics = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-semibold mb-6">Analytics Dashboard</h1>
+      <h1 className="text-2xl font-semibold mb-6 flex items-center gap-2"><TrendingUp size={22}/> Analytics</h1>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

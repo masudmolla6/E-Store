@@ -3,6 +3,7 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { useNavigate } from "react-router";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { PlusCircle } from "lucide-react";
 
 const AddProducts = () => {
   const axiosSecure = useAxiosSecure();
@@ -54,7 +55,7 @@ const AddProducts = () => {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <h2 className="text-2xl font-semibold mb-6">Add New Product</h2>
+      <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2"><PlusCircle size={18}/>Add New Product</h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
 

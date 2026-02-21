@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useAllProducts from "../../../../hooks/useAllProducts";
 import ManageProductRow from "./ManageProductRow";
+import { Package } from "lucide-react";
 
 const ManageProducts = () => {
   // 🔍 Search state
@@ -84,7 +85,7 @@ if (isLoading) {
     <div className="">
       {/* ===== Header ===== */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
-        <h2 className="text-2xl font-semibold">Manage Products</h2>
+        <h2 className="text-2xl font-semibold flex items-center gap-2"> <Package size={18}/> Manage Products</h2>
 
         {/* 🔍 Search input (only feature required) */}
         <input

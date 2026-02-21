@@ -1,5 +1,6 @@
 import React from 'react'
 import useAllOrders from '../../../../hooks/useAllOrders'
+import { ClipboardList } from 'lucide-react'
 
 const ManageOrders = () => {
   const [allOrders, refetch] = useAllOrders()
@@ -22,7 +23,8 @@ const ManageOrders = () => {
   return (
     <div className="">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-semibold">
+        <h2 className="text-2xl font-semibold flex items-center gap-2"> 
+          <ClipboardList size={18} />
           Manage Orders ({allOrders?.length})
         </h2>
       </div>
