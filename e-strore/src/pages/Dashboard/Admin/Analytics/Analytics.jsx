@@ -55,7 +55,7 @@ const Analytics = () => {
   /* -------------------- UI -------------------- */
 
   return (
-    <div className="p-6">
+    <div className="">
       <h1 className="text-2xl font-semibold mb-6 flex items-center gap-2"><TrendingUp size={22}/> Analytics</h1>
 
       {/* Stats Cards */}

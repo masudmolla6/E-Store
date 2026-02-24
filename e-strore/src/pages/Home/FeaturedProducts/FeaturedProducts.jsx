@@ -1,56 +1,76 @@
-import React from 'react';
-
-// Mock product data
-const products = [
-    {
-        name: 'Wireless Headphones',
-        price: 59.99,
-        image: 'https://images.pexels.com/photos/373945/pexels-photo-373945.jpeg?auto=compress&cs=tinysrgb&w=600',
-    },
-    {
-        name: 'Smart Watch',
-        price: 129.99,
-        image: 'https://images.pexels.com/photos/267394/pexels-photo-267394.jpeg?auto=compress&cs=tinysrgb&w=600',
-    },
-    {
-        name: 'Running Shoes',
-        price: 89.99,
-        image: 'https://images.pexels.com/photos/2529147/pexels-photo-2529147.jpeg?auto=compress&cs=tinysrgb&w=600',
-    },
-    {
-        name: 'Leather Wallet',
-        price: 39.99,
-        image: 'https://images.pexels.com/photos/19090/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600',
-    },
-];
+import useFeaturedProducts from "../../../hooks/useFeaturedProducts";
+import ProductsCard from "../../OurProducts/AllProducts/ProductsCard";
 
 const FeaturedProducts = () => {
+    const [featuredProducts, loading, error] = useFeaturedProducts()
+
+  if (loading) {
     return (
-        <div className="w-full py-8 px-4">
-            <h2 className="text-2xl font-bold mb-6 text-center">Featured Products</h2>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {products.map((product, idx) => (
-                    <div
-                        key={idx}
-                        className="rounded-lg shadow-lg hover:scale-105 transition-transform cursor-pointer flex flex-col"
-                    >
-                        <img
-                            src={product.image}
-                            alt={product.name}
-                            className="w-full h-48 object-cover rounded-t-lg"
-                        />
-                        <div className="p-4 flex flex-col flex-1">
-                            <h3 className="text-lg font-medium mb-2">{product.name}</h3>
-                            <p className="text-gray-700 font-semibold mb-4">${product.price}</p>
-                            <button className="mt-auto bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                                Add to Cart
-                            </button>
-                        </div>
-                    </div>
-                ))}
+      <div className="flex justify-center items-center h-60">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="text-center text-red-500 py-10">
+        Something went wrong. Please try again later.
+      </div>
+    )
+  }
+
+  if (!featuredProducts?.length) {
+    return (
+      <div className="text-center text-gray-500 py-10">
+        No featured products available right now.
+      </div>
+    )
+  }
+    return (
+    <div className="px-6">
+      <h1
+        className="
+          text-2xl 
+          sm:text-3xl 
+          md:text-4xl 
+          font-bold 
+          mb-8 
+          sm:mb-10 
+          text-center
+        "
+      >
+        Featured Products
+      </h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        {featuredProducts.map((item) => (
+          <section
+            key={item._id}
+            className="pb-6"
+          >
+            <h2
+              className="
+                text-xl 
+                sm:text-2xl 
+                font-semibold 
+                mb-4 
+                sm:mb-6 
+                border-l-4 
+                border-primary 
+                pl-3 
+                sm:pl-4
+              "
+            >
+              {item._id}
+            </h2>
+            <div
+            >
+              <ProductsCard product={item.product} />
             </div>
-        </div>
+          </section>
+        ))}
+      </div>
+    </div>
     );
 };
 
