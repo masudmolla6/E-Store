@@ -3,7 +3,9 @@ import useFeaturedProducts from '../../../hooks/useFeaturedProducts'
 import ProductsCard from '../AllProducts/ProductsCard'
 
 const FeaturedProducts = () => {
-  const [featuredProducts, loading, error] = useFeaturedProducts()
+  const [featuredProducts, loading, error] = useFeaturedProducts();
+
+  console.log(featuredProducts);
 
   if (loading) {
     return (
