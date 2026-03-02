@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaTrash, FaUserShield, FaSearch } from "react-icons/fa";
 import useAllUsers from "../../../../hooks/useAllUsers";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import AOS from "aos";
 
 const ManageUsers = () => {
   const [users, refetch] = useAllUsers();
@@ -10,6 +11,10 @@ const ManageUsers = () => {
   const [filter, setFilter] = useState("all");
   const [loading, setLoading] = useState(false);
   const axiosSecure=useAxiosSecure();
+
+    useEffect(() => {
+      AOS.refresh();
+    }, []);
 
   // Filter + search logic
   const filteredUsers = users?.filter((user) => {
@@ -100,7 +105,7 @@ const ManageUsers = () => {
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto rounded-xl shadow-md border">
+      <div data-aos="fade-left" className="overflow-x-auto rounded-xl shadow-md border">
         <table className="table table-zebra w-full">
           <thead className="bg-base-200 text-gray-300">
             <tr>
@@ -111,7 +116,7 @@ const ManageUsers = () => {
               <th className="text-center">Actions</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="">
             {filteredUsers?.length ? (
               filteredUsers.map((user, idx) => (
                 <tr key={user._id}>

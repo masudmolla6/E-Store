@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import useAuth from "../../../../hooks/useAuth";
+import Typewriter from "typewriter-effect";
 
 const AdminHome = () => {
   const {user}=useAuth();
@@ -39,8 +40,20 @@ const AdminHome = () => {
         transition={{ duration: 0.6 }}
         className="bg-gradient-to-r from-indigo-500 to-purple-600 p-6 rounded-2xl shadow-lg text-white"
       >
-        <h1 className="text-3xl font-bold">Welcome back, {user.displayName}</h1>
-        <p className="text-white/80 mt-2">Here’s what’s happening in your store today.</p>
+        <h1 className="text-3xl font-bold flex justify-center">Welcome back,
+          <span className="text-black">
+            <Typewriter
+              options={{
+                strings: [user?.displayName],
+                autoStart: true,
+                loop: true,
+                delay: 100,
+                deleteSpeed: 60
+              }}
+            />
+          </span>
+        </h1>
+        <p className="text-white/80 mt-2 text-center">Here’s what’s happening in your store today.</p>
       </motion.div>
 
       {/* ===== Stats Cards ===== */}
