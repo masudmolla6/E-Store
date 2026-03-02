@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useCarts from "../../../../hooks/useCarts";
 import { Trash2, RefreshCcw, ShoppingBag } from "lucide-react";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { Link } from "react-router";
+import AOS from "aos";
 
 const MyCarts = () => {
   const [carts, refetch] = useCarts();
   const axiosSecure=useAxiosSecure();
   // console.log(carts);
   const total = carts?.reduce((sum, item) => sum + item.price, 0);
+
+    useEffect(() => {
+      AOS.refresh();
+    }, []);
 
   const handleDelete=(id)=>{
     console.log(id);
@@ -71,7 +76,7 @@ const MyCarts = () => {
       ) : (
         <>
           {/* Cart Items */}
-          <div className="rounded-2xl shadow-sm overflow-hidden border">
+          <div data-aos="fade-down" className="rounded-2xl shadow-sm overflow-hidden border">
             <div className="hidden md:grid grid-cols-6 gap-4 px-6 py-3 bg-indigo-600 text-white font-semibold text-sm">
               <p className="col-span-3">Product</p>
               <p className="text-center">Price</p>

@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useMyOrders from "../../../../hooks/useMyOrders";
 import { Link } from "react-router";
 import { FaEye } from "react-icons/fa";
+import AOS from "aos";
 
 const MyOrders = () => {
   const [myOrders, refetch, isLoading] = useMyOrders();
   console.log(myOrders);
+
+  
+      useEffect(() => {
+        AOS.refresh();
+      }, []);
 
   if (isLoading) {
     return (
@@ -49,7 +55,7 @@ const MyOrders = () => {
                 </tr>
               </thead>
 
-              <tbody>
+              <tbody data-aos="fade-left">
                 {myOrders.map((item, index) => (
                   <tr key={item._id} className="hover">
                     

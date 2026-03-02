@@ -5,13 +5,21 @@ import useAuth from "../../../../hooks/useAuth";
 import useMyPayments from "../../../../hooks/useMyPayments";
 import useMyOrders from "../../../../hooks/useMyOrders";
 import useWishlist from "../../../../hooks/useWishlist";
+import Typewriter from "typewriter-effect";
+import { useEffect } from "react";
+import AOS from "aos";
 
 const UserHome = () => {
   const {user}=useAuth();
   const [myPayments]=useMyPayments();
   const [myOrders]=useMyOrders();
   const [wishlit]=useWishlist();
-  console.log(myOrders.length);
+  // console.log(myOrders.length);
+
+    useEffect(() => {
+      AOS.refresh();
+    }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950">
       {/* Hero Section */}
@@ -21,8 +29,18 @@ const UserHome = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 text-gray-900 dark:text-white">
-          Welcome Back, <span className="text-blue-600 dark:text-blue-400">{user?.displayName}</span> 🛍️
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 text-gray-900 dark:text-white flex items-center justify-center">
+          Welcome Back, <span className="text-blue-600 dark:text-blue-400">
+            <Typewriter
+              options={{
+                strings: [user?.displayName],
+                autoStart: true,
+                loop: true,
+                delay: 100,
+                deleteSpeed: 100
+              }}
+            />
+            </span>
         </h1>
         <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base">
           Here’s your personalized shopping dashboard.

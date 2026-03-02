@@ -45,8 +45,8 @@ const Categories = () => {
             strings: ["Shop by Category","Big Sale Today!", "Up To 50% Off!"],
             autoStart: true,
             loop: true,
-            delay: 50,      // typing speed (kom = fast)
-            deleteSpeed: 30 // deleting speed
+            delay: 50,
+            deleteSpeed: 30
           }}
         />
       </h2>
