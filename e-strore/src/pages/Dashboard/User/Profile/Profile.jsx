@@ -1,45 +1,77 @@
-import React from 'react'
-import useAuth from '../../../../hooks/useAuth'
+import React from "react";
+import useAuth from "../../../../hooks/useAuth";
+import { FaEnvelope, FaUserEdit } from "react-icons/fa";
 
 const Profile = () => {
-  const { user } = useAuth()
+  const { user } = useAuth();
 
   return (
-    <div className="w-full mx-auto">
-      <div className="divider divider-accent text-xl lg:mx-48">My Profile</div>
+    <div className="min-h-screen bg-base-200 py-10 px-4">
+      {/* Page Title */}
+      <div className="max-w-5xl mx-auto">
+        <h2 className="text-3xl font-bold text-center mb-10">
+          My Profile
+        </h2>
 
-      <div className="rounded-lg bg-gray-600 shadow-md p-4 max-w-md mx-auto">
-        {/* Profile Image */}
-        <div className="flex justify-center mb-4">
-          <img
-            src={user?.photoURL || 'https://i.ibb.co/2kR8z2Q/user.png'}
-            alt="User"
-            className="w-24 h-24 rounded-full border"
-          />
-        </div>
+        {/* Profile Card */}
+        <div className="bg-base-100 shadow-xl rounded-2xl p-8 flex flex-col lg:flex-row items-center gap-10">
 
-        {/* User Info */}
-        <div className="space-y-2 text-center">
-          <h3 className="text-xl font-medium">
-            {user?.displayName || 'User Name'}
-          </h3>
+          {/* Left Side - Image */}
+          <div className="flex flex-col items-center">
+            <div className="relative">
+              <img
+                src={
+                  user?.photoURL ||
+                  "https://i.ibb.co/2kR8z2Q/user.png"
+                }
+                alt="User"
+                className="w-36 h-36 rounded-full object-cover border-4 border-primary shadow-md"
+              />
+            </div>
 
-          <p className="text-gray-600">{user?.email}</p>
+            <span className="mt-4 px-4 py-1 text-sm bg-green-100 text-green-700 rounded-full">
+              Active Member
+            </span>
+          </div>
 
-          <span className="inline-block px-3 py-1 text-sm bg-green-100 text-green-700 rounded-full">
-            Active User
-          </span>
-        </div>
+          {/* Right Side - Info */}
+          <div className="flex-1 w-full space-y-5">
+            <div>
+              <h3 className="text-2xl font-semibold">
+                {user?.displayName || "User Name"}
+              </h3>
+              <p className="flex items-center gap-2 text-gray-500 mt-2">
+                <FaEnvelope />
+                {user?.email || "No Email Provided"}
+              </p>
+            </div>
 
-        {/* Action Button (Future Ready) */}
-        <div className="mt-6 text-center">
-          <button className="btn btn-outline btn-sm">
-            Edit Profile
-          </button>
+            {/* Extra Info Section (Future Ready) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+              <div className="bg-base-200 p-4 rounded-xl">
+                <p className="text-sm text-gray-500">Role</p>
+                <p className="font-medium">User</p>
+              </div>
+
+              <div className="bg-base-200 p-4 rounded-xl">
+                <p className="text-sm text-gray-500">Account Status</p>
+                <p className="font-medium text-green-600">Verified</p>
+              </div>
+            </div>
+
+            {/* Action Button */}
+            <div className="mt-6">
+              <button className="btn btn-primary flex items-center gap-2">
+                <FaUserEdit />
+                Edit Profile
+              </button>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Profile;

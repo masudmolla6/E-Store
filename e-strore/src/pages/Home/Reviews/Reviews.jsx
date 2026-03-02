@@ -5,12 +5,13 @@ import "swiper/css";
 import "swiper/css/pagination";
 import useReviews from "../../../hooks/useReviews";
 import ReviewsCard from "./ReviewsCard";
+import { MessagesSquare } from "lucide-react";
 
 const Reviews = () => {
   const [reviews, loading, error, refetch] = useReviews();
   // console.log(reviews);
 
-  // 🔹 Loading
+  // Loading
   if (loading) {
     return (
       <div className="py-20 text-center text-gray-500 dark:text-gray-400">
@@ -19,11 +20,11 @@ const Reviews = () => {
     );
   }
 
-  // 🔹 Error
+  // Error
   if (error) {
     return (
       <div className="py-20 text-center text-red-500">
-        Failed to load reviews 😢
+        Failed to load reviews
         <button
           onClick={refetch}
           className="ml-2 text-blue-500 underline hover:text-blue-700"
@@ -34,7 +35,7 @@ const Reviews = () => {
     );
   }
 
-  // 🔹 No reviews
+  // No reviews
   if (!reviews || reviews.length === 0) {
     return (
       <div className="py-20 text-center text-gray-500 dark:text-gray-400">
@@ -43,17 +44,17 @@ const Reviews = () => {
     );
   }
 
-  // 🔹 Data available → show Swiper
+  // Data available → show Swiper
   return (
     <section className="py-20 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 transition-colors duration-500">
       <div className="container mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-800 dark:text-white">
-            What Our Customers Say 💬
+          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-800 dark:text-white flex justify-center items-center">
+            What Our Customers Say
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mt-2">
-            Real experiences from our happy shoppers worldwide 🌍
+            Real experiences from our happy shoppers worldwide
           </p>
         </div>
 

@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Users, Star, Truck, Shield } from "lucide-react";
+import AOS from "aos";
 
 const AboutUs = () => {
+    useEffect(() => {
+      AOS.refresh();
+    }, []);
   return (
     <div className="w-full">
       {/* Hero Section */}
@@ -62,7 +66,7 @@ const AboutUs = () => {
       {/* Why Choose Us */}
       <section className="py-16 px-6 md:px-16 text-center">
         <h2 className="text-3xl font-bold mb-8">Why Choose Us</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div data-aos="fade-down" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="flex flex-col items-center">
             <Users className="w-10 h-10 text-blue-600 mb-3" />
             <h4 className="font-semibold mb-2">Customer Focused</h4>

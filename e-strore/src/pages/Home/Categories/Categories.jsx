@@ -1,5 +1,6 @@
 import useCategories from "../../../hooks/useCategories";
 import CategoryCard from "./CategoryCard";
+import Typewriter from "typewriter-effect";
 
 const Categories = () => {
   const [categories, loading, error, refetch] = useCategories();
@@ -38,7 +39,17 @@ const Categories = () => {
 
   return (
     <div className="w-full py-8 px-4">
-      <h2 className="text-2xl font-bold mb-6 text-center">Shop by Category</h2>
+      <h2 className="text-2xl font-bold mb-6 text-center">
+        <Typewriter
+          options={{
+            strings: ["Shop by Category","Big Sale Today!", "Up To 50% Off!"],
+            autoStart: true,
+            loop: true,
+            delay: 50,      // typing speed (kom = fast)
+            deleteSpeed: 30 // deleting speed
+          }}
+        />
+      </h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
         {categories.map((category) => (
           <CategoryCard

@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import { useEffect } from "react";
+import AOS from "aos";
 
 const ContactUs = () => {
   const axiosPublic=useAxiosPublic();
@@ -18,6 +20,10 @@ const ContactUs = () => {
       email:user?.email,
     },
   });
+
+  useEffect(() => {
+    AOS.refresh();
+  }, []);
 
   const onSubmit = async (data) => {
       const message={
@@ -65,7 +71,7 @@ const ContactUs = () => {
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
           
           {/* Contact Form */}
-          <div className="rounded-2xl shadow-lg">
+          <div data-aos="fade-right" className="rounded-2xl shadow-lg">
             <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
 
             <form
@@ -146,7 +152,7 @@ const ContactUs = () => {
           </div>
 
           {/* Contact Info */}
-          <div className="flex flex-col gap-6 justify-center">
+          <div data-aos="fade-left" className="flex flex-col gap-6 justify-center">
             <h2 className="text-2xl font-bold mb-4">Our Contact Info</h2>
 
             <div className="flex items-start gap-4">
