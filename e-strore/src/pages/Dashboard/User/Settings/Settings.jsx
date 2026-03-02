@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useAuth from "../../../../hooks/useAuth";
 import { IoIosNotifications } from "react-icons/io";
 import { FaPalette, FaUserCircle } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
+import AOS from "aos";
 
 const Settings = () => {
   const { user,logOut } = useAuth();
+
+        useEffect(() => {
+          AOS.refresh();
+        }, []);
 
   const [emailNotify, setEmailNotify] = useState(true);
   const [orderNotify, setOrderNotify] = useState(true);
@@ -15,7 +20,7 @@ const Settings = () => {
       <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">Settings <FiSettings></FiSettings></h2>
 
       {/* Account Info */}
-      <div className="bg-gray-700 shadow rounded-xl p-5 mb-6">
+      <div data-aos="fade-right" className="bg-gray-700 shadow rounded-xl p-5 mb-6">
         <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">Account Information <FaUserCircle size={24}></FaUserCircle></h3>
 
         <div className="">
@@ -31,7 +36,7 @@ const Settings = () => {
       </div>
 
       {/* Notifications */}
-      <div className="bg-gray-700 shadow rounded-xl p-5 mb-6">
+      <div data-aos="fade-left" className="bg-gray-700 shadow rounded-xl p-5 mb-6">
         <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">Notifications <IoIosNotifications size={24}></IoIosNotifications></h3>
 
         <label className="flex items-center gap-3 mb-3">
@@ -56,7 +61,7 @@ const Settings = () => {
       </div>
 
       {/* Theme (future ready) */}
-      <div className="bg-gray-700 shadow rounded-xl p-5 mb-6">
+      <div data-aos="fade-right" className="bg-gray-700 shadow rounded-xl p-5 mb-6">
         <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">Appearance <FaPalette></FaPalette></h3>
         <p className="text-sm">
           Theme switch coming soon...
@@ -64,7 +69,7 @@ const Settings = () => {
       </div>
 
       {/* Logout */}
-      <div className="bg-gray-700 shadow rounded-xl p-5">
+      <div data-aos="fade-left" className="bg-gray-700 shadow rounded-xl p-5">
         <h3 className="text-lg font-semibold mb-3 text-red-500">
           Danger Zone
         </h3>

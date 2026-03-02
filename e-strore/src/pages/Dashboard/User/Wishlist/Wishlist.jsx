@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import useWishlist from '../../../../hooks/useWishlist'
 import WishlistCard from './WishlistCard'
+import AOS from 'aos'
 
 const Wishlist = () => {
   const [wishlist, refetch] = useWishlist()
+
+      useEffect(() => {
+        AOS.refresh();
+      }, []);
 
   return (
     <div className="">
@@ -15,7 +20,7 @@ const Wishlist = () => {
       )}
 
       {/* Wishlist Items */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div data-aos="fade-up" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {wishlist?.map(product => (
           <WishlistCard key={product._id} product={product}></WishlistCard>
         ))}
