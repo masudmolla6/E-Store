@@ -1,6 +1,7 @@
 import React from "react";
 import useMyPayments from "../../../../hooks/useMyPayments";
 import { motion } from "framer-motion";
+import { Receipt } from "lucide-react";
 
 const PaymentHistory = () => {
   const [myPayments] = useMyPayments();
@@ -14,7 +15,7 @@ const PaymentHistory = () => {
       transition={{ duration: 0.4 }}
       className="w-full"
     >
-      <h1 className="text-3xl font-bold mb-6">Payment History</h1>
+      <h1 className="text-3xl font-bold mb-6 flex items-center gap-2"><Receipt className="w-8 h-8 text-blue-500"></Receipt>Payment History</h1>
 
       <div className="shadow-lg rounded-2xl">
         {isLoading ? (

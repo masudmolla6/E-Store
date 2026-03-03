@@ -3,6 +3,7 @@ import useMyOrders from "../../../../hooks/useMyOrders";
 import { Link } from "react-router";
 import { FaEye } from "react-icons/fa";
 import AOS from "aos";
+import { Package } from "lucide-react";
 
 const MyOrders = () => {
   const [myOrders, refetch, isLoading] = useMyOrders();
@@ -26,8 +27,8 @@ const MyOrders = () => {
       <div className="max-w-6xl mx-auto bg-base-100 shadow-xl rounded-2xl p-6">
 
         {/* Title */}
-        <h2 className="text-3xl font-bold mb-6 text-center">
-          My Orders
+        <h2 className="text-3xl font-bold mb-6 text-center flex justify-center items-center gap-1">
+          <Package className="w-8 h-8"></Package> My Orders
         </h2>
 
         {/* Empty State */}

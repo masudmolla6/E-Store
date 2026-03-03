@@ -17,7 +17,7 @@ const Settings = () => {
 
   return (
     <div className="max-w-3xl mx-auto">
-      <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">Settings <FiSettings></FiSettings></h2>
+      <h2 className="text-3xl font-bold mb-6 flex items-center gap-2"><FiSettings></FiSettings>Settings</h2>
 
       {/* Account Info */}
       <div data-aos="fade-right" className="bg-gray-700 shadow rounded-xl p-5 mb-6">
