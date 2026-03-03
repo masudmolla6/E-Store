@@ -24,7 +24,7 @@ const ManageOrders = () => {
     <div className="">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-semibold flex items-center gap-2"> 
-          <ClipboardList size={18} />
+          <ClipboardList className='w-8 h-8' />
           Manage Orders ({allOrders?.length})
         </h2>
       </div>

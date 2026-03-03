@@ -4,6 +4,7 @@ import useAllUsers from "../../../../hooks/useAllUsers";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import AOS from "aos";
+import { Users } from "lucide-react";
 
 const ManageUsers = () => {
   const [users, refetch] = useAllUsers();
@@ -75,7 +76,7 @@ const ManageUsers = () => {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <h2 className="text-2xl font-bold ">👥 Manage Users</h2>
+        <h2 className="text-2xl font-bold flex items-center gap-1"> <Users className="w-8 h-8"></Users> Manage Users</h2>
 
         <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto">
           {/* Search */}
