@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import useWishlist from '../../../../hooks/useWishlist'
 import WishlistCard from './WishlistCard'
 import AOS from 'aos'
+import { Heart } from 'lucide-react'
 
 const Wishlist = () => {
   const [wishlist, refetch] = useWishlist()
@@ -12,7 +13,7 @@ const Wishlist = () => {
 
   return (
     <div className="">
-      <h2 className="text-2xl font-semibold mb-6">My Wishlist</h2>
+      <h2 className="text-2xl font-semibold mb-6 flex justify-center items-center gap-2"><Heart></Heart>My Wishlist</h2>
 
       {/* Empty State */}
       {wishlist?.length === 0 && (
