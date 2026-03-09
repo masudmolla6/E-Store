@@ -40,7 +40,8 @@ const AdminHome = () => {
         transition={{ duration: 0.6 }}
         className="bg-gradient-to-r from-indigo-500 to-purple-600 p-6 rounded-2xl shadow-lg text-white"
       >
-        <h1 className="text-3xl font-bold flex justify-center">Welcome back,
+        <h1 className="text-2xl sm:text-3xl font-bold text-center sm:flex sm:justify-center sm:items-center gap-2">
+          Welcome back,
           <span className="text-black">
             <Typewriter
               options={{

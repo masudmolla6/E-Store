@@ -13,7 +13,7 @@ const OurProductsLayout = () => {
       <aside className="hidden md:flex md:w-64 bg-white dark:bg-gray-800 shadow-xl flex-col justify-between md:h-screen sticky top-0">
         <div className="p-6 overflow-y-auto">
           <h2 className="text-3xl font-bold text-blue-600 dark:text-blue-300 mb-8 text-center tracking-wide">
-            🛒 Our Products
+          Our Products
           </h2>
 
           <nav className="flex flex-col space-y-3 font-semibold">
