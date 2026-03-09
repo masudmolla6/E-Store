@@ -62,7 +62,7 @@ const ReviewsCard = ({ review }) => {
           />
         ))}
         <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">
-          {ratingValue.toFixed(1)} ★
+          {ratingValue.toFixed(1)}
         </span>
       </div>
     </div>

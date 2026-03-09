@@ -53,7 +53,7 @@ const Categories = () => {
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
         {categories.map((category) => (
           <CategoryCard
-            key={category._id} // clean React key
+            key={category._id}
             category={category}
           />
         ))}

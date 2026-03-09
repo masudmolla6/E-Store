@@ -5,6 +5,7 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import { useEffect } from "react";
 import AOS from "aos";
+import { LocationEdit, Mail, Phone } from "lucide-react";
 
 const ContactUs = () => {
   const axiosPublic=useAxiosPublic();
@@ -156,17 +157,17 @@ const ContactUs = () => {
             <h2 className="text-2xl font-bold mb-4">Our Contact Info</h2>
 
             <div className="flex items-start gap-4">
-              <span className="font-semibold">📍</span>
+              <span className="font-semibold"><LocationEdit></LocationEdit></span>
               <p>123 E-Store Street, Dhaka, Bangladesh</p>
             </div>
 
             <div className="flex items-start gap-4">
-              <span className="font-semibold">📧</span>
+              <span className="font-semibold"><Mail></Mail></span>
               <p>support@estore.com</p>
             </div>
 
             <div className="flex items-start gap-4">
-              <span className="font-semibold">📞</span>
+              <span className="font-semibold"><Phone></Phone></span>
               <p>+880 1234 567890</p>
             </div>
 
