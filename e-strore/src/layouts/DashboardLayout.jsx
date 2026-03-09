@@ -51,7 +51,7 @@ const DashboardLayout = () => {
   return (
     <div className="flex min-h-screen bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200 dark:from-gray-900 dark:via-gray-950 dark:to-black">
       
-      {/* ===== SIDEBAR ===== */}
+      {/* SIDEBAR */}
       <aside
         className={`fixed lg:sticky top-0 left-0 z-50 h-screen w-72 bg-white/90 dark:bg-gray-900/80 backdrop-blur-md 
         border-r border-gray-200 dark:border-gray-800 shadow-2xl transform transition-transform duration-300 ease-in-out 
@@ -59,7 +59,7 @@ const DashboardLayout = () => {
       >
         <div className="flex flex-col h-full">
 
-          {/* ===== HEADER ===== */}
+          {/* HEADER */}
           <div className="px-6 py-5 border-b border-gray-200 dark:border-gray-800">
             <div className="flex flex-col items-center text-center">
               <div className="relative">
@@ -81,10 +81,10 @@ const DashboardLayout = () => {
             </div>
           </div>
 
-          {/* ===== NAV + FOOTER ===== */}
+          {/* NAV + FOOTER */}
           <div className="flex flex-col justify-between flex-1 overflow-hidden">
 
-            {/* ===== NAVIGATION ===== */}
+            {/* NAVIGATION */}
             <nav className="mt-6 space-y-1 px-4 overflow-y-auto custom-scrollbar">
               {linksToRender.map((link) => (
                 <NavLink
@@ -105,7 +105,7 @@ const DashboardLayout = () => {
               ))}
             </nav>
 
-            {/* ===== FOOTER 👑 ===== */}
+            {/* FOOTER */}
             <div className="border-t border-gray-200 dark:border-gray-800 py-4 px-4 space-y-2 bg-white dark:bg-gray-900">
               
               {sharedLinks.map((link) => (
@@ -138,7 +138,7 @@ const DashboardLayout = () => {
         </div>
       </aside>
 
-      {/* ===== MOBILE OVERLAY 🔥 ===== */}
+      {/* MOBILE OVERLAY */}
       {isSidebarOpen && (
         <div
           className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 lg:hidden"
@@ -146,7 +146,7 @@ const DashboardLayout = () => {
         />
       )}
 
-      {/* ===== MOBILE TOP BAR ===== */}
+      {/* MOBILE TOP BAR */}
       <header className="lg:hidden fixed top-0 left-0 right-0 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 shadow-md z-40 flex items-center justify-between px-5 py-3">
         
         <div className="flex items-center gap-2">
@@ -169,7 +169,7 @@ const DashboardLayout = () => {
         />
       </header>
 
-      {/* ===== MAIN CONTENT ===== */}
+      {/* MAIN CONTENT */}
       <main className="flex-1 overflow-y-auto w-full mt-14 lg:mt-0 lg:px-10 py-6">
         <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-800 p-2 min-h-[80vh]">
           <Outlet />

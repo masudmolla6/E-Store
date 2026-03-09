@@ -9,7 +9,7 @@ const OurProductsLayout = () => {
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900">
-      {/* ===== Sidebar (Desktop) ===== */}
+      {/* Sidebar (Desktop) */}
       <aside className="hidden md:flex md:w-64 bg-white dark:bg-gray-800 shadow-xl flex-col justify-between md:h-screen sticky top-0">
         <div className="p-6 overflow-y-auto">
           <h2 className="text-3xl font-bold text-blue-600 dark:text-blue-300 mb-8 text-center tracking-wide">
@@ -72,7 +72,7 @@ const OurProductsLayout = () => {
         </div>
       </aside>
 
-      {/* ===== Main Content ===== */}
+      {/* Main Content */}
       <main className="flex-1 overflow-y-auto p-4 md:p-10 relative">
         {/* Top Filter/Search Bar */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 space-y-3 md:space-y-0 md:space-x-4 sticky top-0 bg-inherit z-20 pb-3">
@@ -131,7 +131,8 @@ const OurProductsLayout = () => {
         </div>
       </main>
 
-      {/* ===== Mobile Bottom Nav ===== */}
+      {/* Mobile Bottom Nav */}
+
       <nav className="md:hidden fixed bottom-0 left-0 w-full bg-black/75 shadow-lg flex justify-around items-center py-2 border-t border-gray-200 dark:border-gray-700 z-50">
         {[
           { to: "/products/all", icon: <ShoppingBag size={20} />, label: "All" },

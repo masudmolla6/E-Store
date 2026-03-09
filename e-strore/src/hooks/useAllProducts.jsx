@@ -20,13 +20,13 @@ const useAllProducts = (searchTerm, sortOption, currentPage, limit = 8, category
           sort: sortOption,
           page: currentPage,
           limit: limit,
-          category: category, // ✅ added category filter
+          category: category, //added category filter
 
         },
       });
       return res.data;
     },
-    keepPreviousData: true, // ✅ pagination smooth রাখবে
+    keepPreviousData: true, //pagination smooth
   });
 
   return {
