@@ -151,11 +151,56 @@ const Navbar = () => {
       {/* Right */}
       <div className="navbar-end flex items-center gap-2">
         {
-          user ? <button onClick={()=>handleLogout()} className="btn btn-outline btn-sm">
-          LogOut
-        </button>:<Link to="/login" className="btn btn-outline btn-sm">
-          LogIn
-        </Link>
+          user ? (
+            <div className="dropdown dropdown-end dropdown-hover">
+              {/* Avatar */}
+              <div tabIndex={0} className="avatar cursor-pointer">
+                <div className="w-10 rounded-full ring ring-white ring-offset-2">
+                  <img src={user?.photoURL || "https://i.ibb.co/4pDNDk1/avatar.png"} />
+                </div>
+              </div>
+
+              {/* Dropdown Card */}
+              <div
+                tabIndex={0}
+                className="dropdown-content mt-4 z-[100] w-64 bg-gray-700 text-white rounded-xl shadow-xl p-4 transition-all duration-300"
+              >
+                {/* Profile Image */}
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-16 rounded-full overflow-hidden mb-2">
+                    <img
+                      src={user?.photoURL || "https://i.ibb.co/4pDNDk1/avatar.png"}
+                    />
+                  </div>
+
+                  {/* Name */}
+                  <h3 className="font-semibold text-lg">
+                    {user?.displayName || "User"}
+                  </h3>
+
+                  {/* Email */}
+                  <p className="text-sm text-gray-200">
+                    {user?.email}
+                  </p>
+                </div>
+
+                {/* Divider */}
+                <div className="divider my-2"></div>
+
+                {/* Logout */}
+                <button
+                  onClick={handleLogout}
+                  className="btn btn-sm btn-outline w-full"
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
+          ) : (
+            <Link to="/login" className="btn btn-outline btn-sm">
+              LogIn
+            </Link>
+          )
         }
       </div>
     </div>
