@@ -4,9 +4,13 @@ import { Link } from "react-router";
 import { FaEye } from "react-icons/fa";
 import AOS from "aos";
 import { Package } from "lucide-react";
+import axios from "axios";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const MyOrders = () => {
   const [myOrders, refetch, isLoading] = useMyOrders();
+  const axiosSecure=useAxiosSecure();
 
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
@@ -21,23 +25,52 @@ const MyOrders = () => {
     document.getElementById("feedback_modal").showModal();
   };
 
-  const handleSubmitReview = (e) => {
-    e.preventDefault();
+const handleSubmitReview = async (e) => {
+  e.preventDefault();
 
-    const reviewData = {
-      productId: selectedProduct?._id,
-      productName: selectedProduct?.name,
-      rating,
-      comment,
-    };
+  const reviewData = {
+    productId: selectedProduct?._id,
+    productName: selectedProduct?.name,
+    rating,
+    comment,
+  };
 
-    console.log("Review Data:", reviewData);
+  try {
+    // API call to backend
+    const response = await axiosSecure.post(
+      "/reviews",
+      reviewData
+    );
 
+    console.log("Review submitted:", response.data);
+
+    // Show SweetAlert success
+    if(response?.data?.insertedId)
+    Swal.fire({
+      icon: "success",
+      title: "Thank you!",
+      text: "Your review has been submitted successfully.",
+      timer: 2000,
+      showConfirmButton: false,
+    });
+
+    // Reset form
     setRating(0);
     setComment("");
 
+    // Close modal
     document.getElementById("feedback_modal").close();
-  };
+  } catch (error) {
+    console.error("Failed to submit review:", error);
+
+    // Show SweetAlert error
+    Swal.fire({
+      icon: "error",
+      title: "Oops!",
+      text: "Failed to submit your review. Try again.",
+    });
+  }
+};
 
   if (isLoading) {
     return (
