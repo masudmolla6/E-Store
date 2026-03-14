@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useAllProducts from "../../../../hooks/useAllProducts";
 import ManageProductRow from "./ManageProductRow";
 import { Package } from "lucide-react";
+import AOS from "aos";
 
 const ManageProducts = () => {
+    useEffect(() => {
+      AOS.refresh();
+    }, []);
+
   // 🔍 Search state
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -114,7 +119,7 @@ if (isLoading) {
               <th className="text-center">Actions</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody data-aos="fade-up">
             {products?.length > 0 ? (
               products.map((product, index) => (
                 <ManageProductRow

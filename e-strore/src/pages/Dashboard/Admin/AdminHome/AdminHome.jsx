@@ -102,22 +102,14 @@ const AdminHome = () => {
       </motion.div>
 
       {/* ===== Recent Activity ===== */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl shadow-lg p-6"
-      >
-        <h2 className="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100 flex items-center gap-2">
-          <Activity size={20} /> Recent Activities
-        </h2>
-        <ul className="space-y-3 text-gray-700 dark:text-gray-300">
-          <li>✅ New product <b>“Wireless Earbuds”</b> added.</li>
-          <li>🛒 User <b>Rana</b> placed a new order.</li>
-          <li>💰 Received payment of <b>$149.99</b>.</li>
-          <li>📦 12 orders shipped successfully.</li>
-        </ul>
-      </motion.div>
+      <div>
+        <h1 className="text-3xl text-center">Control Panel</h1>
+        <div>
+          <div>
+            Banner Section
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

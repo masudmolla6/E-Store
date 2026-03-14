@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import useAllOrders from '../../../../hooks/useAllOrders'
 import { ClipboardList } from 'lucide-react'
+import AOS from 'aos';
 
 const ManageOrders = () => {
-  const [allOrders, refetch] = useAllOrders()
+  const [allOrders, refetch] = useAllOrders();
+
+  
+  useEffect(() => {
+    AOS.refresh();
+  }, []);
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -50,7 +56,7 @@ const ManageOrders = () => {
             </tr>
           </thead>
 
-          <tbody>
+          <tbody data-aos="fade-left">
             {allOrders?.map((order, index) => (
               <tr key={order._id}>
                 <td>{index + 1}</td>

@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { useNavigate } from "react-router";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { PlusCircle } from "lucide-react";
+import AOS from "aos";
 
 const AddProducts = () => {
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    AOS.refresh();
+  }, []);
 
   const {
     register,
@@ -57,7 +62,7 @@ const AddProducts = () => {
     <div className="max-w-4xl mx-auto">
       <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2"><PlusCircle className="w-7 h-7" />Add New Product</h2>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <form data-aos="fade-left" onSubmit={handleSubmit(onSubmit)} className="space-y-4">
 
         <input {...register("name", { required: true })} placeholder="Product Name" className="input input-bordered w-full" />
         <textarea {...register("description")} placeholder="Description" className="textarea textarea-bordered w-full" />

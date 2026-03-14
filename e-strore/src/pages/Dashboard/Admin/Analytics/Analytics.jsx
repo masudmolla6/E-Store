@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BarChart3, Users, CreditCard, TrendingUp } from "lucide-react";
 import useAllUsers from "../../../../hooks/useAllUsers";
 import useAllOrders from "../../../../hooks/useAllOrders";
+import AOS from "aos";
 
 const Analytics = () => {
   const [users] = useAllUsers();
   const [allOrders] = useAllOrders();
+
+    useEffect(() => {
+      AOS.refresh();
+    }, []);
 
   /* -------------------- Calculations -------------------- */
 
@@ -59,7 +64,7 @@ const Analytics = () => {
       <h1 className="text-2xl font-semibold mb-6 flex items-center gap-2"><TrendingUp className="w-8 h-8"/> Analytics</h1>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div data-aos="fade-right" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((stat, index) => (
           <div
             key={index}
@@ -75,7 +80,7 @@ const Analytics = () => {
       </div>
 
       {/* Order Breakdown */}
-      <div className="rounded-2xl shadow-sm p-6 mt-6">
+      <div data-aos="fade-left" className="rounded-2xl shadow-sm p-6 mt-6">
         <h2 className="text-lg font-semibold mb-4">Order Breakdown</h2>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -104,7 +109,7 @@ const Analytics = () => {
       </div>
 
       {/* Recent Orders */}
-      <div className="rounded-2xl shadow-sm p-6 mt-6">
+      <div data-aos="fade-down" className="rounded-2xl shadow-sm p-6 mt-6">
         <h2 className="text-lg font-semibold mb-4">Recent Orders</h2>
 
         <div className="overflow-x-auto">

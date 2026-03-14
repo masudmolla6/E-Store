@@ -86,7 +86,7 @@ const handleImageUpload = async (e) => {
 
     setProfilePic(res.data.data.url);
     Swal.fire({
-      title: "Profile picture uploaded successfully! 📸",
+      title: "Profile picture uploaded successfully!",
       icon: "success",
       timer: 1500,
       showConfirmButton: false,
@@ -94,7 +94,7 @@ const handleImageUpload = async (e) => {
   } catch (err) {
     console.error(err);
     Swal.fire({
-      title: "Failed to upload image 😢",
+      title: "Failed to upload image",
       icon: "error",
     });
   }
