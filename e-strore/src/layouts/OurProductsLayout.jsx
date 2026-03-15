@@ -9,14 +9,16 @@ const OurProductsLayout = () => {
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900">
-      {/* Sidebar (Desktop) */}
+
+      {/* Sidebar */}
       <aside className="hidden md:flex md:w-64 bg-white dark:bg-gray-800 shadow-xl flex-col justify-between md:h-screen sticky top-0">
         <div className="p-6 overflow-y-auto">
           <h2 className="text-3xl font-bold text-blue-600 dark:text-blue-300 mb-8 text-center tracking-wide">
-          Our Products
+            Our Products
           </h2>
 
           <nav className="flex flex-col space-y-3 font-semibold">
+
             <NavLink
               to="/products/all"
               className={({ isActive }) =>
@@ -68,14 +70,17 @@ const OurProductsLayout = () => {
             >
               <Home size={18} /> Home
             </NavLink>
+
           </nav>
         </div>
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto p-4 md:p-10 relative">
-        {/* Top Filter/Search Bar */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 space-y-3 md:space-y-0 md:space-x-4 sticky top-0 bg-inherit z-20 pb-3">
+      <main className="flex-1 p-4 md:p-10 relative pb-20">
+
+        {/* Sticky Search + Sort */}
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 space-y-3 md:space-y-0 md:space-x-4 sticky top-0 z-40 py-3 backdrop-blur-md">
+
           {/* Search */}
           <input
             type="text"
@@ -91,7 +96,7 @@ const OurProductsLayout = () => {
             onChange={(e) => setSortOption(e.target.value)}
             className="hidden md:block p-3 rounded-xl border border-gray-300 shadow-sm bg-white text-gray-900 dark:bg-gray-700 dark:text-gray-100 focus:ring-2 focus:ring-gray-500"
           >
-            <option value="">Sort by</option>
+            <option value="">Default</option>
             <option value="price-low">Price: Low to High</option>
             <option value="price-high">Price: High to Low</option>
             <option value="newest">Newest</option>
@@ -104,6 +109,7 @@ const OurProductsLayout = () => {
           >
             <Filter size={20} /> Sort
           </button>
+
         </div>
 
         {/* Mobile Sort Dropdown */}
@@ -125,15 +131,16 @@ const OurProductsLayout = () => {
           </div>
         )}
 
-        {/* Content Outlet */}
+        {/* Products Content */}
         <div className="w-full">
           <Outlet context={{ searchTerm, sortOption }} />
         </div>
+
       </main>
 
-      {/* Mobile Bottom Nav */}
-
+      {/* Mobile Bottom Navigation */}
       <nav className="md:hidden fixed bottom-0 left-0 w-full bg-black/75 shadow-lg flex justify-around items-center py-2 border-t border-gray-200 dark:border-gray-700 z-50">
+
         {[
           { to: "/products/all", icon: <ShoppingBag size={20} />, label: "All" },
           { to: "/products/categoryProducts", icon: <Grid2X2 size={20} />, label: "Cats" },
@@ -155,7 +162,9 @@ const OurProductsLayout = () => {
             <span>{label}</span>
           </NavLink>
         ))}
+
       </nav>
+
     </div>
   );
 };
