@@ -119,7 +119,7 @@ if (isLoading) {
               <th className="text-center">Actions</th>
             </tr>
           </thead>
-          <tbody data-aos="fade-up">
+          <tbody>
             {products?.length > 0 ? (
               products.map((product, index) => (
                 <ManageProductRow
