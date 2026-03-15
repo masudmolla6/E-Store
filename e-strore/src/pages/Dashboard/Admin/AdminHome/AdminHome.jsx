@@ -42,8 +42,8 @@ const AdminHome = () => {
       gradient: "from-pink-500 to-red-500",
       icon: <ImageIcon size={22} />,
       actions: [
-        { name: "Add", route: "/dashboard/add-banner" },
-        { name: "Manage", route: "/dashboard/manage-banner" },
+        { name: "Add", route: "/dashboard/addBanner" },
+        { name: "Manage", route: "/dashboard/manageBanner" },
       ],
     },
     {

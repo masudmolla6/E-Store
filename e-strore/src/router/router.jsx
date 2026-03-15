@@ -29,6 +29,8 @@ import OrderDetails from "../pages/Dashboard/User/OrderDetails/OrderDetails";
 import Payments from "../pages/Payments/Payments";
 import MyOrderDetails from "../pages/Dashboard/User/MyOrders/MyOrderDetails";
 import EditProduct from "../pages/Dashboard/Admin/ManageProducts/EditProduct";
+import AddBanner from "../pages/Dashboard/Admin/ControlPanel/AddBanner/AddBanner";
+import ManageBanner from "../pages/Dashboard/Admin/ControlPanel/ManageBanner/ManageBanner";
 
 const router=createBrowserRouter([
     {
@@ -120,6 +122,14 @@ const router=createBrowserRouter([
         {
           path:"analytics",
           element:<Analytics></Analytics>
+        },
+        {
+          path:"addBanner",
+          element:<AddBanner></AddBanner>
+        },
+        {
+          path:"manageBanner",
+          element:<ManageBanner></ManageBanner>
         },
 
         // User Route
