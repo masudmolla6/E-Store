@@ -4,13 +4,12 @@ import { Link } from "react-router";
 import { FaEye } from "react-icons/fa";
 import AOS from "aos";
 import { Package } from "lucide-react";
-import axios from "axios";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const MyOrders = () => {
   const [myOrders, refetch, isLoading] = useMyOrders();
-  const axiosSecure=useAxiosSecure();
+  const axiosSecure = useAxiosSecure();
 
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
@@ -25,52 +24,42 @@ const MyOrders = () => {
     document.getElementById("feedback_modal").showModal();
   };
 
-const handleSubmitReview = async (e) => {
-  e.preventDefault();
+  const handleSubmitReview = async (e) => {
+    e.preventDefault();
+    if (!selectedProduct) return;
 
-  const reviewData = {
-    productId: selectedProduct?._id,
-    productName: selectedProduct?.name,
-    rating,
-    comment,
+    const reviewData = {
+      productId: selectedProduct._id,
+      productName: selectedProduct.name,
+      rating,
+      comment,
+    };
+
+    try {
+      const response = await axiosSecure.post("/reviews", reviewData);
+
+      if (response?.data?.insertedId) {
+        Swal.fire({
+          icon: "success",
+          title: "Thank you!",
+          text: "Your review has been submitted successfully.",
+          timer: 2000,
+          showConfirmButton: false,
+        });
+      }
+
+      setRating(0);
+      setComment("");
+      document.getElementById("feedback_modal").close();
+    } catch (error) {
+      console.error("Failed to submit review:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops!",
+        text: "Failed to submit your review. Try again.",
+      });
+    }
   };
-
-  try {
-    // API call to backend
-    const response = await axiosSecure.post(
-      "/reviews",
-      reviewData
-    );
-
-    console.log("Review submitted:", response.data);
-
-    // Show SweetAlert success
-    if(response?.data?.insertedId)
-    Swal.fire({
-      icon: "success",
-      title: "Thank you!",
-      text: "Your review has been submitted successfully.",
-      timer: 2000,
-      showConfirmButton: false,
-    });
-
-    // Reset form
-    setRating(0);
-    setComment("");
-
-    // Close modal
-    document.getElementById("feedback_modal").close();
-  } catch (error) {
-    console.error("Failed to submit review:", error);
-
-    // Show SweetAlert error
-    Swal.fire({
-      icon: "error",
-      title: "Oops!",
-      text: "Failed to submit your review. Try again.",
-    });
-  }
-};
 
   if (isLoading) {
     return (
@@ -81,118 +70,93 @@ const handleSubmitReview = async (e) => {
   }
 
   return (
-    <div className="min-h-screen bg-base-200 py-10 px-4">
-      <div className="max-w-6xl mx-auto bg-base-100 shadow-xl rounded-2xl p-6">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-10 px-4">
+      <div className="max-w-6xl mx-auto bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-6">
 
         {/* Title */}
-        <h2 className="text-3xl font-bold mb-6 text-center flex justify-center items-center gap-1">
-          <Package className="w-8 h-8" /> My Orders
+        <h2 className="text-3xl font-bold mb-6 text-center flex justify-center items-center gap-2 text-gray-800 dark:text-gray-100">
+          <Package className="w-8 h-8 text-indigo-600" /> My Orders
         </h2>
 
         {/* Empty */}
         {myOrders.length === 0 ? (
           <div className="text-center py-20">
-            <h3 className="text-xl font-semibold mb-2">
+            <h3 className="text-xl font-semibold mb-2 text-gray-700 dark:text-gray-200">
               No Orders Found 😔
             </h3>
-            <p className="text-gray-500">
+            <p className="text-gray-500 dark:text-gray-400">
               Looks like you haven't placed any orders yet.
             </p>
           </div>
         ) : (
-
-          <div className="overflow-x-auto">
-            <table className="table">
-
-              <thead>
-                <tr className="text-base font-semibold">
-                  <th className="text-center">#</th>
-                  <th className="text-center">Product</th>
-                  <th className="text-center">Transaction ID</th>
-                  <th className="text-center">Total</th>
-                  <th className="text-center">Status</th>
-                  <th className="text-center">Action</th>
+          <div className="overflow-x-auto rounded-lg shadow-sm">
+            <table className="table w-full min-w-[600px] md:min-w-full">
+              <thead className="bg-indigo-100 dark:bg-indigo-900 text-gray-700 dark:text-gray-200">
+                <tr className="text-base font-semibold text-center">
+                  <th>#</th>
+                  <th className="text-left">Product</th>
+                  <th>Transaction ID</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                  <th>Action</th>
                 </tr>
               </thead>
 
               <tbody data-aos="fade-left">
-
                 {myOrders.map((order) =>
                   order.items.map((product, index) => (
-                    <tr key={product._id} className="hover">
+                    <tr key={product._id} className="hover:bg-gray-100 dark:hover:bg-gray-700 transition-all">
 
                       {/* Serial */}
-                      <td>{index + 1}</td>
+                      <td className="text-center">{index + 1}</td>
 
                       {/* Product */}
-                      <td>
-                        <div className="flex items-center gap-4">
-
-                          <div className="avatar">
-                            <div className="w-14 h-14 rounded-xl">
-                              <img
-                                src={product?.image}
-                                alt="product"
-                                className="object-cover"
-                              />
-                            </div>
-                          </div>
-
-                          <div>
-                            <div className="font-semibold">
-                              {product?.name}
-                            </div>
-                          </div>
-
+                      <td className="flex items-center gap-4 text-left">
+                        <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0">
+                          <img src={product.image} alt={product.name} className="object-cover w-full h-full" />
                         </div>
+                        <span className="font-semibold text-gray-800 dark:text-gray-200 truncate max-w-[120px]">
+                          {product.name}
+                        </span>
                       </td>
 
                       {/* Transaction */}
-                      <td
-                        className="font-mono text-sm max-w-[150px] truncate tooltip cursor-pointer"
-                        data-tip={order.paymentInfo?.transactionId}
-                      >
+                      <td className="font-mono text-sm max-w-[120px] truncate text-center" title={order.paymentInfo?.transactionId}>
                         {order.paymentInfo?.transactionId?.slice(0, 12)}...
                       </td>
 
                       {/* Total */}
-                      <td className="font-semibold text-primary">
-                        ৳ {order?.orderSummary?.grandTotal}
+                      <td className="font-semibold text-indigo-600 text-center">
+                        ৳ {order.orderSummary?.grandTotal}
                       </td>
 
                       {/* Status */}
-                      <td>
+                      <td className="text-center">
                         <span className="badge badge-success badge-outline">
                           Paid
                         </span>
                       </td>
 
                       {/* Action */}
-                      <td className="flex gap-2 items-center">
-
+                      <td className="flex flex-col sm:flex-row justify-center items-center gap-2 text-center">
                         <Link
                           to={`/dashboard/myOrders/${order._id}`}
-                          className="btn btn-sm btn-info flex items-center gap-2"
+                          className="btn btn-sm btn-info flex items-center gap-2 w-full sm:w-auto justify-center"
                         >
-                          <FaEye />
-                          Details
+                          <FaEye /> Details
                         </Link>
-
                         <button
                           onClick={() => handleOpenFeedback(product)}
-                          className="btn btn-sm btn-outline btn-primary"
+                          className="btn btn-sm btn-outline btn-primary w-full sm:w-auto"
                         >
                           Review
                         </button>
-
                       </td>
 
                     </tr>
                   ))
                 )}
-
               </tbody>
-
             </table>
           </div>
         )}
@@ -200,18 +164,12 @@ const handleSubmitReview = async (e) => {
 
       {/* Feedback Modal */}
       <dialog id="feedback_modal" className="modal">
-
-        <div className="modal-box">
-
-          <h3 className="font-bold text-lg mb-4">
-            Write Your Review
-          </h3>
-
-          <form onSubmit={handleSubmitReview}>
+        <div className="modal-box rounded-2xl">
+          <h3 className="font-bold text-lg mb-4 text-gray-800 dark:text-gray-100">Write Your Review</h3>
+          <form onSubmit={handleSubmitReview} className="space-y-4">
 
             {/* Rating */}
-            <div className="rating mb-4">
-
+            <div className="rating justify-center gap-2">
               {[1, 2, 3, 4, 5].map((star) => (
                 <input
                   key={star}
@@ -222,39 +180,30 @@ const handleSubmitReview = async (e) => {
                   onChange={() => setRating(star)}
                 />
               ))}
-
             </div>
 
             {/* Comment */}
             <textarea
-              className="textarea textarea-bordered w-full mb-4"
+              className="textarea textarea-bordered w-full"
               placeholder="Write your feedback..."
               value={comment}
               onChange={(e) => setComment(e.target.value)}
             ></textarea>
 
-            <div className="modal-action">
-
+            <div className="modal-action flex flex-col sm:flex-row justify-end gap-2">
               <button
                 type="button"
-                className="btn"
-                onClick={() =>
-                  document.getElementById("feedback_modal").close()
-                }
+                className="btn btn-outline w-full sm:w-auto"
+                onClick={() => document.getElementById("feedback_modal").close()}
               >
                 Close
               </button>
-
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-primary w-full sm:w-auto">
                 Submit
               </button>
-
             </div>
-
           </form>
-
         </div>
-
       </dialog>
 
     </div>
