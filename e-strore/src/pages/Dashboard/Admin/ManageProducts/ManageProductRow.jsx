@@ -6,13 +6,14 @@ import Swal from "sweetalert2";
 import { Link } from "react-router";
 
 const ManageProductRow = ({ product, index }) => {
-  const {name, image, price, category } = product;
-  // console.log(product);
-  const {refetch,}=useAllProducts();
-  const axiosSecure=useAxiosSecure();
 
-  const handleDelete=(id)=>{
-    console.log(id);
+  const { name, image, price, category } = product;
+
+  const { refetch } = useAllProducts();
+  const axiosSecure = useAxiosSecure();
+
+  const handleDelete = (id) => {
+
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -22,66 +23,98 @@ const ManageProductRow = ({ product, index }) => {
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
+
       if (result.isConfirmed) {
+
         axiosSecure.delete(`/products/${id}`)
-        .then((res)=>{
-          console.log(res.data);
-          if (res.data.deletedCount>0) {
+          .then((res) => {
+
+            if (res.data.deletedCount > 0) {
+
               Swal.fire({
                 title: "Deleted!",
-                text: "Your Cart has been deleted.",
+                text: "Product has been deleted.",
                 icon: "success",
               });
+
               refetch();
-          }
-        })
+
+            }
+
+          });
+
       }
+
     });
-  }
+
+  };
 
   return (
-    <tr className="hover:bg-base-200 transition">
-      <td>{index}</td>
+
+    <tr className="hover:bg-base-200 transition duration-300">
+
+      <td className="font-semibold">{index + 1}</td>
+
+      {/* Product Image */}
 
       <td>
         <div className="avatar">
-          <div className="w-14 h-14 rounded">
+          <div className="w-14 h-14 rounded-lg shadow">
             <img src={image} alt={name} />
           </div>
         </div>
       </td>
 
-      <td>
-        <p className="font-medium">{name}</p>
+      {/* Product Name */}
+
+      <td className="max-w-[180px]">
+        <p className="font-semibold line-clamp-2">{name}</p>
       </td>
+
+      {/* Price */}
 
       <td>
-        <span className="font-semibold">৳{price}</span>
+        <span className="font-bold text-green-600">৳{price}</span>
       </td>
+
+      {/* Category */}
 
       <td>
-        <span className="badge badge-outline">{category}</span>
+        <span className="badge badge-outline badge-primary">
+          {category}
+        </span>
       </td>
 
-      <td className="text-center space-x-2">
-        <Link
-          to={`edit-product/${product._id}`}
-          className="btn btn-sm btn-outline btn-info"
-          title="Edit Product"
-        >
-          <FiEdit />
-        </Link>
+      {/* Actions */}
 
-        <Link
-          onClick={()=>handleDelete(product._id)}
-          className="btn btn-sm btn-outline btn-error"
-          title="Delete Product"
-        >
-          <FiTrash2 />
-        </Link>
+      <td>
+
+        <div className="flex flex-col sm:flex-row gap-2 justify-center items-center">
+
+          <Link
+            to={`edit-product/${product._id}`}
+            className="btn btn-xs sm:btn-sm btn-info text-white flex items-center gap-1"
+          >
+            <FiEdit />
+            <span className="hidden sm:inline">Edit</span>
+          </Link>
+
+          <button
+            onClick={() => handleDelete(product._id)}
+            className="btn btn-xs sm:btn-sm btn-error text-white flex items-center gap-1"
+          >
+            <FiTrash2 />
+            <span className="hidden sm:inline">Delete</span>
+          </button>
+
+        </div>
+
       </td>
+
     </tr>
+
   );
+
 };
 
 export default ManageProductRow;
