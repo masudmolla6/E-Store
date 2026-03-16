@@ -79,7 +79,7 @@ const OurProductsLayout = () => {
       <main className="flex-1 p-4 md:p-10 relative pb-20">
 
         {/* Sticky Search + Sort */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 space-y-3 md:space-y-0 md:space-x-4 sticky top-0 z-40 py-3 backdrop-blur-md">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 space-y-3 md:space-y-0 md:space-x-4 sticky top-0 z-40 py-3 backdrop-blur-md relative">
 
           {/* Search */}
           <input
@@ -105,31 +105,31 @@ const OurProductsLayout = () => {
           {/* Mobile Sort Button */}
           <button
             onClick={() => setShowSort(!showSort)}
-            className="block md:hidden p-3 bg-gray-800 text-white rounded-xl shadow hover:bg-gray-700 transition flex items-center gap-2"
+            className="md:hidden p-3 bg-gray-800 text-white rounded-xl shadow hover:bg-gray-700 transition flex items-center gap-2"
           >
             <Filter size={20} /> Sort
           </button>
 
-        </div>
+          {/* Mobile Sort Dropdown */}
+          {showSort && (
+            <div className="absolute top-full right-0 mt-2 w-full md:w-60 z-50 p-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl shadow-xl">
+              <select
+                value={sortOption}
+                onChange={(e) => {
+                  setSortOption(e.target.value);
+                  setShowSort(false);
+                }}
+                className="w-full p-3 rounded-xl border border-gray-300 shadow-sm bg-white text-gray-900 dark:bg-gray-700 dark:text-gray-100"
+              >
+                <option value="">Sort by</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="newest">Newest</option>
+              </select>
+            </div>
+          )}
 
-        {/* Mobile Sort Dropdown */}
-        {showSort && (
-          <div className="fixed top-20 left-0 w-full z-30 p-3 bg-white dark:bg-gray-800 border-t border-gray-300 dark:border-gray-700 shadow-xl">
-            <select
-              value={sortOption}
-              onChange={(e) => {
-                setSortOption(e.target.value);
-                setShowSort(false);
-              }}
-              className="w-full p-3 rounded-xl border border-gray-300 shadow-sm bg-white text-gray-900 dark:bg-gray-700 dark:text-gray-100"
-            >
-              <option value="">Sort by</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
-              <option value="newest">Newest</option>
-            </select>
-          </div>
-        )}
+        </div>
 
         {/* Products Content */}
         <div className="w-full">
