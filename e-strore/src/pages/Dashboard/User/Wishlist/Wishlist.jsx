@@ -17,7 +17,7 @@ const Wishlist = () => {
 
       {/* Empty State */}
       {wishlist?.length === 0 && (
-        <p className="text-gray-500">Your wishlist is empty 💔</p>
+        <p className="text-gray-500">Your wishlist is empty.</p>
       )}
 
       {/* Wishlist Items */}

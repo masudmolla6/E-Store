@@ -67,7 +67,7 @@ const MyCarts = () => {
             className="w-32 h-32 mb-4 opacity-80"
           />
           <p className="text-gray-500 text-lg font-medium">
-            তোমার কার্ট খালি আছে 🛒
+            Your Cart Are Empty.
           </p>
         </div>
       ) : (

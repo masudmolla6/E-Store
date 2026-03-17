@@ -82,7 +82,7 @@ const MyOrders = () => {
         {myOrders.length === 0 ? (
           <div className="text-center py-20">
             <h3 className="text-xl font-semibold mb-2 text-gray-700 dark:text-gray-200">
-              No Orders Found 😔
+              No Orders Found
             </h3>
             <p className="text-gray-500 dark:text-gray-400">
               Looks like you haven't placed any orders yet.
