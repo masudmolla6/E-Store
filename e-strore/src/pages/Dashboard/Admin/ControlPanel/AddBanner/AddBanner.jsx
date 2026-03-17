@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -8,117 +9,153 @@ const AddBanner = () => {
     reset,
     formState: { errors, isSubmitting },
   } = useForm();
-  const [preview, setPreview] = useState(null);
 
-  const onSubmit = async (data) => {
-    console.log(data.image);
-  };
+  const [preview, setPreview] = useState(null);
 
   const handleImagePreview = (e) => {
     const file = e.target.files[0];
-    if (file) setPreview(URL.createObjectURL(file));
-    else setPreview(null);
+
+    if (file) {
+      setPreview(URL.createObjectURL(file));
+    } else {
+      setPreview(null);
+    }
+  };
+
+  const onSubmit = async (data) => {
+    try {
+      console.log("Form Data:", data);
+
+      const imageFile = data.image[0];
+
+      if (!imageFile) {
+        alert("No image selected ❌");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("image", imageFile);
+
+      const apiKey = import.meta.env.VITE_image_upload_key;
+
+      if (!apiKey) {
+        console.error("API key missing!");
+        return;
+      }
+
+      const imageUploadUrl = `https://api.imgbb.com/1/upload?key=${apiKey}`;
+
+      const res = await axios.post(imageUploadUrl, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      console.log("imgbb response:", res.data);
+
+      if (res.data.success) {
+        const imageUrl = res.data.data.display_url;
+
+        const bannerData = {
+          title: data.title,
+          discount: data.discount,
+          buttonText: data.buttonText,
+          buttonLink: data.buttonLink,
+          image: imageUrl,
+        };
+
+        console.log("Final Banner Data:", bannerData);
+
+        // 👉 backend later
+        // await axios.post("http://localhost:5000/banners", bannerData);
+
+        reset();
+        setPreview(null);
+
+        alert("Banner added successfully 🚀");
+      }
+    } catch (error) {
+      console.log("Error:", error.response?.data || error.message);
+    }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900">
       <div className="w-full max-w-3xl bg-white/20 backdrop-blur-lg rounded-3xl shadow-2xl p-10 border border-white/10">
-        <h1 className="text-4xl font-extrabold mb-8 text-center text-white drop-shadow-lg">
+        <h1 className="text-4xl font-extrabold mb-8 text-center text-white">
           Add New Banner
         </h1>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
           {/* Title */}
-          <div className="relative">
-            {/* <label className="absolute left-4 top-2 text-white/70 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-white/50 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-white/90 peer-focus:text-sm">
-              Banner Title
-            </label> */}
-            <input
-              type="text"
-              placeholder="Banner Title"
-              {...register("title", { required: true })}
-              className="peer w-full p-4 rounded-xl bg-white/20 text-white focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400 transition"
-            />
-            {errors.title && <p className="text-pink-400 text-sm mt-1">Title is required</p>}
-          </div>
+          <input
+            type="text"
+            placeholder="Banner Title"
+            {...register("title", { required: true })}
+            className="w-full p-4 rounded-xl bg-white/20 text-white"
+          />
+          {errors.title && <p className="text-pink-400">Title is required</p>}
 
           {/* Discount */}
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Discount (e.g., 50%)"
-              {...register("discount", { required: true })}
-              className="peer w-full p-4 rounded-xl bg-white/20 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition"
-            />
-            {/* <label className="absolute left-4 top-2 text-white/70 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-white/50 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-white/90 peer-focus:text-sm">
-              Discount (e.g., 50%)
-            </label> */}
-            {errors.discount && <p className="text-yellow-400 text-sm mt-1">Discount is required</p>}
-          </div>
+          <input
+            type="text"
+            placeholder="Discount (e.g., 50%)"
+            {...register("discount", { required: true })}
+            className="w-full p-4 rounded-xl bg-white/20"
+          />
+          {errors.discount && <p className="text-yellow-400">Discount is required</p>}
 
           {/* Button Text */}
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Button Text"
-              {...register("buttonText", { required: true })}
-              className="peer w-full p-4 rounded-xl bg-white/20 text-white focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-green-400 transition"
-            />
-            {/* <label className="absolute left-4 top-2 text-white/70 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-white/50 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-white/90 peer-focus:text-sm">
-              Button Text
-            </label> */}
-            {errors.buttonText && <p className="text-green-400 text-sm mt-1">Button Text is required</p>}
-          </div>
+          <input
+            type="text"
+            placeholder="Button Text"
+            {...register("buttonText", { required: true })}
+            className="w-full p-4 rounded-xl bg-white/20 text-white"
+          />
+          {errors.buttonText && <p className="text-green-400">Button text is required</p>}
 
           {/* Button Link */}
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Button Link"
-              {...register("buttonLink", { required: true })}
-              className="peer w-full p-4 rounded-xl bg-white/20 text-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition"
-            />
-            {/* <label className="absolute left-4 top-2 text-white/70 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-white/50 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-white/90 peer-focus:text-sm">
-              Button Link
-            </label> */}
-            {errors.buttonLink && <p className="text-blue-400 text-sm mt-1">Button Link is required</p>}
-          </div>
-          
+          <input
+            type="text"
+            placeholder="Button Link"
+            {...register("buttonLink", { required: true })}
+            className="w-full p-4 rounded-xl bg-white/20 text-white"
+          />
+          {errors.buttonLink && <p className="text-blue-400">Link is required</p>}
+
           {/* Image Upload */}
           <div className="flex flex-col items-center gap-4">
-            {/* Hidden Input */}
             <input
               type="file"
               id="imageUpload"
-              {...register("image", { required: true })}
-              onChange={handleImagePreview}
+              accept="image/*"
               className="hidden"
+              {...register("image", {
+                required: true,
+                onChange: handleImagePreview, // 🔥 FIXED
+              })}
             />
 
-            {/* Custom Button */}
             <label
               htmlFor="imageUpload"
-              className="cursor-pointer px-6 py-3 rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white font-semibold shadow-md hover:scale-105 transition"
+              className="cursor-pointer px-6 py-3 rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white font-semibold hover:scale-105 transition"
             >
               Choose Banner Image
             </label>
 
-            {/* File Name */}
-            {preview && (
-              <p className="text-white/80 text-sm">Image selected ✅</p>
-            )}
-
             {errors.image && (
-              <p className="text-red-400">Banner image is required</p>
+              <p className="text-red-400">Image is required</p>
             )}
 
-            {/* Preview */}
             {preview && (
-              <img
-                src={preview}
-                alt="Preview"
-                className="mt-2 w-72 h-40 object-cover rounded-2xl shadow-lg hover:scale-105 transition"
-              />
+              <>
+                <p className="text-white/80 text-sm">Preview 👇</p>
+                <img
+                  src={preview}
+                  alt="Preview"
+                  className="w-72 h-40 object-cover rounded-xl shadow-lg"
+                />
+              </>
             )}
           </div>
 
@@ -126,9 +163,9 @@ const AddBanner = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full py-3 font-bold rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+            className="w-full py-3 font-bold rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white hover:scale-105 transition"
           >
-            {isSubmitting ? "Adding..." : "Add Banner"}
+            {isSubmitting ? "Uploading..." : "Add Banner"}
           </button>
         </form>
       </div>
