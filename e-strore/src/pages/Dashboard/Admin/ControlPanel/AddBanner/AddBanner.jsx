@@ -2,8 +2,10 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../../../../hooks/useAxiosPublic";
 
 const AddBanner = () => {
+  const axiosPublic=useAxiosPublic();
   const {
     register,
     handleSubmit,
@@ -67,13 +69,13 @@ const AddBanner = () => {
 
         console.log("Final Banner Data:", bannerData);
 
-        // 👉 backend later
-        const res = await axios.post(
+        // Store Banner Info in ther Database
+        const dbRes = await axiosPublic.post(
           "/banners",
           bannerData
         );
 
-        if (res.data.insertedId) {
+        if (dbRes.data.insertedId) {
           Swal.fire({
             icon: "success",
             title: "Banner Added!",
@@ -89,7 +91,7 @@ const AddBanner = () => {
         reset();
         setPreview(null);
 
-        alert("Banner added successfully 🚀");
+        // alert("Banner added successfully 🚀");
       }
     } catch (error) {
       console.log("Error:", error.response?.data || error.message);
