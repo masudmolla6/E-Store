@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const AddBanner = () => {
   const {
@@ -67,7 +68,23 @@ const AddBanner = () => {
         console.log("Final Banner Data:", bannerData);
 
         // 👉 backend later
-        // await axios.post("http://localhost:5000/banners", bannerData);
+        const res = await axios.post(
+          "/banners",
+          bannerData
+        );
+
+        if (res.data.insertedId) {
+          Swal.fire({
+            icon: "success",
+            title: "Banner Added!",
+            text: "Your banner has been saved successfully 🚀",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+
+          reset();
+          setPreview(null);
+        }
 
         reset();
         setPreview(null);
