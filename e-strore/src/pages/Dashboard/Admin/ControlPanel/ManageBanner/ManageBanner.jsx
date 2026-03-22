@@ -7,7 +7,7 @@ const ManageBanner = () => {
   const [banners, loading, error, refetch] = useBannerList();
   const axiosPublic = useAxiosPublic();
 
-  // ✅ Toggle Banner (Set / Remove)
+  //Toggle Banner (Set / Remove)
   const handleToggle = async (banner) => {
     try {
       const res = await axiosPublic.patch(`/banners/${banner._id}`, {
@@ -23,7 +23,7 @@ const ManageBanner = () => {
     }
   };
 
-  // ❌ Delete Banner
+  //Delete Banner
   const handleDelete = async (id) => {
     const confirm = await Swal.fire({
       title: "Delete Banner?",
@@ -42,7 +42,7 @@ const ManageBanner = () => {
     }
   };
 
-  if (loading) return <p className="text-center">Loading...</p>;
+  if (loading) return <p className="text-center text-2xl">Loading...</p>;
   if (error) return <p className="text-center text-red-500">Error loading data</p>;
 
   return (
@@ -65,10 +65,7 @@ const ManageBanner = () => {
           <tbody>
             {banners.map((banner, index) => (
               <tr key={banner._id} className="hover">
-                {/* Index */}
                 <td>{index + 1}</td>
-
-                {/* Image */}
                 <td>
                   <img
                     src={banner.image}
@@ -76,16 +73,12 @@ const ManageBanner = () => {
                     className="w-20 h-12 object-cover rounded"
                   />
                 </td>
-
-                {/* Title */}
                 <td
                 className="font-semibold max-w-[200px] truncate"
                 title={banner.title}
                 >
                 {banner.title}
                 </td>
-
-                {/* Discount */}
                 <td
                 className="max-w-[150px] truncate"
                 title={banner.discount}
@@ -93,7 +86,6 @@ const ManageBanner = () => {
                 {banner.discount}
                 </td>
 
-                {/* Status */}
                 <td>
                   <span
                     className={`px-3 py-1 rounded-full text-sm ${
@@ -106,7 +98,6 @@ const ManageBanner = () => {
                   </span>
                 </td>
 
-                {/* Actions */}
                 <td className="flex gap-2 justify-center items-center pt-5">
                   <button
                     onClick={() => handleToggle(banner)}

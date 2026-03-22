@@ -5,8 +5,11 @@ import bannerImg1 from '../../../assets/banner/1.jpg';
 import bannerImg2 from '../../../assets/banner/2.jpg';
 import bannerImg3 from '../../../assets/banner/3.jpg';
 import bannerImg4 from '../../../assets/banner/4.jpg';
+import useSelectedBanners from '../../../hooks/useSelectedBanners';
 
 const Banner = () => {
+  const [banners, loading, error]=useSelectedBanners();
+  console.log(banners);
   return (
     <div className="w-full overflow-hidden rounded-xl">
       <Carousel
