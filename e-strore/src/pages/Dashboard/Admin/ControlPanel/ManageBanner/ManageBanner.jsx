@@ -78,10 +78,20 @@ const ManageBanner = () => {
                 </td>
 
                 {/* Title */}
-                <td className="font-semibold">{banner.title}</td>
+                <td
+                className="font-semibold max-w-[200px] truncate"
+                title={banner.title}
+                >
+                {banner.title}
+                </td>
 
                 {/* Discount */}
-                <td>{banner.discount}</td>
+                <td
+                className="max-w-[150px] truncate"
+                title={banner.discount}
+                >
+                {banner.discount}
+                </td>
 
                 {/* Status */}
                 <td>
