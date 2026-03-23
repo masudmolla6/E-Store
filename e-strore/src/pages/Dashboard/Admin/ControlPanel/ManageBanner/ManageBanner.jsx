@@ -15,7 +15,7 @@ const ManageBanner = () => {
       });
 
       if (res.data.modifiedCount > 0) {
-        Swal.fire("Updated!", "Banner status updated 🚀", "success");
+        Swal.fire("Updated!", "Banner status updated", "success");
         refetch();
       }
     } catch (err) {
@@ -36,7 +36,7 @@ const ManageBanner = () => {
     if (confirm.isConfirmed) {
       const res = await axiosPublic.delete(`/banners/${id}`);
       if (res.data.deletedCount > 0) {
-        Swal.fire("Deleted!", "Banner removed ❌", "success");
+        Swal.fire("Deleted!", "Banner removed", "success");
         refetch();
       }
     }
