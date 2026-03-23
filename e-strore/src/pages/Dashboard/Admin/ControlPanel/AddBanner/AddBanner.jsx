@@ -32,7 +32,7 @@ const AddBanner = () => {
       const imageFile = data.image[0];
 
       if (!imageFile) {
-        alert("No image selected ❌");
+        alert("No image selected");
         return;
       }
 
@@ -79,7 +79,7 @@ const AddBanner = () => {
           Swal.fire({
             icon: "success",
             title: "Banner Added!",
-            text: "Your banner has been saved successfully 🚀",
+            text: "Your banner has been saved successfully",
             showConfirmButton: false,
             timer: 2000,
           });
