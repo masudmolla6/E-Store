@@ -175,7 +175,7 @@ const Navbar = () => {
                 </div>
               </div>
 
-              <div className="dropdown-content mt-4 z-[100] w-64 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl p-4">
+              <div className="dropdown-content mt-4 z-[100] w-64 bg-white/75 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl p-4">
                 <div className="text-center">
                   <img
                     className="w-16 rounded-full mx-auto mb-2"
