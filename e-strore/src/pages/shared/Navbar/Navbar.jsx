@@ -4,20 +4,20 @@ import Logo from "../Logo/Logo";
 import { scroller } from "react-scroll";
 import useAuth from "../../../hooks/useAuth";
 import useAdmin from "../../../hooks/useAdmin";
+import { Info, LayoutDashboard, PhoneCall } from "lucide-react";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const [activeSection, setActiveSection] = useState("");
-  const [menuOpen, setMenuOpen] = useState(false); // Mobile Drawer state
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const { user, logOut } = useAuth();
   const [isAdmin] = useAdmin();
 
   const isHomePage = location.pathname === "/";
 
-  // 🌐 All Devices: Navbar height dynamic
   const navbarRef = useRef(null);
   const [navHeight, setNavHeight] = useState(0);
 
@@ -36,7 +36,6 @@ const Navbar = () => {
     await logOut();
   };
 
-  // 🌐 Scroll to section (Home page)
   const scrollToSection = (sectionId) => {
     scroller.scrollTo(sectionId, {
       duration: 500,
@@ -55,15 +54,16 @@ const Navbar = () => {
     }
   };
 
-  // 🌐 Active section highlight
   useEffect(() => {
     if (!isHomePage) {
       setActiveSection("");
       return;
     }
+
     const handleScroll = () => {
       const sections = ["home", "about", "contact"];
       const scrollPos = window.scrollY + 100;
+
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = document.getElementById(sections[i]);
         if (section && section.offsetTop <= scrollPos) {
@@ -72,28 +72,33 @@ const Navbar = () => {
         }
       }
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isHomePage]);
 
-  // 🌐 Navbar Items
+  // Desktop Nav
   const navItems = (
     <>
       <li>
         <button
           onClick={() => handleNavClick("home")}
-          className={`hover:text-blue-400 transition ${
-            activeSection === "home" && "text-blue-400 font-semibold"
+          className={`transition ${
+            activeSection === "home"
+              ? "text-blue-400 font-semibold"
+              : "hover:text-blue-400"
           }`}
         >
           Home
         </button>
       </li>
+
       <li>
         <Link to="products/all" className="hover:text-blue-400 transition">
           Products
         </Link>
       </li>
+
       <li>
         <Link
           to={`dashboard/${isAdmin ? "adminHome" : "userHome"}`}
@@ -102,21 +107,27 @@ const Navbar = () => {
           Dashboard
         </Link>
       </li>
+
       <li>
         <button
           onClick={() => handleNavClick("about")}
-          className={`hover:text-blue-400 transition ${
-            activeSection === "about" && "text-blue-400 font-semibold"
+          className={`transition ${
+            activeSection === "about"
+              ? "text-blue-400 font-semibold"
+              : "hover:text-blue-400"
           }`}
         >
           About
         </button>
       </li>
+
       <li>
         <button
           onClick={() => handleNavClick("contact")}
-          className={`hover:text-blue-400 transition ${
-            activeSection === "contact" && "text-blue-400 font-semibold"
+          className={`transition ${
+            activeSection === "contact"
+              ? "text-blue-400 font-semibold"
+              : "hover:text-blue-400"
           }`}
         >
           Contact
@@ -127,40 +138,38 @@ const Navbar = () => {
 
   return (
     <>
-      {/* 🌐 Navbar Container (ALL DEVICES) */}
+      {/* 🌐 NAVBAR */}
       <div
         ref={navbarRef}
         className="navbar sticky top-0 z-50 
         bg-gradient-to-r from-black/80 via-black/60 to-black/80 
-        backdrop-blur-xl border-b border-white/10 
-        shadow-[0_4px_20px_rgba(0,0,0,0.6)] text-white"
+        backdrop-blur-xl border-b border-white/10 shadow-xl text-white"
       >
-        {/* 📱 Mobile Only: Hamburger Button */}
+        {/* LEFT */}
         <div className="navbar-start flex items-center">
+
+          {/* 📱 HAMBURGER */}
           <button
             onClick={() => setMenuOpen(true)}
-            className="lg:hidden flex flex-col justify-center items-center gap-1 w-10 h-10 rounded-lg 
-              hover:bg-white/10 hover:shadow-[0_0_10px_rgba(255,255,255,0.2)] transition"
+            className="lg:hidden flex flex-col gap-1 w-10 h-10 justify-center items-center rounded-lg hover:bg-white/10 transition"
           >
             <span className="w-5 h-[2px] bg-white"></span>
             <span className="w-5 h-[2px] bg-white"></span>
             <span className="w-5 h-[2px] bg-white"></span>
           </button>
 
-          {/* 🌐 All Devices: Logo */}
-          <Link to="/" className="ml-2 flex items-center gap-2 group">
-            <div className="transition duration-300 group-hover:scale-110">
-              <Logo />
-            </div>
+          {/* LOGO */}
+          <Link to="/" className="ml-2">
+            <Logo />
           </Link>
         </div>
 
-        {/* 💻 Desktop Only: Horizontal Menu */}
+        {/* 💻 DESKTOP MENU */}
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 gap-4">{navItems}</ul>
+          <ul className="menu menu-horizontal gap-4">{navItems}</ul>
         </div>
 
-        {/* 🌐 All Devices: Right Side (Auth) */}
+        {/* RIGHT */}
         <div className="navbar-end gap-2">
           {user ? (
             <div className="dropdown dropdown-end">
@@ -175,7 +184,7 @@ const Navbar = () => {
                 </div>
               </div>
 
-              <div className="dropdown-content mt-4 z-[100] w-64 bg-white/75 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl p-4">
+              <div className="dropdown-content mt-4 w-64 bg-white/80 backdrop-blur-xl border rounded-2xl shadow-xl p-4">
                 <div className="text-center">
                   <img
                     className="w-16 rounded-full mx-auto mb-2"
@@ -184,10 +193,14 @@ const Navbar = () => {
                       "https://i.ibb.co/4pDNDk1/avatar.png"
                     }
                   />
-                  <h3 className="font-semibold">{user?.displayName}</h3>
-                  <p className="text-sm text-gray-300">{user?.email}</p>
+                  <h3 className="font-semibold text-black">
+                    {user?.displayName}
+                  </h3>
+                  <p className="text-sm text-gray-600">{user?.email}</p>
                 </div>
+
                 <div className="divider my-2"></div>
+
                 <button
                   onClick={handleLogout}
                   className="btn btn-sm btn-outline w-full"
@@ -207,7 +220,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* 📱 Mobile Only: Overlay */}
+      {/* 📱 OVERLAY */}
       {menuOpen && (
         <div
           onClick={() => setMenuOpen(false)}
@@ -215,72 +228,91 @@ const Navbar = () => {
         ></div>
       )}
 
-      {/* 📱 Mobile Only: Drawer Menu */}
+      {/* 📱 MOBILE DRAWER */}
       <div
         style={{
           top: navHeight,
           height: `calc(100% - ${navHeight}px)`,
         }}
-        className={`fixed left-0 w-[70%] max-w-xs bg-black/60 backdrop-blur-xl text-white z-[200] transform transition-transform duration-300 ${
+        className={`fixed left-0 w-[75%] max-w-xs bg-black/80 backdrop-blur-xl text-white z-[200] transform transition-transform duration-300 ${
           menuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        {/* Close button */}
+        {/* CLOSE */}
         <div className="flex justify-end p-4">
-          <button
-            onClick={() => setMenuOpen(false)}
-            className="text-2xl"
-          >
+          <button onClick={() => setMenuOpen(false)} className="text-2xl">
             ✕
           </button>
         </div>
 
-        {/* Drawer Menu Items */}
-        <ul className="flex flex-col gap-6 px-6 text-lg font-medium">
+        {/* 🔥 PREMIUM MENU */}
+        <ul className="flex flex-col gap-3 px-4 text-base font-medium">
+
           <li>
             <button
               onClick={() => {
                 handleNavClick("home");
                 setMenuOpen(false);
               }}
-              className="hover:text-blue-400"
+              className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-300 flex gap-2 ${
+                activeSection === "home"
+                  ? "bg-gradient-to-r from-blue-500 to-purple-500 shadow-lg"
+                  : "hover:bg-white/10 hover:pl-6"
+              }`}
             >
-              Home
+              🏠 Home
             </button>
           </li>
+
           <li>
-            <Link to="products/all" onClick={() => setMenuOpen(false)}>
-              Products
+            <Link
+              to="products/all"
+              onClick={() => setMenuOpen(false)}
+              className="block px-4 py-3 rounded-xl hover:bg-white/10 hover:pl-6 transition-all"
+            >
+               <span>Products</span>
             </Link>
           </li>
+
           <li>
             <Link
               to={`dashboard/${isAdmin ? "adminHome" : "userHome"}`}
               onClick={() => setMenuOpen(false)}
+              className="block px-4 py-3 rounded-xl hover:bg-white/10 hover:pl-6 transition-all flex gap-2"
             >
-              Dashboard
+              <LayoutDashboard></LayoutDashboard><span>Dashboard</span>
             </Link>
           </li>
+
           <li>
             <button
               onClick={() => {
                 handleNavClick("about");
                 setMenuOpen(false);
               }}
-              className="hover:text-blue-400"
+              className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-300 flex gap-2 ${
+                activeSection === "about"
+                  ? "bg-gradient-to-r from-blue-500 to-purple-500 shadow-lg"
+                  : "hover:bg-white/10 hover:pl-6"
+              }`}
             >
-              About
+              <Info></Info> <span>About</span>
             </button>
           </li>
+
           <li>
             <button
               onClick={() => {
                 handleNavClick("contact");
                 setMenuOpen(false);
               }}
-              className="hover:text-blue-400"
+              className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-300 flex gap-2 ${
+                activeSection === "contact"
+                  ? "bg-gradient-to-r from-blue-500 to-purple-500 shadow-lg"
+                  : "hover:bg-white/10 hover:pl-6"
+              }`}
             >
-              Contact
+              <PhoneCall></PhoneCall> <span>Contact</span>
             </button>
           </li>
         </ul>
