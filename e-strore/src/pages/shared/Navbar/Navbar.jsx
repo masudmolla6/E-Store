@@ -4,7 +4,7 @@ import Logo from "../Logo/Logo";
 import { scroller } from "react-scroll";
 import useAuth from "../../../hooks/useAuth";
 import useAdmin from "../../../hooks/useAdmin";
-import { Info, LayoutDashboard, PhoneCall } from "lucide-react";
+import { Home, Info, LayoutDashboard, Package, Package2, PhoneCall } from "lucide-react";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -239,11 +239,11 @@ const Navbar = () => {
         }`}
       >
         {/* CLOSE */}
-        <div className="flex justify-end p-4">
+        {/* <div className="flex justify-end p-4">
           <button onClick={() => setMenuOpen(false)} className="text-2xl">
             ✕
           </button>
-        </div>
+        </div> */}
 
         {/* 🔥 PREMIUM MENU */}
         <ul className="flex flex-col gap-3 px-4 text-base font-medium">
@@ -260,7 +260,7 @@ const Navbar = () => {
                   : "hover:bg-white/10 hover:pl-6"
               }`}
             >
-              🏠 Home
+              <Home></Home> <span>Home</span>
             </button>
           </li>
 
@@ -268,9 +268,9 @@ const Navbar = () => {
             <Link
               to="products/all"
               onClick={() => setMenuOpen(false)}
-              className="block px-4 py-3 rounded-xl hover:bg-white/10 hover:pl-6 transition-all"
+              className="block px-4 py-3 rounded-xl hover:bg-white/10 hover:pl-6 transition-all flex gap-2"
             >
-               <span>Products</span>
+              <Package></Package> <span>Products</span>
             </Link>
           </li>
 
