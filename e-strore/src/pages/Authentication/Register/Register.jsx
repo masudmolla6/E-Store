@@ -101,10 +101,10 @@ const handleImageUpload = async (e) => {
 };
 
   return (
-            <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-            <div className="card-body">
+            <div className="card bg-base-100 w-full shrink-0 shadow-2xl">
+            <div className="card-body grid justify-center">
                 <h1 className="text-5xl font-bold">Create Account</h1>
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(onSubmit)} className='w-80'>
                     <fieldset className="fieldset">
                         {/* name field */}
                         <label className="label">Your Name</label>
@@ -141,7 +141,7 @@ const handleImageUpload = async (e) => {
                         <div><a className="link link-hover">Forgot password?</a></div>
                         <button className="btn btn-primary text-black mt-4">Register</button>
                     </fieldset>
-                    <p><small>Already have an account? <Link className="btn btn-link" to="/login">Login</Link></small></p>
+                    <p className='text-center'><small>Already have an account? <Link className="btn btn-link" to="/login">Login</Link></small></p>
                 </form>
                 <SocialLogin></SocialLogin>
             </div>

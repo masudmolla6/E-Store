@@ -131,13 +131,13 @@ const AdminHome = () => {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
-        className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl shadow-lg p-6"
+        className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl shadow-lg"
       >
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 flex items-center gap-2">
+        <div className="flex items-center justify-between pb-4 pt-2">
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 flex items-center gap-2 pl-6">
             <TrendingUp size={20} /> Sales Overview
           </h2>
-          <span className="text-sm text-gray-500">Last 6 months</span>
+          <span className="text-sm text-gray-500 pr-2">Last 6 months</span>
         </div>
 
         <ResponsiveContainer width="100%" height={300}>

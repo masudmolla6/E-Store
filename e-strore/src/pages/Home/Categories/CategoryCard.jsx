@@ -18,7 +18,7 @@ const CategoryCard = ({ category }) => {
 
       {/* 👇 send category name as query parameter */}
       <Link to={`/products/categoryProducts?category=${category.name}`}>
-        <button className="bg-blue-500 text-white px-4 py-2 rounded-lg font-medium">
+        <button className="bg-blue-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-600">
           View Products
         </button>
       </Link>

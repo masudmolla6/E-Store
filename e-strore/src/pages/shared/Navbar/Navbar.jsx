@@ -159,9 +159,7 @@ const Navbar = () => {
           </button>
 
           {/* LOGO */}
-          <Link to="/" className="ml-2">
-            <Logo />
-          </Link>
+          <Link to="/" className="ml-2 flex items-center gap-2 group"> <div className="transition duration-300 group-hover:scale-110"> <Logo /> </div> </Link>
         </div>
 
         {/* 💻 DESKTOP MENU */}
@@ -234,7 +232,7 @@ const Navbar = () => {
           top: navHeight,
           height: `calc(100% - ${navHeight}px)`,
         }}
-        className={`fixed left-0 w-[75%] max-w-xs bg-black/80 backdrop-blur-xl text-white z-[200] transform transition-transform duration-300 ${
+        className={`fixed left-0 w-[75%] max-w-xs bg-black/75 backdrop-blur-xl text-white z-[200] transform transition-transform duration-300 ${
           menuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >

@@ -84,7 +84,7 @@ const SocialLogin = () => {
     //     });
     // };
   return (
-    <div className="p-4">
+    <div className="">
       <div className="divider">OR</div>
       <div className="flex justify-center items-center">
         <button

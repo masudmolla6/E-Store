@@ -6,62 +6,105 @@ import SocialLogin from '../../shared/SocialLogin/SocialLogin';
 
 const LogIn = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const {user, logIn}=useAuth();
-    const navigate=useNavigate();
+    const { logIn } = useAuth();
+    const navigate = useNavigate();
     const location = useLocation();
-    // console.log(location);
+
     const from = location.state?.from?.pathname || "/";
 
     const onSubmit = data => {
-          logIn(data.email, data.password)
-          .then(result=>{
-            const user=result.user;
-            console.log(user);
-            navigate(from, {replace:true})
-          })
-          .catch(error=>{
-            console.error(error);
-          })
+        logIn(data.email, data.password)
+            .then(result => {
+                navigate(from, { replace: true })
+            })
+            .catch(error => {
+                console.error(error);
+            })
     }
 
     return (
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-            <div className="card-body">
-                <h1 className="text-5xl font-bold">Please Login</h1>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <fieldset className="fieldset">
+    <div className="flex items-center justify-center px-3 sm:px-6">
+        
+        <div className="card bg-base-100 w-full shadow-2xl">
+        
+        <div className="card-body grid justify-center">
+            
+            {/* Title */}
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-center mb-2 sm:mb-4">
+            Please Login
+            </h1>
 
-                        <label className="label">Email</label>
-                        <input
-                            type="email"
-                            {...register('email')}
-                            className="input" placeholder="Email" />
+            <form onSubmit={handleSubmit(onSubmit)} className='w-80'>
+            <fieldset className="">
 
+                {/* Email */}
+                <div>
+                <label className="label text-sm sm:text-base">Email</label>
+                <input
+                    type="email"
+                    {...register('email')}
+                    className="input input-bordered w-full h-10 sm:h-12 text-sm sm:text-base"
+                    placeholder="Email"
+                />
+                </div>
 
-                        <label className="label">Password</label>
-                        <input
-                            type="password"
-                            {...register('password', {
-                                required: true,
-                                minLength: 6
-                            })}
-                            className="input" placeholder="Password" />
-                        {
-                            errors.password?.type === 'required' && <p className='text-red-500'>Password is required</p>
-                        }
-                        {
-                            errors.password?.type === 'minLength' && <p className='text-red-500'>Password Must be 6 characters or longer</p>
-                        }
+                {/* Password */}
+                <div>
+                <label className="label text-sm sm:text-base">Password</label>
+                <input
+                    type="password"
+                    {...register('password', {
+                    required: true,
+                    minLength: 6
+                    })}
+                    className="input input-bordered w-full h-10 sm:h-12 text-sm sm:text-base"
+                    placeholder="Password"
+                />
+                </div>
 
-                        <div><a className="link link-hover">Forgot password?</a></div>
+                {/* Errors */}
+                {errors.password?.type === 'required' && (
+                <p className='text-red-500 text-xs sm:text-sm'>
+                    Password is required
+                </p>
+                )}
+                {errors.password?.type === 'minLength' && (
+                <p className='text-red-500 text-xs sm:text-sm'>
+                    Password must be 6+ characters
+                </p>
+                )}
 
-                        <button className="btn btn-primary text-black mt-4">Login</button>
-                    </fieldset>
-                    <p><small>New to this website? <Link className="btn btn-link" to="/register">Register</Link></small></p>
-                </form>
-                <SocialLogin></SocialLogin>
+                {/* Forgot */}
+                <div className="text-right">
+                <a className="link link-hover text-xs sm:text-sm">
+                    Forgot password?
+                </a>
+                </div>
+
+                {/* Button */}
+                <button className="btn btn-primary text-black mt-2 sm:mt-4 w-full h-10 sm:h-12 text-sm sm:text-base">
+                Login
+                </button>
+
+            </fieldset>
+
+            {/* Register */}
+            <p className="text-center mt-3 sm:mt-4 text-xs sm:text-sm">
+                New to this website?{" "}
+                <Link className="btn btn-link p-0 text-xs sm:text-sm" to="/register">
+                Register
+                </Link>
+            </p>
+            </form>
+
+            {/* Social */}
+            <div className="">
+            <SocialLogin />
             </div>
+
         </div>
+        </div>
+    </div>
     );
 };
 
