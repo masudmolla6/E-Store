@@ -1,19 +1,21 @@
 import React from 'react'
 import useFeaturedProducts from '../../../hooks/useFeaturedProducts'
 import ProductsCard from '../AllProducts/ProductsCard'
+import ProductsSkeleton from '../AllProducts/ProductsSkeleton';
 
 const FeaturedProducts = () => {
   const [featuredProducts, loading, error] = useFeaturedProducts();
 
   console.log(featuredProducts);
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-60">
-        <span className="loading loading-spinner loading-lg"></span>
-      </div>
-    )
-  }
+    if (loading)
+      return (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          {Array.from({ length: 6 }).map((_, index) => (
+            <ProductsSkeleton key={index} />
+          ))}
+        </div>
+    );
 
   if (error) {
     return (

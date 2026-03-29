@@ -10,7 +10,7 @@ const AboutUs = () => {
     <div className="w-full">
       {/* Hero Section */}
       <section
-        className="relative w-full h-[60vh] flex items-center justify-center text-white"
+        className="relative w-full h-[40vh] flex items-center justify-center text-white"
         style={{
           backgroundImage: `url('https://images.unsplash.com/photo-1607083206968-13611e3f9c3c?auto=format&fit=crop&w=1600&q=80')`,
           backgroundSize: "cover",
@@ -64,7 +64,7 @@ const AboutUs = () => {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-16 px-6 md:px-16 text-center">
+      <section className="py-12 px-6 md:px-16 text-center">
         <h2 className="text-3xl font-bold mb-8">Why Choose Us</h2>
         <div data-aos="fade-down" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="flex flex-col items-center">
@@ -99,7 +99,7 @@ const AboutUs = () => {
       </section>
 
       {/* Team Section */}
-      <section className="py-16 px-6 md:px-16 text-center">
+      <section className="pb-8 pt-6 px-6 md:px-16 text-center">
         <h2 className="text-3xl font-bold mb-6">Meet Our Team</h2>
         <p className="max-w-2xl mx-auto text-gray-400 mb-8">
           Our passionate team works hard every day to deliver the best shopping

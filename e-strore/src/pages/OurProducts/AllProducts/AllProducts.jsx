@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useOutletContext } from "react-router";
 import useAllProducts from "../../../hooks/useAllProducts";
 import ProductsCard from "./ProductsCard";
+import ProductsSkeleton from "./ProductsSkeleton";
 
 const AllProducts = () => {
   const { searchTerm, sortOption } = useOutletContext(); 
@@ -24,8 +25,15 @@ const AllProducts = () => {
     }
   };
 
-  if (isLoading)
-    return <p className="text-center text-gray-500">Loading products...</p>;
+    if (isLoading)
+      return (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          {Array.from({ length: 6 }).map((_, index) => (
+            <ProductsSkeleton key={index} />
+          ))}
+        </div>
+    );
+
   if (isError)
     return (
       <p className="text-center text-red-500">
