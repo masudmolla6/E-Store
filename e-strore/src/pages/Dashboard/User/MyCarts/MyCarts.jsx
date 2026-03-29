@@ -5,9 +5,10 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { Link } from "react-router";
 import AOS from "aos";
+import MyCartsSkeleton from "./MyCartsSkeleton";
 
 const MyCarts = () => {
-  const [carts, refetch] = useCarts();
+  const [carts, isLoading, refetch] = useCarts();
   const axiosSecure = useAxiosSecure();
   const total = carts?.reduce((sum, item) => sum + item.price, 0);
 
@@ -41,6 +42,10 @@ const MyCarts = () => {
       }
     });
   };
+
+  if(isLoading){
+    return <MyCartsSkeleton></MyCartsSkeleton>
+  }
 
   return (
     <div className="min-h-screen px-4 md:px-8 lg:px-12 py-6 space-y-8">

@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 const useMyOrders = () => {
     const {user}=useAuth();
     const axiosSecure=useAxiosSecure();
-    const {data:myOrders=[], refetch}=useQuery({
+    const {data:myOrders=[], isLoading, refetch}=useQuery({
         queryKey:["myOrders", user?.email],
         queryFn:async()=>{
             const res=await axiosSecure.get(`/orders?email=${user?.email}`);
@@ -14,7 +14,7 @@ const useMyOrders = () => {
         },
         enabled: !!user?.email,
     });
-    return [myOrders,refetch];
+    return [myOrders,isLoading,refetch];
 }
 
 export default useMyOrders;

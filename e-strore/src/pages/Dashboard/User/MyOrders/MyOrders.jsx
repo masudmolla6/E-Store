@@ -6,9 +6,10 @@ import AOS from "aos";
 import { Package } from "lucide-react";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import MyOrdersSkeleton from "./MyOrdersSkeleton";
 
 const MyOrders = () => {
-  const [myOrders, refetch, isLoading] = useMyOrders();
+  const [myOrders,isLoading,refetch] = useMyOrders();
   const axiosSecure = useAxiosSecure();
 
   const [rating, setRating] = useState(0);
@@ -62,11 +63,7 @@ const MyOrders = () => {
   };
 
   if (isLoading) {
-    return (
-      <div className="min-h-[60vh] flex justify-center items-center">
-        <span className="loading loading-spinner loading-lg text-primary"></span>
-      </div>
-    );
+    return <MyOrdersSkeleton></MyOrdersSkeleton>
   }
 
   return (
@@ -77,18 +74,6 @@ const MyOrders = () => {
         <h2 className="text-3xl font-bold mb-6 text-center flex justify-center items-center gap-2 text-gray-800 dark:text-gray-100">
           <Package className="w-8 h-8 text-indigo-600" /> My Orders
         </h2>
-
-        {/* Empty */}
-        {myOrders.length === 0 ? (
-          <div className="text-center py-20">
-            <h3 className="text-xl font-semibold mb-2 text-gray-700 dark:text-gray-200">
-              No Orders Found
-            </h3>
-            <p className="text-gray-500 dark:text-gray-400">
-              Looks like you haven't placed any orders yet.
-            </p>
-          </div>
-        ) : (
           <div className="overflow-x-auto rounded-lg shadow-sm">
             <table className="table w-full min-w-[600px] md:min-w-full">
               <thead className="bg-indigo-100 dark:bg-indigo-900 text-gray-700 dark:text-gray-200">
@@ -159,7 +144,6 @@ const MyOrders = () => {
               </tbody>
             </table>
           </div>
-        )}
       </div>
 
       {/* Feedback Modal */}
