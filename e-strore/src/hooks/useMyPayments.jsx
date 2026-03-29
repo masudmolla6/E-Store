@@ -5,7 +5,7 @@ import useAxiosSecure from './useAxiosSecure';
 const useMyPayments = () => {
     const {user}=useAuth();
     const axiosSecure=useAxiosSecure();
-    const {data:myPayments=[], refetch}=useQuery({
+    const {data:myPayments=[],isLoading, refetch}=useQuery({
         queryKey:["myPayments", user?.email],
         queryFn:async()=>{
             const res=await axiosSecure.get(`/payments?email=${user?.email}`);
@@ -14,7 +14,7 @@ const useMyPayments = () => {
         enabled: !!user?.email,
     });
 
-  return [myPayments,refetch];
+  return [myPayments,isLoading,refetch];
 }
 
 export default useMyPayments;

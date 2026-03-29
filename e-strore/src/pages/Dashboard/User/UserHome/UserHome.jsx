@@ -79,7 +79,7 @@ const UserHome = () => {
         {stats.map((stat, i) => (
           <motion.div
             key={i}
-            className={`bg-gradient-to-br ${stat.color} p-6 rounded-3xl shadow-xl hover:shadow-2xl transition-transform transform hover:scale-105 flex flex-col items-center justify-center text-white`}
+            className={`bg-gradient-to-br ${stat.color} p-6 rounded-3xl shadow-xl hover:shadow-2xl transition-transform transform hover:scale-105 flex flex-col items-center justify-center text-white text-center`}
             whileHover={{ y: -5 }}
           >
             <div className="text-white mb-3">{stat.icon}</div>

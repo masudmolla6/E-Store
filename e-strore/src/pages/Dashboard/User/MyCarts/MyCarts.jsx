@@ -115,7 +115,7 @@ const MyCarts = () => {
                 {/* Action */}
                 <div className="flex justify-center">
                   <button onClick={() => handleDelete(item._id)}
-                    className="p-2 rounded-full bg-red-100 hover:bg-red-200 text-red-600 transition"
+                    className="p-2 rounded-full bg-gray-500 hover:bg-red-400 text-red-600 transition"
                     title="Remove"
                   >
                     <Trash2 size={18} />

@@ -2,11 +2,16 @@ import React from "react";
 import useMyPayments from "../../../../hooks/useMyPayments";
 import { motion } from "framer-motion";
 import { Receipt } from "lucide-react";
+import PaymentHistorySkeleton from "./PaymentHistorySkeleton";
 
 const PaymentHistory = () => {
-  const [myPayments] = useMyPayments();
-  const isLoading = !myPayments;
-  // console.log(myPayments);
+  const [myPayments,isLoading, refetch] = useMyPayments();
+  // const isLoading = !myPayments;
+  // // console.log(myPayments);
+
+  if(isLoading){
+    return <PaymentHistorySkeleton></PaymentHistorySkeleton>
+  }
 
   return (
     <motion.div
@@ -18,13 +23,6 @@ const PaymentHistory = () => {
       <h1 className="text-3xl font-bold mb-6 flex items-center gap-2"><Receipt className="w-8 h-8 text-blue-500"></Receipt>Payment History</h1>
 
       <div className="shadow-lg rounded-2xl">
-        {isLoading ? (
-          <div className="flex justify-center py-10 text-gray-600 font-medium">
-            Loading...
-          </div>
-        ) : myPayments.length === 0 ? (
-          <p className="text-center text-gray-500 py-10">No payment records found.</p>
-        ) : (
           <div className="overflow-x-auto rounded-xl border">
             <table className="w-full text-left border-collapse">
               <thead className="">
@@ -53,7 +51,6 @@ const PaymentHistory = () => {
               </tbody>
             </table>
           </div>
-        )}
       </div>
     </motion.div>
   );
