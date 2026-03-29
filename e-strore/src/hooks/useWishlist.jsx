@@ -5,7 +5,7 @@ import useAxiosSecure from "./useAxiosSecure";
 const useWishlist = () => {
     const {user}=useAuth();
     const axiosSecure=useAxiosSecure();
-    const {data:wishlit=[], refetch}=useQuery({
+    const {data:wishlit=[],isLoading, refetch}=useQuery({
         queryKey:["wishlist", user?.email],
         queryFn:async()=>{
             const res=await axiosSecure.get(`/wishlist?email=${user?.email}`);
@@ -14,7 +14,7 @@ const useWishlist = () => {
         enabled: !!user?.email,
     });
 
-  return [wishlit,refetch];
+  return [wishlit, isLoading, refetch];
 }
 
 export default useWishlist

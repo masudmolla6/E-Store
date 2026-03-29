@@ -3,13 +3,19 @@ import useWishlist from '../../../../hooks/useWishlist'
 import WishlistCard from './WishlistCard'
 import AOS from 'aos'
 import { Heart } from 'lucide-react'
+import WishlistSkeleton from './WishlistSkeleton'
 
 const Wishlist = () => {
-  const [wishlist, refetch] = useWishlist()
+  const [wishlist, isLoading, refetch] = useWishlist()
 
       useEffect(() => {
         AOS.refresh();
       }, []);
+
+    
+  if(isLoading){
+    return <WishlistSkeleton></WishlistSkeleton>;
+  }
 
   return (
     <div className="">
