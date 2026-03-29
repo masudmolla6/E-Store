@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Users, Star, Truck, Shield } from "lucide-react";
 import AOS from "aos";
+import Typewriter from "typewriter-effect";
 
 const AboutUs = () => {
     useEffect(() => {
@@ -11,18 +12,24 @@ const AboutUs = () => {
       {/* Hero Section */}
       <section
         className="relative w-full h-[40vh] flex items-center justify-center text-white mt-4"
-        // style={{
-        //   backgroundImage: `url('https://images.unsplash.com/photo-1607083206968-13611e3f9c3c?auto=format&fit=crop&w=1600&q=80')`,
-        //   backgroundSize: "cover",
-        //   backgroundPosition: "center",
-        // }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-50 rounded-2xl"></div>
         <div className="relative text-center z-10 px-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-3">
-            About <span className="text-blue-400">E-Store</span>
+          <h1 className="text-4xl md:text-5xl font-bold mb-3 flex justify-center gap-2 items-center pb-4 text-gray-300">
+            About 
+            <span className="text-blue-400">
+              <Typewriter
+                options={{
+                  strings: ["E-Store"],
+                  autoStart: true,
+                  loop: true,
+                  delay: 100,
+                  deleteSpeed: 50,
+                }}
+              />
+            </span>
           </h1>
-          <p className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
             Your trusted online destination for quality products, great prices,
             and reliable delivery across Bangladesh.
           </p>

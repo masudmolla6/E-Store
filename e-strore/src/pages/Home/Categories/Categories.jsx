@@ -5,7 +5,7 @@ import Typewriter from "typewriter-effect";
 const Categories = () => {
   const [categories, loading, error, refetch] = useCategories();
 
-  // 🔥 Skeleton Loader
+  // Skeleton Loader
   if (loading) {
     return (
       <div className="w-full py-8 px-4">
@@ -48,7 +48,7 @@ const Categories = () => {
     );
   }
 
-  // 🚫 Empty State
+  // Empty State
   if (!categories || categories.length === 0) {
     return (
       <div className="w-full py-8 px-4 text-center">
@@ -60,7 +60,7 @@ const Categories = () => {
   // ✅ Actual UI
   return (
     <div className="w-full py-8 px-4">
-      <h2 className="text-2xl font-bold mb-6 text-center">
+      <h2 className="text-2xl font-bold mb-6 text-center text-gray-400">
         <Typewriter
           options={{
             strings: ["Shop by Category", "Big Sale Today!", "Up To 50% Off!"],
@@ -72,7 +72,7 @@ const Categories = () => {
         />
       </h2>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-6">
         {categories.map((category) => (
           <CategoryCard key={category._id} category={category} />
         ))}
