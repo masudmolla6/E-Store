@@ -17,7 +17,7 @@ const Categories = () => {
           {[...Array(8)].map((_, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl shadow p-4 space-y-4"
+              className="rounded-xl shadow p-4 space-y-4"
             >
               {/* Image */}
               <div className="w-full h-24 bg-gray-300 animate-pulse rounded"></div>

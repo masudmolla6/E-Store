@@ -4,12 +4,30 @@ import ProductsCard from "../../OurProducts/AllProducts/ProductsCard";
 const FeaturedProducts = () => {
     const [featuredProducts, loading, error] = useFeaturedProducts()
 
+  // 🔥 Skeleton Loader
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-60">
-        <span className="loading loading-spinner loading-lg"></span>
+      <div className="w-full py-8 px-4">
+        {/* Title Skeleton */}
+        <div className="h-6 w-48 mx-auto mb-6 bg-gray-300 animate-pulse rounded"></div>
+
+        {/* Grid Skeleton */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+          {[...Array(8)].map((_, index) => (
+            <div
+              key={index}
+              className="rounded-xl shadow p-4 space-y-4"
+            >
+              {/* Image */}
+              <div className="w-full h-24 bg-gray-300 animate-pulse rounded"></div>
+
+              {/* Title */}
+              <div className="h-4 bg-gray-300 animate-pulse rounded w-3/4 mx-auto"></div>
+            </div>
+          ))}
+        </div>
       </div>
-    )
+    );
   }
 
   if (error) {
