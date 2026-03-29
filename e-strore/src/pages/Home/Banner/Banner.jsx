@@ -12,7 +12,11 @@ const Banner = () => {
   console.log(banners);
 
   if (loading) {
-    return <p className="text-center">Loading...</p>;
+    return (
+      <div className="w-full rounded-xl overflow-hidden">
+        <div className="w-full h-[250px] md:h-[400px] lg:h-[500px] bg-gray-300 animate-pulse"></div>
+      </div>
+    );
   }
 
   if (!banners.length) {
