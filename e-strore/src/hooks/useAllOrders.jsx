@@ -6,14 +6,14 @@ import { useQuery } from '@tanstack/react-query';
 const useAllOrders = () => {
     const {user}=useAuth();
     const axiosSecure=useAxiosSecure();
-    const {data:allOrders, refetch}=useQuery({
+    const {data:allOrders,isLoading, refetch}=useQuery({
         queryKey:["allOrders"],
         queryFn:async()=>{
             const res=await axiosSecure.get("/admin/orders");
             return res.data;
         }
     })
-    return [allOrders, refetch];
+    return [allOrders, isLoading, refetch];
 }
 
 export default useAllOrders;

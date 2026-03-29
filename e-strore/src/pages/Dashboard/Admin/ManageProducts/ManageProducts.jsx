@@ -3,6 +3,7 @@ import useAllProducts from "../../../../hooks/useAllProducts";
 import ManageProductRow from "./ManageProductRow";
 import { Package, Search, Layers } from "lucide-react";
 import AOS from "aos";
+import ManageProductsSkeleton from "./ManageProductsSkeleton";
 
 const ManageProducts = () => {
 
@@ -33,11 +34,7 @@ const ManageProducts = () => {
   };
 
   if (isLoading) {
-    return (
-      <p className="text-center py-10 text-lg font-medium">
-        Loading Products...
-      </p>
-    );
+    return <ManageProductsSkeleton></ManageProductsSkeleton>
   }
 
   if (isError) {

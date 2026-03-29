@@ -2,9 +2,10 @@ import React, { useEffect } from 'react'
 import useAllOrders from '../../../../hooks/useAllOrders'
 import { ClipboardList } from 'lucide-react'
 import AOS from 'aos';
+import ManageOrdersSkeleton from './ManageOrdersSkeleton';
 
 const ManageOrders = () => {
-  const [allOrders, refetch] = useAllOrders();
+  const [allOrders, isLoading, refetch] = useAllOrders();
 
   
   useEffect(() => {
@@ -24,6 +25,10 @@ const ManageOrders = () => {
       default:
         return 'badge-ghost'
     }
+  }
+
+  if(isLoading){
+    return <ManageOrdersSkeleton></ManageOrdersSkeleton>
   }
 
   return (

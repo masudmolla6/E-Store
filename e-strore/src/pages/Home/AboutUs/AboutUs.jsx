@@ -10,12 +10,12 @@ const AboutUs = () => {
     <div className="w-full">
       {/* Hero Section */}
       <section
-        className="relative w-full h-[40vh] flex items-center justify-center text-white"
-        style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1607083206968-13611e3f9c3c?auto=format&fit=crop&w=1600&q=80')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+        className="relative w-full h-[40vh] flex items-center justify-center text-white mt-4"
+        // style={{
+        //   backgroundImage: `url('https://images.unsplash.com/photo-1607083206968-13611e3f9c3c?auto=format&fit=crop&w=1600&q=80')`,
+        //   backgroundSize: "cover",
+        //   backgroundPosition: "center",
+        // }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-50 rounded-2xl"></div>
         <div className="relative text-center z-10 px-4">
