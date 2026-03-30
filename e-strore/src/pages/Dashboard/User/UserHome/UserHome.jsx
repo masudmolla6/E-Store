@@ -1,106 +1,131 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ShoppingBag, Heart, Star, Package } from "lucide-react";
+import { ShoppingBag, Heart, Star, Package, ShoppingCart } from "lucide-react";
 import useAuth from "../../../../hooks/useAuth";
 import useMyPayments from "../../../../hooks/useMyPayments";
 import useMyOrders from "../../../../hooks/useMyOrders";
 import useWishlist from "../../../../hooks/useWishlist";
 import Typewriter from "typewriter-effect";
 import AOS from "aos";
+import useCarts from "../../../../hooks/useCarts";
+import MyCarts from "../MyCarts/MyCarts";
 
 const UserHome = () => {
   const { user } = useAuth();
-  const [myPayments] = useMyPayments();
-  const [myOrders] = useMyOrders();
-  const [wishlist] = useWishlist();
 
+  const [myPayments = []] = useMyPayments();
+  const [myOrders = []] = useMyOrders();
+  const [wishlist = []] = useWishlist();
+  const [carts, refetch] = useCarts();
 
-  const isLoading = !myPayments || !myOrders || !wishlist;
+  // ✅ Toggle state
+  const [showAll, setShowAll] = useState(false);
+
+  const isLoading = !myPayments || !myOrders || !wishlist || !carts;
 
   useEffect(() => {
     AOS.refresh();
   }, []);
 
-  
   if (isLoading) {
     return <p className="text-center">Loading... ⏳</p>;
   }
-
-  console.log(myPayments);
-
 
   // ✅ Stats
   const stats = [
     {
       icon: <ShoppingBag size={28} />,
       title: "Total Orders",
-      value: myOrders?.length ?? 0,
+      value: myOrders.length,
       color: "from-blue-400 to-blue-600",
     },
     {
       icon: <Heart size={28} />,
       title: "Wishlist Items",
-      value: wishlist?.length ?? 0,
+      value: wishlist.length,
       color: "from-pink-400 to-pink-600",
     },
     {
       icon: <Star size={28} />,
       title: "Payments",
-      value: myPayments?.length ?? 0,
+      value: myPayments.length,
       color: "from-yellow-400 to-yellow-600",
     },
     {
       icon: <Package size={28} />,
       title: "Pending Deliveries",
-      value:
-        myOrders?.filter((o) => o?.status !== "delivered")?.length ?? 0,
+      value: myOrders.filter((o) => o?.status !== "delivered").length,
       color: "from-green-400 to-green-600",
     },
   ];
 
-  // ✅ Build Activities (FIXED)
+  // ✅ Activities including myCarts
   const activities = [
-    ...(wishlist?.map((item) => ({
+    ...wishlist.map((item) => ({
       type: "wishlist",
       message: `You added '${item?.name}' to your wishlist.`,
       date: item?.createdAt || new Date(),
-    })) || []),
+    })),
 
-    ...(myOrders?.map((order) => ({
+    ...myOrders.map((order) => ({
       type: "order",
       message: `Your order #${order?._id?.slice(-5)} has been ${
         order?.status === "delivered" ? "delivered" : "placed"
       }.`,
       date: order?.createdAt || new Date(),
-    })) || []),
+    })),
 
-  ...(myPayments.map((payment) => {
-    const transactionId = payment?.transactionId;
+    ...myPayments.map((payment) => {
+      const transactionId =
+        payment?.paymentInfo?.transactionId ||
+        payment?.transactionId;
 
-    return {
+      return {
         type: "payment",
-        message: `Your payment for order #${transactionId?.slice(-6) || "N/A"} was successful.`,
+        message: `Your payment for order #${
+          transactionId?.slice(-6) || "N/A"
+        } was successful.`,
         date: payment?.createdAt || new Date(),
       };
-    }) || []),
+    }),
+
+    // ✅ Add myCarts info
+    ...carts.map((cartItem) => ({
+      type: "cart",
+      message: `You added '${cartItem?.name}' to your cart.`,
+      date: cartItem?.createdAt || new Date(),
+    })),
   ];
 
-  // ✅ Sort Latest First
-  const sortedActivities = activities.sort(
+  // ✅ FIX: clone before sort
+  const sortedActivities = [...activities].sort(
     (a, b) => new Date(b.date) - new Date(a.date)
   );
 
-  // ✅ Icon Handler
-  const getIcon = (type) => {
+  // ✅ Show 4 or all
+  const visibleActivities = showAll
+    ? sortedActivities
+    : sortedActivities.slice(0, 4);
+
+  // ✅ Toggle handler
+  const handleToggle = () => {
+    setShowAll(!showAll);
+  };
+
+
+  // ✅ Icon handler with Lucide icons
+  const getIcon = (type, size = 24, className = "text-white") => {
     switch (type) {
       case "wishlist":
-        return "❤️";
+        return <Heart size={size} className={className} />;
       case "order":
-        return "📦";
+        return <Package size={size} className={className} />;
       case "payment":
-        return "💳";
+        return <Star size={size} className={className} />;
+      case "cart":
+        return <ShoppingCart size={size} className={className} />;
       default:
-        return "🔔";
+        return <Star size={size} className={className} />;
     }
   };
 
@@ -122,8 +147,6 @@ const UserHome = () => {
                 strings: [user?.displayName || "User"],
                 autoStart: true,
                 loop: true,
-                delay: 100,
-                deleteSpeed: 80,
               }}
             />
           </span>
@@ -133,21 +156,16 @@ const UserHome = () => {
         </p>
       </motion.div>
 
-      {/* Stats Cards */}
+      {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((stat, i) => (
           <motion.div
             key={i}
             className={`bg-gradient-to-br ${stat.color} p-6 rounded-3xl shadow-xl hover:shadow-2xl transition-transform transform hover:scale-105 flex flex-col items-center justify-center text-white text-center`}
-            whileHover={{ y: -5 }}
           >
             <div className="mb-3">{stat.icon}</div>
-            <h3 className="text-lg sm:text-xl font-semibold">
-              {stat.title}
-            </h3>
-            <p className="text-3xl sm:text-4xl font-bold mt-1">
-              {stat.value}
-            </p>
+            <h3 className="text-lg font-semibold">{stat.title}</h3>
+            <p className="text-3xl font-bold">{stat.value}</p>
           </motion.div>
         ))}
       </div>
@@ -156,28 +174,28 @@ const UserHome = () => {
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="bg-white dark:bg-gray-800 rounded-3xl shadow-lg p-6 overflow-hidden"
+        className="bg-white dark:bg-gray-800 rounded-3xl shadow-lg p-6"
       >
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-5">
+        <div className="flex justify-between items-center mb-5">
           <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
             Recent Activities
           </h2>
-          <button className="mt-3 sm:mt-0 bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-5 py-2 rounded-xl font-medium hover:opacity-90 transition">
-            View All
+
+          {/* Toggle Button */}
+          <button
+            onClick={handleToggle}
+            className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-5 py-2 rounded-xl font-medium hover:opacity-90 transition"
+          >
+            {showAll ? "Show Less" : "View All"}
           </button>
         </div>
 
         <div className="divide-y divide-gray-200 dark:divide-gray-700">
-          {sortedActivities.length > 0 ? (
-            sortedActivities.slice(0, 6).map((activity, idx) => (
+          {visibleActivities.length > 0 ? (
+            visibleActivities.map((activity, idx) => (
               <motion.div
                 key={idx}
-                className="py-3 text-gray-700 dark:text-gray-300 text-sm sm:text-base flex items-center"
-                whileHover={{
-                  scale: 1.02,
-                  backgroundColor: "rgba(0,0,0,0.02)",
-                }}
+                className="py-3 text-gray-700 dark:text-gray-300 flex items-center"
               >
                 <span className="mr-2">{getIcon(activity.type)}</span>
                 {activity.message}
@@ -185,7 +203,7 @@ const UserHome = () => {
             ))
           ) : (
             <p className="text-gray-500 text-center py-4">
-              No recent activity found 😶
+              No recent activity 😶
             </p>
           )}
         </div>

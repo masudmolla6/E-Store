@@ -7,7 +7,7 @@ const Profile = () => {
   const { user } = useAuth();
 
   return (
-    <div className="min-h-screen bg-base-200 py-10 px-4">
+    <div className="min-h-screen bg-base-200 py-4 ">
       {/* Page Title */}
       <div className="max-w-5xl mx-auto">
         <h2 className="text-3xl font-bold text-center mb-10 flex justify-center items-center gap-1">

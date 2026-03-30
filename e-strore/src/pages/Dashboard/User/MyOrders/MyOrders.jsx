@@ -3,7 +3,7 @@ import useMyOrders from "../../../../hooks/useMyOrders";
 import { Link } from "react-router";
 import { FaEye } from "react-icons/fa";
 import AOS from "aos";
-import { Package } from "lucide-react";
+import { DollarSign, Package } from "lucide-react";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import MyOrdersSkeleton from "./MyOrdersSkeleton";
@@ -67,8 +67,8 @@ const MyOrders = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-10 px-4">
-      <div className="max-w-6xl mx-auto bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-6">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-5">
+      <div className="max-w-6xl mx-auto bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-2">
 
         {/* Title */}
         <h2 className="text-3xl font-bold mb-6 text-center flex justify-center items-center gap-2 text-gray-800 dark:text-gray-100">
@@ -79,7 +79,7 @@ const MyOrders = () => {
               <thead className="bg-indigo-100 dark:bg-indigo-900 text-gray-700 dark:text-gray-200">
                 <tr className="text-base font-semibold text-center">
                   <th>#</th>
-                  <th className="text-left">Product</th>
+                  <th className="text-center">Product</th>
                   <th>Transaction ID</th>
                   <th>Total</th>
                   <th>Status</th>
@@ -87,61 +87,68 @@ const MyOrders = () => {
                 </tr>
               </thead>
 
-              <tbody data-aos="fade-left">
-                {myOrders.map((order) =>
-                  order.items.map((product, index) => (
-                    <tr key={product._id} className="hover:bg-gray-100 dark:hover:bg-gray-700 transition-all">
+            <tbody data-aos="fade-left">
+              {myOrders.map((order) =>
+                order.items.map((product, index) => (
+                  <tr
+                    key={product._id}
+                    className="hover:bg-gray-100 dark:hover:bg-gray-700 transition-all"
+                  >
+                    {/* Serial */}
+                    <td className="text-center py-3">{index + 1}</td>
 
-                      {/* Serial */}
-                      <td className="text-center">{index + 1}</td>
-
-                      {/* Product */}
-                      <td className="flex items-center gap-4 text-left">
+                    {/* Product */}
+                    <td className="py-3">
+                      <div className="flex items-center gap-3">
                         <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0">
-                          <img src={product.image} alt={product.name} className="object-cover w-full h-full" />
+                          <img
+                            src={product.image}
+                            alt={product.name}
+                            className="object-cover w-full h-full"
+                          />
                         </div>
-                        <span className="font-semibold text-gray-800 dark:text-gray-200 truncate max-w-[120px]">
+                        <span className="font-semibold text-gray-800 dark:text-gray-200 truncate max-w-[150px]">
                           {product.name}
                         </span>
-                      </td>
+                      </div>
+                    </td>
 
-                      {/* Transaction */}
-                      <td className="font-mono text-sm max-w-[120px] truncate text-center" title={order.paymentInfo?.transactionId}>
-                        {order.paymentInfo?.transactionId?.slice(0, 12)}...
-                      </td>
+                    {/* Transaction */}
+                    <td className="font-mono text-sm truncate text-center max-w-[140px] py-3" title={order.paymentInfo?.transactionId}>
+                      {order.paymentInfo?.transactionId?.slice(0, 12)}...
+                    </td>
 
-                      {/* Total */}
-                      <td className="font-semibold text-indigo-600 text-center">
-                        ৳ {order.orderSummary?.grandTotal}
-                      </td>
+                    {/* Total */}
+                    <td className="font-semibold text-gray-400 text-center py-3">
+                      $ {order.orderSummary?.grandTotal}
+                    </td>
 
-                      {/* Status */}
-                      <td className="text-center">
-                        <span className="badge badge-success badge-outline">
-                          Paid
-                        </span>
-                      </td>
+                    {/* Status */}
+                    <td className="text-center py-3">
+                      <span className="badge badge-success badge-outline px-3 py-1">
+                        Paid
+                      </span>
+                    </td>
 
-                      {/* Action */}
-                      <td className="flex flex-col sm:flex-row justify-center items-center gap-2 text-center">
-                        <Link
-                          to={`/dashboard/myOrders/${order._id}`}
-                          className="btn btn-sm btn-info flex items-center gap-2 w-full sm:w-auto justify-center"
-                        >
-                          <FaEye /> Details
-                        </Link>
-                        <button
-                          onClick={() => handleOpenFeedback(product)}
-                          className="btn btn-sm btn-outline btn-primary w-full sm:w-auto"
-                        >
-                          Review
-                        </button>
-                      </td>
-
-                    </tr>
-                  ))
-                )}
-              </tbody>
+                    {/* Action */}
+                    <td className="pt-6 flex flex-col sm:flex-row items-center justify-center gap-2">
+                      <Link
+                        to={`/dashboard/myOrders/${order._id}`}
+                        className="btn btn-sm btn-info flex items-center gap-2 w-full sm:w-auto justify-center"
+                      >
+                        <FaEye /> Details
+                      </Link>
+                      <button
+                        onClick={() => handleOpenFeedback(product)}
+                        className="btn btn-sm btn-outline btn-primary w-full sm:w-auto"
+                      >
+                        Review
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
             </table>
           </div>
       </div>
