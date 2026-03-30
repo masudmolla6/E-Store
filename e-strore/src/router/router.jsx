@@ -31,6 +31,9 @@ import MyOrderDetails from "../pages/Dashboard/User/MyOrders/MyOrderDetails";
 import EditProduct from "../pages/Dashboard/Admin/ManageProducts/EditProduct";
 import AddBanner from "../pages/Dashboard/Admin/ControlPanel/AddBanner/AddBanner";
 import ManageBanner from "../pages/Dashboard/Admin/ControlPanel/ManageBanner/ManageBanner";
+import PrivacyPolicy from "../pages/Legal/PrivacyPolicy";
+import Terms from "../pages/Legal/Terms";
+import RefundPolicy from "../pages/Legal/RefundPolicy";
 
 const router=createBrowserRouter([
     {
@@ -41,6 +44,18 @@ const router=createBrowserRouter([
                 index:true,
                 Component:Home,
             },
+            {
+              path:"/privacy-policy",
+              element:<PrivacyPolicy></PrivacyPolicy>
+            },
+            {
+              path:"/terms",                                                                                     
+              element:<Terms></Terms>
+            },
+            {
+              path:"/refund-policy",
+              element:<RefundPolicy></RefundPolicy>
+            }
         ]
     },
     {
