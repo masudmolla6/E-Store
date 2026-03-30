@@ -59,7 +59,7 @@ const Analytics = () => {
   ];
 
   return (
-    <div className="space-y-8 px-4 md:px-6 lg:px-10 pb-10">
+    <div className="space-y-8 px-2 md:px-4 lg:px-6 pb-10">
 
       {/* Header */}
       <h1 className="text-3xl font-bold flex items-center gap-3">

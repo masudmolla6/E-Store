@@ -85,7 +85,7 @@ const Navbar = () => {
           onClick={() => handleNavClick("home")}
           className={`transition ${
             activeSection === "home"
-              ? "text-blue-400 font-semibold"
+              ? "bg-gray-600 text-white font-semibold"
               : "hover:text-blue-400"
           }`}
         >
@@ -113,7 +113,7 @@ const Navbar = () => {
           onClick={() => handleNavClick("about")}
           className={`transition ${
             activeSection === "about"
-              ? "text-blue-400 font-semibold"
+              ? "bg-gray-600 text-white font-semibold"
               : "hover:text-blue-400"
           }`}
         >
@@ -126,7 +126,7 @@ const Navbar = () => {
           onClick={() => handleNavClick("contact")}
           className={`transition ${
             activeSection === "contact"
-              ? "text-blue-400 font-semibold"
+              ? "bg-gray-600 text-white font-semibold"
               : "hover:text-blue-400"
           }`}
         >
