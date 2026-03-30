@@ -14,10 +14,22 @@ const UserHome = () => {
   const [myOrders] = useMyOrders();
   const [wishlist] = useWishlist();
 
+
+  const isLoading = !myPayments || !myOrders || !wishlist;
+
   useEffect(() => {
     AOS.refresh();
   }, []);
 
+  
+  if (isLoading) {
+    return <p className="text-center">Loading... ⏳</p>;
+  }
+
+  console.log(myPayments);
+
+
+  // ✅ Stats
   const stats = [
     {
       icon: <ShoppingBag size={28} />,
@@ -34,20 +46,67 @@ const UserHome = () => {
     {
       icon: <Star size={28} />,
       title: "Payments",
-      value: myPayments.length ?? 0,
+      value: myPayments?.length ?? 0,
       color: "from-yellow-400 to-yellow-600",
     },
     {
       icon: <Package size={28} />,
       title: "Pending Deliveries",
-      value: myOrders?.filter(o => !o.delivered)?.length ?? 0,
+      value:
+        myOrders?.filter((o) => o?.status !== "delivered")?.length ?? 0,
       color: "from-green-400 to-green-600",
     },
   ];
 
+  // ✅ Build Activities (FIXED)
+  const activities = [
+    ...(wishlist?.map((item) => ({
+      type: "wishlist",
+      message: `You added '${item?.name}' to your wishlist.`,
+      date: item?.createdAt || new Date(),
+    })) || []),
+
+    ...(myOrders?.map((order) => ({
+      type: "order",
+      message: `Your order #${order?._id?.slice(-5)} has been ${
+        order?.status === "delivered" ? "delivered" : "placed"
+      }.`,
+      date: order?.createdAt || new Date(),
+    })) || []),
+
+  ...(myPayments.map((payment) => {
+    const transactionId = payment?.transactionId;
+
+    return {
+        type: "payment",
+        message: `Your payment for order #${transactionId?.slice(-6) || "N/A"} was successful.`,
+        date: payment?.createdAt || new Date(),
+      };
+    }) || []),
+  ];
+
+  // ✅ Sort Latest First
+  const sortedActivities = activities.sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  );
+
+  // ✅ Icon Handler
+  const getIcon = (type) => {
+    switch (type) {
+      case "wishlist":
+        return "❤️";
+      case "order":
+        return "📦";
+      case "payment":
+        return "💳";
+      default:
+        return "🔔";
+    }
+  };
+
   return (
     <div className="min-h-screen px-4 md:px-8 lg:px-12 py-6 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 space-y-10">
-
+      
       {/* Hero Section */}
       <motion.div
         className="text-center"
@@ -57,10 +116,10 @@ const UserHome = () => {
       >
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-gray-900 dark:text-white flex flex-col sm:flex-row justify-center items-center gap-2">
           <span>Welcome Back,</span>
-          <span className="text-gradient bg-gradient-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent whitespace-nowrap">
+          <span className="bg-gradient-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent whitespace-nowrap">
             <Typewriter
               options={{
-                strings: [user?.displayName],
+                strings: [user?.displayName || "User"],
                 autoStart: true,
                 loop: true,
                 delay: 100,
@@ -82,9 +141,13 @@ const UserHome = () => {
             className={`bg-gradient-to-br ${stat.color} p-6 rounded-3xl shadow-xl hover:shadow-2xl transition-transform transform hover:scale-105 flex flex-col items-center justify-center text-white text-center`}
             whileHover={{ y: -5 }}
           >
-            <div className="text-white mb-3">{stat.icon}</div>
-            <h3 className="text-lg sm:text-xl font-semibold text-white">{stat.title}</h3>
-            <p className="text-3xl sm:text-4xl font-bold mt-1">{stat.value}</p>
+            <div className="mb-3">{stat.icon}</div>
+            <h3 className="text-lg sm:text-xl font-semibold">
+              {stat.title}
+            </h3>
+            <p className="text-3xl sm:text-4xl font-bold mt-1">
+              {stat.value}
+            </p>
           </motion.div>
         ))}
       </div>
@@ -106,20 +169,25 @@ const UserHome = () => {
         </div>
 
         <div className="divide-y divide-gray-200 dark:divide-gray-700">
-          {[
-            "You added 'Nike Air Max 270' to your wishlist.",
-            "Your order #12345 has been shipped.",
-            "You reviewed 'Apple Watch Series 8'.",
-            "Your payment for order #12489 was successful.",
-          ].map((activity, idx) => (
-            <motion.div
-              key={idx}
-              className="py-3 text-gray-700 dark:text-gray-300 text-sm sm:text-base"
-              whileHover={{ scale: 1.02, backgroundColor: 'rgba(0,0,0,0.02)' }}
-            >
-              {activity}
-            </motion.div>
-          ))}
+          {sortedActivities.length > 0 ? (
+            sortedActivities.slice(0, 6).map((activity, idx) => (
+              <motion.div
+                key={idx}
+                className="py-3 text-gray-700 dark:text-gray-300 text-sm sm:text-base flex items-center"
+                whileHover={{
+                  scale: 1.02,
+                  backgroundColor: "rgba(0,0,0,0.02)",
+                }}
+              >
+                <span className="mr-2">{getIcon(activity.type)}</span>
+                {activity.message}
+              </motion.div>
+            ))
+          ) : (
+            <p className="text-gray-500 text-center py-4">
+              No recent activity found 😶
+            </p>
+          )}
         </div>
       </motion.div>
     </div>
