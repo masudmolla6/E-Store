@@ -50,12 +50,12 @@ const MyCarts = () => {
       
       {/* Header */}
       <div className="flex  sm:flex-row justify-between items-start sm:items-center gap-3">
-        <h1 className="text-3xl font-bold text-gray-700 flex items-center gap-2">
-          <ShoppingBag className="text-indigo-600 w-7 h-7" /> My Cart
+        <h1 className="text-3xl font-bold text-gray-300 flex items-center gap-2">
+          <ShoppingBag className="text-indigo-500 w-7 h-7" /> My Cart
         </h1>
         <button
           onClick={refetch}
-          className="flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-indigo-700 hover:opacity-90 text-white px-5 py-2.5 rounded-xl shadow-md transition-all duration-300"
+          className="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-500 border-none hover:opacity-90 text-white px-5 py-2.5 rounded-xl shadow-md transition-all duration-300"
         >
           <RefreshCcw size={18} /> Refresh
         </button>

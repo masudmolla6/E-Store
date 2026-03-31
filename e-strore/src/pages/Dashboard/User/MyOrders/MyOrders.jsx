@@ -71,8 +71,8 @@ const MyOrders = () => {
       <div className="max-w-6xl mx-auto bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-2">
 
         {/* Title */}
-        <h2 className="text-3xl font-bold mb-6 text-center flex justify-center items-center gap-2 text-gray-800 dark:text-gray-100">
-          <Package className="w-8 h-8 text-indigo-600" /> My Orders
+        <h2 className="text-3xl font-bold mb-6 text-center flex justify-center items-center gap-2 text-gray-800 dark:text-gray-500">
+          <Package className="w-8 h-8 text-indigo-400" /> My Orders
         </h2>
           <div className="overflow-x-auto rounded-lg shadow-sm">
             <table className="table w-full min-w-[600px] md:min-w-full">

@@ -20,7 +20,9 @@ const PaymentHistory = () => {
       transition={{ duration: 0.4 }}
       className="w-full"
     >
-      <h1 className="text-3xl font-bold mb-6 flex items-center gap-2"><Receipt className="w-8 h-8 text-blue-500"></Receipt>Payment History</h1>
+      <h1 className="text-3xl font-bold mb-6 flex items-center gap-2"><Receipt className="w-8 h-8 text-blue-400"></Receipt>
+        <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">Payment History</span>
+      </h1>
 
       <div className="shadow-lg rounded-2xl">
           <div className="overflow-x-auto rounded-xl border">

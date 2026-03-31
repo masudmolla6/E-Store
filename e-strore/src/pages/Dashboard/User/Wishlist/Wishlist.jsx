@@ -19,7 +19,15 @@ const Wishlist = () => {
 
   return (
     <div className="">
-      <h2 className="text-2xl font-semibold mb-6 flex justify-center items-center gap-2"><Heart></Heart>My Wishlist</h2>
+<h2 className="text-2xl font-semibold mb-6 flex justify-center items-center gap-2">
+  
+  <Heart className="text-red-400" />
+
+  <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+    My Wishlist
+  </span>
+
+</h2>
 
       {/* Empty State */}
       {wishlist?.length === 0 && (
