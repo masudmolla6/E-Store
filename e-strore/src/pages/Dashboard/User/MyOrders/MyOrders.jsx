@@ -106,7 +106,7 @@ const MyOrders = () => {
               {myOrders.map((order) =>
                 order.items.map((product, index) => (
                   <tr
-                    key={product._id}
+                    key={`${order._id}-${product.productId}-${index}`}
                     className="hover:bg-gray-100 dark:hover:bg-gray-700 transition-all"
                   >
                     {/* Serial */}
