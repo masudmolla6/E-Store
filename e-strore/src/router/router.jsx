@@ -34,7 +34,6 @@ import ManageBanner from "../pages/Dashboard/Admin/ControlPanel/ManageBanner/Man
 import PrivacyPolicy from "../pages/Legal/PrivacyPolicy";
 import Terms from "../pages/Legal/Terms";
 import RefundPolicy from "../pages/Legal/RefundPolicy";
-import EditProfile from "../pages/Dashboard/User/Profile/EditProfile";
 
 const router=createBrowserRouter([
     {
@@ -156,10 +155,6 @@ const router=createBrowserRouter([
         {
           path:"profile",
           element:<Profile></Profile>,
-        },
-        {
-          path:"editProfile",
-          element:<EditProfile></EditProfile>
         },
         {
           path:"myCart",

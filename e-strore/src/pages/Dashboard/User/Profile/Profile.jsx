@@ -1,15 +1,37 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Mail, Calendar, Edit } from "lucide-react";
-import { Link } from "react-router";
+import { Mail, Calendar } from "lucide-react";
 import useAuth from "../../../../hooks/useAuth";
+import useMyOrders from "../../../../hooks/useMyOrders";
+import useWishlist from "../../../../hooks/useWishlist";
+import useMyPayments from "../../../../hooks/useMyPayments";
 
 const Profile = () => {
-  const {user}=useAuth();
-  console.log(user);
+  const { user } = useAuth();
+
+  // Hooks
+  const [myOrders,] = useMyOrders();
+  const [wishlist] = useWishlist();
+  const [myPayments,isLoading,refetch] = useMyPayments();
+  console.log(myPayments);
+
+  if(isLoading){
+    return <p>Loading....</p>
+  }
 
   const statusColor =
-    user.status === "active" ? "text-green-600" : "text-red-500";
+    user?.status === "active" ? "text-green-600" : "text-red-500";
+
+  // Real stats
+    const totalSpent = myPayments?.reduce(
+      (acc, payment) => acc + (payment.price || 0),
+      0
+    ) || 0;
+  const stats = {
+    totalOrders: myOrders?.length || 0,
+    totalSpent: totalSpent,
+    wishlistItems: wishlist?.length || 0,
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-300 to-blue-400 p-2 md:p-8">
@@ -17,46 +39,41 @@ const Profile = () => {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="max-w-4xl mx-auto bg-white shadow-xl rounded-3xl overflow-hidden"
+        className="max-w-5xl mx-auto bg-white shadow-xl rounded-3xl overflow-hidden"
       >
         {/* Cover */}
         <div className="h-40 bg-gradient-to-r from-cyan-400 to-blue-500 relative">
-          <div className="absolute -bottom-14 left-6">
-            <img
-              src={user.photoURL}
+          <div className="absolute -bottom-16 left-6">
+            <motion.img
+              src={user?.photoURL}
               alt="profile"
-              className="w-28 h-28 rounded-full border-4 border-white shadow-lg object-cover"
+              className="w-32 h-32 rounded-full border-4 border-white shadow-lg object-cover"
+              whileHover={{ scale: 1.05 }}
             />
           </div>
         </div>
 
         {/* Content */}
-        <div className="pt-16 px-6 pb-6">
+        <div className="pt-20 px-6 pb-6">
+          {/* User Info */}
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            
-            {/* User Info */}
             <div>
-              <h2 className="text-2xl font-bold text-gray-800">
-                {user.displayName}
+              <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
+                {user?.displayName}{" "}
+                <span className="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs">
+                  Verified
+                </span>
               </h2>
 
               <p className="text-gray-500 flex items-center gap-2 mt-1">
-                <Mail size={16} /> {user.email}
+                <Mail size={16} /> {user?.email}
               </p>
 
               <p className="text-gray-400 flex items-center gap-2 mt-1 text-sm">
-                <Calendar size={14} /> Joined: {user.metadata.creationTime}
+                <Calendar size={14} /> Joined:{" "}
+                {new Date(user?.metadata?.creationTime).toLocaleDateString()}
               </p>
             </div>
-
-            {/* Edit Button */}
-            {/* <Link
-              to="/dashboard/editProfile"
-              className="inline-flex items-center gap-2 bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-lg shadow transition"
-            >
-              <Edit size={16} />
-              Edit Profile
-            </Link> */}
           </div>
 
           {/* Divider */}
@@ -64,10 +81,12 @@ const Profile = () => {
 
           {/* Cards Section */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            
             {/* Account Status */}
-            <div className="bg-gray-50 p-4 rounded-xl shadow-sm hover:shadow-md transition flex items-center gap-3">
-              <div className="p-3 bg-green-100 rounded-full">
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              className="bg-gradient-to-r from-green-100 to-green-50 p-4 rounded-xl shadow-lg flex items-center gap-3 transition"
+            >
+              <div className="p-3 bg-white rounded-full animate-bounce">
                 <span className="text-green-600 text-lg font-bold">✔</span>
               </div>
               <div>
@@ -76,11 +95,14 @@ const Profile = () => {
                   Verified
                 </h3>
               </div>
-            </div>
+            </motion.div>
 
             {/* Role */}
-            <div className="bg-gray-50 p-4 rounded-xl shadow-sm hover:shadow-md transition flex items-center gap-3">
-              <div className="p-3 bg-blue-100 rounded-full">
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              className="bg-gradient-to-r from-blue-400 to-blue-100 p-4 rounded-xl shadow-lg flex items-center gap-3 transition"
+            >
+              <div className="p-3 bg-white rounded-full animate-pulse">
                 <span className="text-blue-600 text-lg font-bold">👤</span>
               </div>
               <div>
@@ -89,17 +111,50 @@ const Profile = () => {
                   User
                 </h3>
               </div>
-            </div>
+            </motion.div>
+          </div>
 
+          {/* Quick Stats Section */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="bg-white shadow-md p-4 rounded-xl text-center transition hover:shadow-xl"
+            >
+              <p className="text-sm text-gray-400">Total Orders</p>
+              <h3 className="text-xl font-bold text-indigo-600">
+                {stats.totalOrders}
+              </h3>
+            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="bg-white shadow-md p-4 rounded-xl text-center transition hover:shadow-xl"
+            >
+              <p className="text-sm text-gray-400">Total Spent</p>
+              <h3 className="text-xl font-bold text-green-600">
+                ${stats.totalSpent.toLocaleString()}
+              </h3>
+            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="bg-white shadow-md p-4 rounded-xl text-center transition hover:shadow-xl"
+            >
+              <p className="text-sm text-gray-400">Wishlist Items</p>
+              <h3 className="text-xl font-bold text-pink-600">
+                {stats.wishlistItems}
+              </h3>
+            </motion.div>
           </div>
 
           {/* Extra Info */}
-          <div className="mt-6 bg-cyan-50 border border-cyan-100 p-4 rounded-xl">
-            <p className="text-sm text-gray-600">
-              Welcome back! This is your profile overview. You can explore
-              your dashboard and manage your account easily.
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            className="mt-6 bg-cyan-50 border border-cyan-100 p-4 rounded-xl shadow-sm transition"
+          >
+            <p className="text-sm text-gray-600 text-center">
+              Welcome back! This is your profile overview. You can explore your
+              dashboard, check your stats, and manage your account easily.
             </p>
-          </div>
+          </motion.div>
         </div>
       </motion.div>
     </div>
