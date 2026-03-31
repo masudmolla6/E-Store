@@ -74,9 +74,9 @@ const handleAddToCart = (product) => {
 
         {/* Quick View Overlay */}
         <div className="absolute inset-0 bg-black/40 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <button className="bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 px-4 py-2 rounded-xl flex items-center gap-2 font-medium hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+          <Link to={`/products/productDetails/${product._id}`} className="bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 px-4 py-2 rounded-xl flex items-center gap-2 font-medium hover:bg-gray-100 dark:hover:bg-gray-600 transition">
             <Eye size={18} /> View Details
-          </button>
+          </Link>
         </div>
       </div>
 

@@ -41,7 +41,7 @@ const ProductDetails = () => {
               showConfirmButton: false,
               timer: 1500,
             });
-            refetch();
+            // refetch();
           } else if (res.data.message === "Item already in cart") {
             Swal.fire({
               position: "top-end",
@@ -89,7 +89,7 @@ const ProductDetails = () => {
               showConfirmButton: false,
               timer: 1500,
             });
-            refetch();
+            // refetch();
           } else if (res.data.message === "Item already in Wishlist") {
             Swal.fire({
               position: "top-end",
@@ -118,7 +118,7 @@ const ProductDetails = () => {
   };
 
   return (
-    <section className="min-h-screen bg-gray-50 dark:bg-gray-900 py-10 px-4 sm:px-8 lg:px-16">
+    <section className="min-h-screen bg-gray-50 dark:bg-gray-900 sm:py-8 sm:px-8 ">
       <div className="max-w-6xl mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden flex flex-col md:flex-row gap-10 p-6">
         {/* Product Image */}
         <div className="flex-1">
