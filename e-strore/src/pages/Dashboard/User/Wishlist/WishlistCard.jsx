@@ -4,14 +4,12 @@ import { Link, useLocation, useNavigate } from 'react-router';
 import useAuth from '../../../../hooks/useAuth';
 import { ShoppingCart, Eye, Trash2 } from "lucide-react";
 import Swal from 'sweetalert2';
-import useWishlist from '../../../../hooks/useWishlist';
 
-const WishlistCard = ({ product }) => {
+const WishlistCard = ({ product, refetch }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const axiosSecure = useAxiosSecure();
-  const [, refetch] = useWishlist();
 
   const handleAddToCart = (product) => {
     if (user && user.email) {

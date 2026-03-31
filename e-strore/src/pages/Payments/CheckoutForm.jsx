@@ -96,7 +96,7 @@ const CheckoutForm = () => {
 
           const res = await axiosSecure.post("/payments", payment);
           console.log("Payment Data Saved In the Database", res.data);
-          refetch();
+          // refetch();
           if (res.data?.paymentsResults?.insertedId) {
             Swal.fire({
               title: `Thank You So Much For your Payment.`,
@@ -135,6 +135,8 @@ const CheckoutForm = () => {
           status: "pending",
           createdAt: new Date(),
         };
+
+        console.log("Orders Details", order);
 
           const result = await axiosSecure.post("/orders", order);
           console.log("Order Data Saved In the Database", result.data);
