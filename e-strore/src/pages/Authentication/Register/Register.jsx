@@ -141,7 +141,13 @@ const handleImageUpload = async (e) => {
                         <div><a className="link link-hover">Forgot password?</a></div>
                         <button className="btn btn-primary text-black mt-4">Register</button>
                     </fieldset>
-                    <p className='text-center'><small>Already have an account? <Link className="btn btn-link" to="/login">Login</Link></small></p>
+                    {/* Login */}
+                    <p className="text-center mt-3 sm:mt-4 text-xs sm:text-sm">
+                        Already have an account ?{" "}
+                        <Link className="btn btn-link p-0 text-xs sm:text-sm" to="/login">
+                          Login
+                        </Link>
+                    </p>
                 </form>
                 <SocialLogin></SocialLogin>
             </div>

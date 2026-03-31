@@ -3,7 +3,7 @@ import useMyOrders from "../../../../hooks/useMyOrders";
 import { Link } from "react-router";
 import { FaEye } from "react-icons/fa";
 import AOS from "aos";
-import { DollarSign, Package } from "lucide-react";
+import { DollarSign, HeartOff, Package } from "lucide-react";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import MyOrdersSkeleton from "./MyOrdersSkeleton";
@@ -66,6 +66,20 @@ const MyOrders = () => {
     return <MyOrdersSkeleton></MyOrdersSkeleton>
   }
 
+  if (myOrders?.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center py-16 text-center">
+        
+        <HeartOff className="w-12 h-12 text-cyan-400 mb-4" />
+
+        <p className="text-gray-500 text-lg font-medium">
+          Your Orders are empty
+        </p>
+
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-5">
       <div className="max-w-6xl mx-auto bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-2">
@@ -74,6 +88,7 @@ const MyOrders = () => {
         <h2 className="text-3xl font-bold mb-6 text-center flex justify-center items-center gap-2 text-gray-800 dark:text-gray-500">
           <Package className="w-8 h-8 text-indigo-400" /> My Orders
         </h2>
+
           <div className="overflow-x-auto rounded-lg shadow-sm">
             <table className="table w-full min-w-[600px] md:min-w-full">
               <thead className="bg-indigo-100 dark:bg-indigo-900 text-gray-700 dark:text-gray-200">

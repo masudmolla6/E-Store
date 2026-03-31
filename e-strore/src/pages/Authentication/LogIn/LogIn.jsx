@@ -31,7 +31,7 @@ const LogIn = () => {
             
             {/* Title */}
             <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-center mb-2 sm:mb-4">
-            Please Login
+            Login Now
             </h1>
 
             <form onSubmit={handleSubmit(onSubmit)} className='w-80'>
@@ -90,7 +90,7 @@ const LogIn = () => {
 
             {/* Register */}
             <p className="text-center mt-3 sm:mt-4 text-xs sm:text-sm">
-                New to this website?{" "}
+                New to this website ?{" "}
                 <Link className="btn btn-link p-0 text-xs sm:text-sm" to="/register">
                 Register
                 </Link>
@@ -99,7 +99,7 @@ const LogIn = () => {
 
             {/* Social */}
             <div className="">
-            <SocialLogin />
+                <SocialLogin />
             </div>
 
         </div>

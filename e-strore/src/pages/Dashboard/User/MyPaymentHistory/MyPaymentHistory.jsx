@@ -1,7 +1,7 @@
 import React from "react";
 import useMyPayments from "../../../../hooks/useMyPayments";
 import { motion } from "framer-motion";
-import { Receipt } from "lucide-react";
+import { HeartOff, Receipt } from "lucide-react";
 import PaymentHistorySkeleton from "./PaymentHistorySkeleton";
 
 const PaymentHistory = () => {
@@ -11,6 +11,20 @@ const PaymentHistory = () => {
 
   if(isLoading){
     return <PaymentHistorySkeleton></PaymentHistorySkeleton>
+  }
+
+  if (myPayments?.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center py-16 text-center">
+        
+        <HeartOff className="w-12 h-12 text-cyan-400 mb-4" />
+
+        <p className="text-gray-500 text-lg font-medium">
+          Your Payments are empty
+        </p>
+
+      </div>
+    );
   }
 
   return (
