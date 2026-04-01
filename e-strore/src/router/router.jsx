@@ -89,7 +89,7 @@ const router=createBrowserRouter([
           path:"productDetails/:id",
           Component:ProductDetails,
           loader:({params})=>{
-            return fetch(`http://localhost:5000/products/productDetails/${params.id}`);
+            return fetch(`https://e-store-server-peach.vercel.app/products/productDetails/${params.id}`);
           }
         },
         {
@@ -123,7 +123,7 @@ const router=createBrowserRouter([
           path:"manageProducts/edit-product/:id",
           element:<EditProduct></EditProduct>,
           loader:({params})=>{
-            return fetch(`http://localhost:5000/products/productDetails/${params.id}`);
+            return fetch(`https://e-store-server-peach.vercel.app/products/productDetails/${params.id}`);
           }
         },
         {
@@ -168,7 +168,7 @@ const router=createBrowserRouter([
           path:"myOrders/:id",
           element:<MyOrderDetails></MyOrderDetails>,
           loader:({params})=>{
-            return fetch(`http://localhost:5000/orders/${params.id}`);
+            return fetch(`https://e-store-server-peach.vercel.app/orders/${params.id}`);
           }
         },
         {
