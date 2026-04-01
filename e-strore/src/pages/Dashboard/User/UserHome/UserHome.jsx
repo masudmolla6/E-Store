@@ -130,7 +130,7 @@ const UserHome = () => {
   };
 
   return (
-    <div className="min-h-screen px-4 md:px-8 lg:px-12 py-6 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 space-y-10">
+    <div className="min-h-screen lg:px-6 lg:py-4 py-2 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 space-y-10">
       
       {/* Hero Section */}
       <motion.div

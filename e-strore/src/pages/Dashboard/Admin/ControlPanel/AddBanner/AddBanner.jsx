@@ -99,7 +99,7 @@ const AddBanner = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-900 via-purple-600 to-pink-500">
       <div className="w-full max-w-3xl bg-white/20 backdrop-blur-lg rounded-3xl shadow-2xl p-10 border border-white/10">
         <h1 className="text-4xl font-extrabold mb-8 text-center text-white">
           Add New Banner
