@@ -153,7 +153,7 @@ const ContactUs = () => {
           </div>
 
           {/* Contact Info */}
-          <div data-aos={window.innerWidth < 768 ? "" : "fade-left"} className="flex flex-col gap-6 justify-center">
+          <div className="flex flex-col gap-6 justify-center">
             <h2 className="text-2xl font-bold mb-4">Our Contact Info</h2>
 
             <div className="flex items-start gap-4">
